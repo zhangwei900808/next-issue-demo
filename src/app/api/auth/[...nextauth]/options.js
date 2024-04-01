@@ -13,8 +13,8 @@ export const authOptions = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: { label: "Username", type: "text", placeholder: "jsmith" },
-                password: { label: "Password", type: "password" }
+                username: {label: "Username", type: "text", placeholder: "jsmith"},
+                password: {label: "Password", type: "password"}
             },
             async authorize(credentials, req) {
                 // You need to provide your own logic here that takes the credentials
@@ -39,7 +39,7 @@ export const authOptions = {
                 // return null
 
 
-                const user = { id: "42", name: "Justin", password: "123456", role: "manager" }
+                const user = {id: "42", name: "Justin", password: "123456", role: "manager"}
 
                 if (credentials?.username === user.name && credentials?.password === user.password) {
                     return user
@@ -49,4 +49,16 @@ export const authOptions = {
             }
         })
     ],
+    callbacks: {
+        // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
+        async jwt({token, user}) {
+            if (user) token.role = user.role
+            return token
+        },
+        // If you want to use the role in client components
+        async session({session, token}) {
+            if (session?.user) session.user.role = token.role
+            return session
+        },
+    }
 }
