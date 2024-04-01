@@ -23,21 +23,30 @@ export const authOptions = {
                 // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
-                const res = await fetch("/your/endpoint", {
-                    method: 'POST',
-                    body: JSON.stringify(credentials),
-                    headers: { "Content-Type": "application/json" }
-                })
-                const user = await res.json()
+                // console.log('------year -----')
+                // const res = await fetch("/your/endpoint", {
+                //     method: 'POST',
+                //     body: JSON.stringify(credentials),
+                //     headers: { "Content-Type": "application/json" }
+                // })
+                // const user = await res.json()
+                //
+                // // If no error and we have user data, return it
+                // if (res.ok && user) {
+                //     return user
+                // }
+                // // Return null if user data could not be retrieved
+                // return null
 
-                // If no error and we have user data, return it
-                if (res.ok && user) {
+
+                const user = { id: "42", name: "Justin", password: "123456", role: "manager" }
+
+                if (credentials?.username === user.name && credentials?.password === user.password) {
                     return user
+                } else {
+                    return null
                 }
-                // Return null if user data could not be retrieved
-                return null
             }
         })
     ],
 }
-export default NextAuth(authOptions)
