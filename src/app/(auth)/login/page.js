@@ -4,8 +4,7 @@ import LoginBtn from '@/components/auth/login-btn'
 export default function Login() {
     return (
         <main className="p-24">
-           login page
-            <LoginBtn/>
+           login pagdddsdfsdfsdf
         </main>
     );
 }
