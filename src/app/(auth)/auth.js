@@ -4,9 +4,9 @@ import NextAuth from "next-auth"
 
 export const authOptions = {
     // Configure one or more authentication providers
-    pages: {
-        signIn: '/login'
-    },
+    // pages: {
+    //     signIn: '/login'
+    // },
     providers: [
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -53,18 +53,18 @@ export const authOptions = {
             }
         })
     ],
-    callbacks: {
-        // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
-        async jwt({token, user}) {
-            if (user) token.role = user.role
-            return token
-        },
-        // If you want to use the role in client components
-        async session({session, token}) {
-            if (session?.user) session.user.role = token.role
-            return session
-        },
-    }
+    // callbacks: {
+    //     // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
+    //     async jwt({token, user}) {
+    //         if (user) token.role = user.role
+    //         return token
+    //     },
+    //     // If you want to use the role in client components
+    //     async session({session, token}) {
+    //         if (session?.user) session.user.role = token.role
+    //         return session
+    //     },
+    // }
 }
 
 export const {
