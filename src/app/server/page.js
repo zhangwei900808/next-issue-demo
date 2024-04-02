@@ -1,15 +1,10 @@
-import { getServerSession } from "next-auth/next"
-import { redirect } from "next/navigation"
-import {authOptions} from "../api/auth/[...nextauth]/options";
+import {auth} from "@/app/(home)/auth";
 
 export default async function ServerPage() {
-    const sessions = await getServerSession(authOptions)
-    console.log('----sessions-----', sessions)
-    if (!sessions) {
-        redirect('/api/auth/signin?callbackUrl=/server')
-    }
+    const session = await auth()
+    console.log('----sessions-----', session)
 
     return <div className="flex flex-col gap-6">
-        sdfsdfdsfsdf{sessions}
+        sdfsdfdsfsdf{session}
     </div>
 }
