@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
-import "../(global)/globals.css";
+import "./(global)/globals.css";
 import Link from 'next/link'
-import StyledComponentsRegistry from "../(global)/AntdRegistry";
+import StyledComponentsRegistry from "./(global)/AntdRegistry";
 import AuthProvider from "@/context/authProvider";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
               <div>
                   <div>
                       <div className='flex p-24'>
-                          <Link href={`/login`}>登录</Link>
+                          <Link href={`/api/auth/signin`}>登录</Link>
                       </div>
                   </div>
                   <div>
