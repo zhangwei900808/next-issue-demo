@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react"
-import {auth} from "@/app/(home)/auth";
+import {auth} from "@/app/(auth)/auth";
+import {Button} from 'antd'
 
 
 export default async function Home() {

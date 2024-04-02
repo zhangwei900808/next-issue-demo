@@ -3,8 +3,9 @@ import "./(global)/globals.css";
 import Link from 'next/link'
 import StyledComponentsRegistry from "./(global)/AntdRegistry";
 import AuthProvider from "@/context/authProvider";
+import {Button} from "antd";
 const inter = Inter({ subsets: ["latin"] });
-
+import LoginBtn from '@/components/auth/login-btn'
 export const metadata = {
   title: "Seaurl",
   description: "您的ai智能管家",
@@ -15,16 +16,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
           <AuthProvider>
-              <div>
+              <StyledComponentsRegistry>
                   <div>
-                      <div className='flex p-24'>
-                          <Link href={`/api/auth/signin`}>登录</Link>
-                      </div>
+                      <LoginBtn />
                   </div>
                   <div>
-                      <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+                      {children}
                   </div>
-              </div>
+              </StyledComponentsRegistry>
           </AuthProvider>
       </body>
     </html>
