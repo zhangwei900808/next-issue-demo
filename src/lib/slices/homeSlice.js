@@ -9,9 +9,11 @@ export const homeSlice = createSlice({
     reducers: {
         increment: (state) => {
             state.value += 1;
+            console.log('increment state value = ', state.value)
         },
         decrement: (state) => {
             state.value -= 1;
+            console.log('decrement state value = ', state.value)
         },
         incrementByAmount: (state, action) => {
             state.value += action.payload;

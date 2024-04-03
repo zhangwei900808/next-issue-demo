@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./(global)/globals.css";
 import Link from 'next/link'
-import StyledComponentsRegistry from "./(global)/AntdRegistry";
+import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
 import {Button} from "antd";
@@ -18,14 +18,14 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
           <StoreProvider>
               <AuthProvider>
-                  <StyledComponentsRegistry>
+                  <AntdProvider>
                       <div>
                           <LoginBtn />
                       </div>
                       <div>
                           {children}
                       </div>
-                  </StyledComponentsRegistry>
+                  </AntdProvider>
               </AuthProvider>
           </StoreProvider>
       </body>
