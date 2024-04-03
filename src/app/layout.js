@@ -4,7 +4,6 @@ import Link from 'next/link'
 import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
-import {Button} from "antd";
 const inter = Inter({ subsets: ["latin"] });
 import LoginBtn from '@/components/auth/login-btn'
 export const metadata = {
@@ -20,7 +19,7 @@ export default function RootLayout({ children }) {
               <AuthProvider>
                   <AntdProvider>
                       <div>
-                          <LoginBtn />
+                          <LoginBtn/>
                       </div>
                       <div>
                           {children}

@@ -2,10 +2,12 @@
 import { useSession, signIn, signOut } from "next-auth/react"
 import {Button} from 'antd'
 import { useRouter } from 'next/navigation'
+import {useState} from "react";
 
 export default function Component() {
     const router = useRouter()
     const { data: session } = useSession()
+    const [theme, setTheme] = useState()
     if (session) {
         return (
             <div>
@@ -13,7 +15,8 @@ export default function Component() {
                 <div className={'flex flex-row justify-between px-6 py-6'}>
                     <div className={'flex gap-4 '}>
                         <Button onClick={() => goto('/news')}>跳转到news页面</Button>
-                        <Button onClick={() => goto('/')}>跳转到首页面</Button>
+                        <Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>
+                        <Button type={"primary"} onClick={() => toggleTheme('/')}>切换主题</Button>
 
                     </div>
                     <div>
@@ -22,6 +25,10 @@ export default function Component() {
                 </div>
             </div>
         )
+    }
+
+    function toggleTheme(type){
+        setTheme(type)
     }
 
     function goto(val) {
