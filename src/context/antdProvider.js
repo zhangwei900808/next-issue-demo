@@ -7,10 +7,7 @@ import { StyleProvider, createCache, extractStyle } from "@ant-design/cssinjs";
 const StyledComponentsRegistry = ({ children }) => {
     const cache = React.useMemo(() => createCache(), []);
     useServerInsertedHTML(() => (
-        <style
-            id="antd"
-            dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}
-        />
+        <style id="antd" dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }}/>
     ));
     return <StyleProvider cache={cache}>{children}</StyleProvider>;
 };
