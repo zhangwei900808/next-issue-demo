@@ -10,7 +10,7 @@ export default async function Home() {
     return (
         <main className="p-24">
             main page
-            <div>Access Token: {JSON.stringify(session?.user.name)}</div>
+            <div>Access Token: {JSON.stringify(session)}</div>
         </main>
     );
 }

@@ -3,8 +3,8 @@ const initialState = {
     value: 0,
 };
 
-export const homeSlice = createSlice({
-    name: "home",
+export const authSlice = createSlice({
+    name: "auth",
     initialState,
     reducers: {
         increment: (state) => {
@@ -19,4 +19,4 @@ export const homeSlice = createSlice({
     },
 })
 
-export const { increment, decrement, incrementByAmount } = homeSlice.actions;
+export const { increment, decrement, incrementByAmount } = authSlice.actions;
