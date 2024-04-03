@@ -8,8 +8,8 @@ import {Button} from "antd";
 const inter = Inter({ subsets: ["latin"] });
 import LoginBtn from '@/components/auth/login-btn'
 export const metadata = {
-  title: "Seaurl",
-  description: "您的ai智能管家",
+  title: "Next.js & Next-Auth & Redux-Toolkit & Antd & Tailwindcss",
+  description: "集成示例",
 };
 
 export default function RootLayout({ children }) {
