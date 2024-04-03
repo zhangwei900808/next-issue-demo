@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server'
+import {auth} from "@/app/(auth)/auth";
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request) {
-    console.log('哈哈就是我', request.nextauth)
+export async function middleware(request) {
+    // 获取session
+    const session = await auth()
+
+    console.log('哈哈就是我=', session)
     return NextResponse.redirect(new URL('/', request.url))
 }
 
