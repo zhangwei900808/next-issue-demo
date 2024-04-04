@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body className="bg-white dark:bg-black">
+      <body className="bg-white dark:bg-black dark:text-white">
           <StoreProvider>
               <AuthProvider>
                   <AntdProvider>
