@@ -11,8 +11,13 @@ export default function AntdProvider({children}) {
 
     const {myTheme, defaultTheme, darkTheme} = useAppSelector(state => state.system)
     useEffect(() => {
-        document.documentElement.classList.add('dark')
-    }, [])
+        if (myTheme === 'dark'){
+            document.documentElement.classList.add('dark')
+        }else{
+            document.documentElement.classList.remove('dark')
+        }
+
+    }, [myTheme])
     return <AntdRegistry>
         <ConfigProvider locale={zhCN} theme={{
             token: {
@@ -20,7 +25,7 @@ export default function AntdProvider({children}) {
             },
             algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
         }}>
-            <div className="bg-white dark:bg-black">
+            <div>
                 {children}
             </div>
         </ConfigProvider>
