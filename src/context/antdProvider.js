@@ -5,12 +5,14 @@ import {ConfigProvider, theme} from 'antd'
 import zhCN from 'antd/locale/zh_CN';
 import 'dayjs/locale/zh-cn';
 import {useAppSelector} from "@/lib/hooks";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function AntdProvider({children}) {
 
     const {myTheme, defaultTheme, darkTheme} = useAppSelector(state => state.system)
-
+    useEffect(() => {
+        document.documentElement.classList.add('dark')
+    }, [])
     return <AntdRegistry>
         <ConfigProvider locale={zhCN} theme={{
             token: {
@@ -18,9 +20,7 @@ export default function AntdProvider({children}) {
             },
             algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
         }}>
-            <div style={{
-                backgroundColor: myTheme === 'dark' ?darkTheme.background:defaultTheme.background
-            }}>
+            <div className="bg-white dark:bg-black">
                 {children}
             </div>
         </ConfigProvider>

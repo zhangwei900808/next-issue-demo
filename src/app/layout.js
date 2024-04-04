@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./(global)/globals.css";
+import "./globals.css";
 import Link from 'next/link'
 import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
@@ -13,8 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme={'dark'}>
-      <body className={inter.className}>
+    <html>
+      <body>
           <StoreProvider>
               <AuthProvider>
                   <AntdProvider>
