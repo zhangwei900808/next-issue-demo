@@ -5,7 +5,7 @@ import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
 const inter = Inter({ subsets: ["latin"] });
-import LoginBtn from '@/components/auth/login-btn'
+import TopMenus from '@/components/auth/topMenus'
 export const metadata = {
   title: "Next.js & Next-Auth & Redux-Toolkit & Antd & Tailwindcss",
   description: "集成示例",
@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
           <StoreProvider>
               <AuthProvider>
                   <AntdProvider>
-                      <div className={'dark:bg-black dark:text-white fixed bg-white w-dvw h-[4rem]'}>
-                          <LoginBtn/>
-                      </div>
+                      <TopMenus/>
                       <div>
                           {children}
                       </div>

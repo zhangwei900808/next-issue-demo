@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import {useSelector, useDispatch} from 'react-redux'
 import {login} from '@/lib/slices/authSlice';
 
-
 const {Text, Link} = Typography;
 const layout = {
     labelCol: {span: 24},
@@ -201,4 +200,9 @@ const Login = props => {
     return render();
 };
 
-export default memo(Login);
+export default Login
+
+// Login.getLayout = function getLayout(page){
+//     return <LogoutLayout>{page}12eqwqdqdqdqwed</LogoutLayout>
+// }
+//
