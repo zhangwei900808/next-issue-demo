@@ -266,7 +266,7 @@ const Register = props => {
                         <span>创建你的账号</span>
                     </div>
                     {error.show ? <Alert message={error.content} type="error" closable afterClose={closeError}/> : null}
-                    <div>
+                    <div className={''}>
                         <Form
                             form={form}
                             {...layout}

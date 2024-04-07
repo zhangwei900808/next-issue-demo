@@ -5,9 +5,8 @@ import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
 const inter = Inter({ subsets: ["latin"] });
-import TopMenus from '@/components/auth/topMenus'
-import { headers } from 'next/headers'
 import ChildrenLayout from "@/components/layout/childrenLayout";
+import TopMenus from "@/components/layout/topMenus";
 
 export const metadata = {
   title: "Seaurl-AI管家",
