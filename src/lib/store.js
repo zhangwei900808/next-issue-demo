@@ -4,10 +4,12 @@ import logger from "redux-logger";
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import {homeSlice} from "@/lib/slices/homeSlice";
 import {systemSlice} from "@/lib/slices/systemSlice";
+import {authSlice} from "@/lib/slices/authSlice";
 
 const rootReducer = combineReducers({
     [homeSlice.name]: homeSlice.reducer,
-    [systemSlice.name]: systemSlice.reducer
+    [systemSlice.name]: systemSlice.reducer,
+    [authSlice.name]: authSlice.reducer
 })
 
 export const makeStore = () => {

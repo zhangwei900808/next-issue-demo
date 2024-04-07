@@ -19,7 +19,7 @@ export default function Component() {
     const { token } = useToken();
 
     console.log('token ===', token.colorPrimaryBg)
-    if (session) {
+
         return (
             <div>
                 <div className={'flex flex-row justify-between px-6 py-6'}>
@@ -30,12 +30,13 @@ export default function Component() {
 
                     </div>
                     <div>
-                        <Button onClick={() => signOut()}>退出</Button>
+                        {session?
+                            <Button onClick={() => signOut()}>退出</Button>:<Button onClick={() => signIn()}>登录</Button>}
+
                     </div>
                 </div>
             </div>
         )
-    }
 
     function toggleTheme(type){
         dispatch(setMyTheme(myTheme === 'dark'?'default':'dark'))
@@ -44,10 +45,4 @@ export default function Component() {
     function goto(val) {
         router.push(val)
     }
-
-    return (
-        <div className={'flex justify-between px-6 py-6'}>
-            <Button onClick={() => signIn()}>登录</Button>
-        </div>
-    )
 }

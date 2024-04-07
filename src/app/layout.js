@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
           <StoreProvider>
               <AuthProvider>
                   <AntdProvider>
-                      <div>
+                      <div className={'dark:bg-black dark:text-white fixed bg-white w-dvw h-[4rem]'}>
                           <LoginBtn/>
                       </div>
                       <div>

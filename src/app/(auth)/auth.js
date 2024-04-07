@@ -4,9 +4,9 @@ import NextAuth from "next-auth"
 
 export const authOptions = {
     // Configure one or more authentication providers
-    // pages: {
-    //     signIn: '/login'
-    // },
+    pages: {
+        signIn: '/login'
+    },
     providers: [
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -27,29 +27,21 @@ export const authOptions = {
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
                 console.log('------credentials -----', credentials)
-                // const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/users/web/login`, {
-                //     method: 'POST',
-                //     body: JSON.stringify(credentials),
-                //     headers: { "Content-Type": "application/json" }
-                // })
-                // const resData = await res.json()
-                // console.log('login res user = ', resData)
-                //
-                // // If no error and we have user data, return it
-                // if (res.ok && resData && resData.status === 0) {
-                //     return resData.data
-                // }
-                // // Return null if user data could not be retrieved
-                // return null
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/users/web/login`, {
+                    method: 'POST',
+                    body: JSON.stringify(credentials),
+                    headers: { "Content-Type": "application/json" }
+                })
+                const resData = await res.json()
+                console.log('login res user = ', resData)
 
-
-                const user = {id: "42", name: "justin", password: "123456", role: "manager"}
-
-                if (credentials?.userName === user.name && credentials?.password === user.password) {
-                    return user
-                } else {
-                    return null
+                // If no error and we have user data, return it
+                if (res.ok && resData && resData.status === 0) {
+                    return resData.data
                 }
+                // Return null if user data could not be retrieved
+                return null
+
             }
         })
     ],
