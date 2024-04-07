@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react"
-import {auth} from "@/app/(auth)/auth";
+import {auth} from "@/lib/auth";
 import {Button} from 'antd'
 
 

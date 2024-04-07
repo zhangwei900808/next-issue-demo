@@ -1,4 +1,4 @@
-import {auth} from "@/app/(auth)/auth";
+import {auth} from "@/lib/auth";
 import UserDetail from "@/components/user/userDetail";
 export default async function Home() {
     const session = await auth()

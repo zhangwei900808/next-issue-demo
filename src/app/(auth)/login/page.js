@@ -87,21 +87,21 @@ const Login = props => {
             show: false
         });
         setIsLoading(true);
-        let res = await dispatch(login({
-            username,
-            password
-        }));
-        console.log('dispatch login =', res)
-        if (res.payload.isLogin) {
-            router.push("/");
-        } else {
-            setError({
-                show: true,
-                content: res.payload.message
-            });
-            // message.warning(res.payload.message);
-        }
-        setIsLoading(false);
+        // let res = await dispatch(login({
+        //     username,
+        //     password
+        // }));
+        // console.log('dispatch login =', res)
+        // if (res.payload.isLogin) {
+        //     router.push("/");
+        // } else {
+        //     setError({
+        //         show: true,
+        //         content: res.payload.message
+        //     });
+        //     // message.warning(res.payload.message);
+        // }
+        // setIsLoading(false);
     };
 
     function onChange(v) {
