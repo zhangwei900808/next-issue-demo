@@ -115,7 +115,7 @@ const Login = props => {
             <div className={'flex justify-center'}>
                 <div>
                     <div className={'flex justify-center flex-col items-center pt-24 pb-4'}>
-                      <span>
+                      <span className={'cursor-pointer'}>
                         <img
                             src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png"
                             width="56"
@@ -127,7 +127,7 @@ const Login = props => {
                             }}
                         />
                       </span>
-                        <span className={'text-xl font-medium py-6'}>登录Seaurl</span>
+                        <span className={'text-2xl font-medium py-6'}>登录Seaurl</span>
                     </div>
                     <div>
                         <div>{error.show ?
@@ -141,19 +141,19 @@ const Login = props => {
                                 onFinish={onFinish}
                                 // onFinishFailed={onFinishFailed}
                             >
-                                <div>
+                                <div className={'pb-2'}>
                                     <b>用户名或邮箱</b>
                                 </div>
                                 <Form.Item name="username">
                                     <Input size="large"/>
                                 </Form.Item>
-                                <div>
+                                <div className={'pb-2 flex justify-between'}>
                                     <b>密码</b>
-                                    <span onClick={()=>{
+                                    <Button onClick={() => {
                                         location.href = '/account/password_reset'
-                                    }}>
-                                      忘记密码
-                                    </span>
+                                    }} type="link" size={'small'}>
+                                        忘记密码
+                                    </Button>
                                 </div>
                                 <Form.Item name="password">
                                     <Input.Password size="large"/>
@@ -166,25 +166,29 @@ const Login = props => {
                                 </Form.Item>
                             </Form>
                             <div >
-                      <span onClick={()=>{
-                          location.href = '/join?ref=register'
-                      }} >
-                    还没有账号吗？点击注册新账号
-                  </span>
+                            <div className={'flex justify-center items-center'}>
+                                <Button onClick={()=>{
+                                    location.href = '/join?ref=register'
+                                }} type="link" size={'small'}>
+                                    <span className={'text-base'}>还没有账号吗？点击注册新账号</span>
+                                </Button>
+
+                          </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <Space>
-                            <Checkbox onChange={onChange}/><span>我已阅读并同意
-                    <span onClick={()=>{
-                        window.open('/license', '_blank')
-                    }}>服务协议</span>
-                    和
-                    <span onClick={()=>{
-                        window.open('/privacy', '_blank')
-                    }}>隐私政策</span></span>
-                        </Space>
+                        <div className={'flex justify-center items-center gap-2 py-4 text-sm'}>
+                            <Checkbox onChange={onChange}/>
+                            <span>我已阅读并同意
+                                <span onClick={()=>{
+                                    window.open('/license', '_blank')
+                                }}>服务协议</span>
+                                和
+                                <span onClick={()=>{
+                                    window.open('/privacy', '_blank')
+                                }}>隐私政策</span></span>
+                        </div>
                     </div>
                     {/*<div className={styles.recordWrapper}>*/}
                     {/*  <Record/>*/}
