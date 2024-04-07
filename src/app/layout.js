@@ -6,21 +6,40 @@ import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
 const inter = Inter({ subsets: ["latin"] });
 import TopMenus from '@/components/auth/topMenus'
+import { headers } from 'next/headers'
+
 export const metadata = {
-  title: "Next.js & Next-Auth & Redux-Toolkit & Antd & Tailwindcss",
+  title: "Seaurl-AI管家",
   description: "集成示例",
 };
 
 export default function RootLayout({ children }) {
+
+    // function IP() {
+    //     const FALLBACK_IP_ADDRESS = '0.0.0.0'
+    //     const forwardedFor = headers().get('x-forwarded-for')
+    //
+    //     if (forwardedFor) {
+    //         return forwardedFor.split(',')[0] ?? FALLBACK_IP_ADDRESS
+    //     }
+    //
+    //     return headers().get('x-real-ip') ?? FALLBACK_IP_ADDRESS
+    // }
+
+
   return (
     <html>
-      <body className="bg-white dark:bg-black dark:text-white">
-          <StoreProvider>
-              <AuthProvider>
-                  <AntdProvider>
-                      <TopMenus/>
-                      <div>
-                          {children}
+    <head>
+        <link href="https://cdn.awbeci.com/images/awbeci-new-logo/93577bcd7af2636a178d680f1128bace.png" rel="shortcut icon"/>
+        <script type="text/javascript" src="https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js"/>
+    </head>
+    <body className="bg-white dark:bg-black dark:text-white">
+    <StoreProvider>
+        <AuthProvider>
+            <AntdProvider>
+                <TopMenus/>
+                <div>
+                    {children}
                       </div>
                   </AntdProvider>
               </AuthProvider>

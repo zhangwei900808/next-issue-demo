@@ -24,7 +24,7 @@ export default function TopMenus() {
     const pathname = usePathname()
     return <>
         {
-            pathname !== '/login' ? <div className={'dark:bg-black dark:text-white fixed bg-white w-dvw h-[4rem]'}>
+            pathname !== '/login' ? <div className={'dark:bg-black dark:text-white sticky top-0 bg-white w-dvw h-[4rem]'}>
                 <div className={'flex flex-row justify-between px-6 py-6'}>
                     <div className={'flex gap-4 '}>
                         <Button onClick={() => goto('/news')}>跳转到news页面</Button>

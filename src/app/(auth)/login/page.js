@@ -1,10 +1,9 @@
 'use client'
 import React, {useState, useEffect, memo} from "react";
 import {Form, Input, Button, Checkbox, message, Alert, Typography, Space} from "antd";
-import {redirect, useRouter} from 'next/navigation'
-import {useSelector, useDispatch} from 'react-redux'
-import {login} from '@/lib/slices/authSlice';
+import {useRouter} from 'next/navigation'
 import {signIn, useSession} from "next-auth/react";
+import {useAppDispatch} from "@/lib/hooks";
 
 
 const {Text, Link} = Typography;
@@ -13,7 +12,7 @@ const layout = {
     wrapperCol: {span: 24}
 };
 const Login = props => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const router = useRouter();
     // const {data: session} = useSession()
     // console.log('session data =', session)
@@ -181,7 +180,7 @@ const Login = props => {
                             <div >
                             <div className={'flex justify-center items-center'}>
                                 <Button onClick={()=>{
-                                    location.href = '/join?ref=register'
+                                    location.href = '/register'
                                 }} type="link" size={'small'}>
                                     <span className={'text-base'}>还没有账号吗？点击注册新账号</span>
                                 </Button>
