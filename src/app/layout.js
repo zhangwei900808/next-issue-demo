@@ -7,6 +7,7 @@ import StoreProvider from "@/context/storeProvider";
 const inter = Inter({ subsets: ["latin"] });
 import TopMenus from '@/components/auth/topMenus'
 import { headers } from 'next/headers'
+import ChildrenLayout from "@/components/layout/childrenLayout";
 
 export const metadata = {
   title: "Seaurl-AI管家",
@@ -34,16 +35,16 @@ export default function RootLayout({ children }) {
         <script type="text/javascript" src="https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js"/>
     </head>
     <body className="bg-white dark:bg-black dark:text-white">
-    <StoreProvider>
-        <AuthProvider>
-            <AntdProvider>
-                <TopMenus/>
-                <div>
-                    {children}
-                      </div>
-                  </AntdProvider>
-              </AuthProvider>
-          </StoreProvider>
+        <StoreProvider>
+            <AuthProvider>
+                <AntdProvider>
+                    <TopMenus/>
+                    <ChildrenLayout>
+                        {children}
+                    </ChildrenLayout>
+                </AntdProvider>
+            </AuthProvider>
+        </StoreProvider>
       </body>
     </html>
   );
