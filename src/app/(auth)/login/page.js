@@ -144,7 +144,7 @@ const Login = props => {
                     <div>
                         <div className={'pb-4'}>{error.show ?
                             <Alert message={error.content} type="error" closable afterClose={closeError}/> : null}</div>
-                        <div className={'w-96 border border-[#ddd] dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
+                        <div className={'w-96 border border-[#ddd] dark:border-black p-6 rounded-xl bg-white dark:bg-black dark:text-white'}>
                             <Form
                                 {...layout}
                                 name="basic"
@@ -182,7 +182,7 @@ const Login = props => {
                                 <Button onClick={()=>{
                                     location.href = '/register'
                                 }} type="link" size={'small'}>
-                                    <span className={'text-base'}>还没有账号吗？点击注册新账号</span>
+                                    <span className={'text-sm'}>还没有账号吗？点击注册新账号</span>
                                 </Button>
 
                           </div>

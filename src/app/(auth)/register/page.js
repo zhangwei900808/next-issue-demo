@@ -259,14 +259,14 @@ const Register = props => {
                 </div>
             ) : null}
 
-            <div>
-                <div>
-                    <div>
-                        <span>加入 Seaurl</span>
-                        <span>创建你的账号</span>
+            <div className={'flex justify-center items-center'}>
+                <div className={'w-96 dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
+                    <div className={'flex flex-col justify-center items-center gap-3'}>
+                        <span className={'text-xl'}>加入 Seaurl</span>
+                        <span className={'text-4xl font-bold'}>创建你的账号</span>
                     </div>
                     {error.show ? <Alert message={error.content} type="error" closable afterClose={closeError}/> : null}
-                    <div className={''}>
+                    <div className={'pt-12'}>
                         <Form
                             form={form}
                             {...layout}
