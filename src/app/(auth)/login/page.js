@@ -1,9 +1,11 @@
 'use client'
 import React, {useState, useEffect, memo} from "react";
 import {Form, Input, Button, Checkbox, message, Alert, Typography, Space} from "antd";
-import { useRouter } from 'next/navigation'
+import {redirect, useRouter} from 'next/navigation'
 import {useSelector, useDispatch} from 'react-redux'
 import {login} from '@/lib/slices/authSlice';
+import {signIn, useSession} from "next-auth/react";
+
 
 const {Text, Link} = Typography;
 const layout = {
@@ -13,6 +15,10 @@ const layout = {
 const Login = props => {
     const dispatch = useDispatch();
     const router = useRouter();
+    // const {data: session} = useSession()
+    // console.log('session data =', session)
+
+
     // const {loading, me, errorMsg} = useSelector((state) => state.auth);
     const [isLoding, setIsLoading] = useState(false);
     const [error, setError] = useState({
@@ -87,21 +93,29 @@ const Login = props => {
             show: false
         });
         setIsLoading(true);
-        // let res = await dispatch(login({
-        //     username,
-        //     password
-        // }));
-        // console.log('dispatch login =', res)
-        // if (res.payload.isLogin) {
-        //     router.push("/");
-        // } else {
-        //     setError({
-        //         show: true,
-        //         content: res.payload.message
-        //     });
-        //     // message.warning(res.payload.message);
-        // }
-        // setIsLoading(false);
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/users/web/login`, {
+            method: 'POST',
+            body: JSON.stringify({ userName: username, password }),
+            headers: { "Content-Type": "application/json" }
+        })
+        const resData = await res.json()
+        console.log('login res user = ', resData)
+        if (resData && resData.status === 0 && resData.data.name) {
+            signIn("credentials", { session: JSON.stringify(resData.data),  redirect: false},)
+                .then(res => {
+                console.log('rreess =', res)
+                if (res.ok && !res.error && res.status === 200){
+                    router.push('/')
+                }
+            })
+        } else {
+            setError({
+                show: true,
+                content: resData.message
+            });
+        }
+        setIsLoading(false);
     };
 
     function onChange(v) {
@@ -113,7 +127,7 @@ const Login = props => {
         return <div className={'bg-[#f4f6f8] h-dvh dark:bg-black dark:text-white'}>
             <div className={'flex justify-center'}>
                 <div>
-                    <div className={'flex justify-center flex-col items-center pt-24 pb-4'}>
+                    <div className={'flex justify-center flex-col items-center pt-16 pb-4'}>
                       <span className={'cursor-pointer'}>
                         <img
                             src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png"
@@ -129,7 +143,7 @@ const Login = props => {
                         <span className={'text-2xl font-medium py-6'}>登录Seaurl</span>
                     </div>
                     <div>
-                        <div>{error.show ?
+                        <div className={'pb-4'}>{error.show ?
                             <Alert message={error.content} type="error" closable afterClose={closeError}/> : null}</div>
                         <div className={'w-96 border border-[#ddd] dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
                             <Form

@@ -35,7 +35,7 @@ export default function TopMenus() {
                     <div>
                         {session ?
                             <Button onClick={() => signOut()}>退出</Button> :
-                            <Button onClick={() => signIn()}>登录</Button>}
+                            <Button onClick={() =>  goto('/login')}>登录</Button>}
 
                     </div>
                 </div>
