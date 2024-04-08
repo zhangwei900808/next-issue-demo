@@ -84,7 +84,7 @@ const Logo = props => {
   return (
     <div>
       <div>
-        <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={props.clickLogo} className={'w-[32px] h-[32px] rounded-full'}/>
+        <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={props.clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
         {
           session ? <span>
                     <span>{where}</span>
