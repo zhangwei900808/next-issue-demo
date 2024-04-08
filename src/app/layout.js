@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./(global)/globals.css";
 import Link from 'next/link'
 import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";

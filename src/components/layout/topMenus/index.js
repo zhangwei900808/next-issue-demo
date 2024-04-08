@@ -10,6 +10,8 @@ import {useAppDispatch} from "@/lib/hooks";
 import {useAppSelector} from "@/lib/hooks";
 import {usePathname} from 'next/navigation'
 
+import LogoInHeader from "@/components/layout/logoInHeader";
+
 export default function TopMenus() {
 
     const dispatch = useAppDispatch()
@@ -27,10 +29,10 @@ export default function TopMenus() {
             pathname !== '/login' ? <div className={`dark:bg-black dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
                 <div className={'flex flex-row justify-between px-4 py-4'}>
                     <div className={'flex gap-4 '}>
-                        <Button onClick={() => goto('/news')}>跳转到news页面</Button>
-                        <Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>
-                        <Button type={"default"} onClick={() => toggleTheme()}>切换主题</Button>
-
+                        {/*<Button onClick={() => goto('/news')}>跳转到news页面</Button>*/}
+                        {/*<Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>*/}
+                        {/*<Button type={"default"} onClick={() => toggleTheme()}>切换主题</Button>*/}
+                        <LogoInHeader />
                     </div>
                     <div>
                         {session ?
