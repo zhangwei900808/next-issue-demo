@@ -13,7 +13,7 @@ import {usePathname} from 'next/navigation'
 export default function TopMenus() {
 
     const dispatch = useAppDispatch()
-    const {myTheme} = useAppSelector(state => state.system)
+    const {myTheme, defaultTheme} = useAppSelector(state => state.system)
 
     const router = useRouter()
     const {data: session} = useSession()
@@ -24,8 +24,8 @@ export default function TopMenus() {
     const pathname = usePathname()
     return <>
         {
-            pathname !== '/login' ? <div className={'dark:bg-black dark:text-white sticky top-0 bg-white w-dvw h-[4rem]'}>
-                <div className={'flex flex-row justify-between px-6 py-6'}>
+            pathname !== '/login' ? <div className={`dark:bg-black dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
+                <div className={'flex flex-row justify-between px-4 py-4'}>
                     <div className={'flex gap-4 '}>
                         <Button onClick={() => goto('/news')}>跳转到news页面</Button>
                         <Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>

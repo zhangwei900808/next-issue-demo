@@ -261,9 +261,9 @@ const Register = props => {
 
             <div className={'flex justify-center items-center'}>
                 <div className={'2xl:w-[550px] xl:w-[550px] lg:w-[550px] md:w-[550px] sm:w-full w-full dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
-                    <div className={'flex flex-col justify-center items-center gap-3'}>
+                    <div className={'flex flex-col justify-center items-center gap-3 py-6'}>
                         <span className={'text-xl'}>加入 Seaurl</span>
-                        <span className={'text-4xl font-bold'}>创建你的账号</span>
+                        <span className={'text-5xl font-bold'}>创建你的账号</span>
                     </div>
                     {error.show ? <Alert message={error.content} type="error" closable afterClose={closeError}/> : null}
                     <div className={'pt-12'}>
