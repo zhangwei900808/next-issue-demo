@@ -20,11 +20,13 @@ export default function AntdProvider({children}) {
     }, [myTheme])
     return <AntdRegistry>
         <ConfigProvider locale={zhCN} theme={{
-
+            //全局算法暗色主题色
             algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+            // 全局主题色
             token: {
                 colorPrimary: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary
             },
+            // 组件主题色
             components: {
                 Menu: {
                     // 特殊情况特殊处理
