@@ -13,6 +13,7 @@ import {usePathname} from 'next/navigation'
 import LogoInHeader from "@/components/layout/logoInHeader";
 import MenusInHeader from "@/components/layout/menusInHeader";
 import SearchInHeader from "@/components/layout/searchInHeader";
+import UserInHeader from "@/components/layout/userInHeader";
 export default function TopMenus() {
 
     const dispatch = useAppDispatch()
@@ -45,7 +46,7 @@ export default function TopMenus() {
                                 {/*/!*<SettingBgInHeader/>*!/*/}
                                 {/*<RemindInHeader/>*/}
                                 {/*<MessageInHeader/>*/}
-                                {/*<UserInHeader/>*/}
+                                <UserInHeader/>
                             </div> :
                             <Button type={'primary'} onClick={() =>  goto('/login')}>登录</Button>}
 

@@ -66,7 +66,7 @@ const SearchInHeader = (props) => {
             }}>
                 <IconFont type="icon-sousuo1" />
                 <span>搜索</span>
-            </div>:<IconFont type="icon-sousuo1" onClick={() => {
+            </div>:<IconFont type="icon-sousuo1" className={'flex items-center justify-center w-[24px] h-[24px]'} onClick={() => {
                 // dispatch(setSearchPanel(true))
                 // dispatch(resetSearch())
                 // setOptions([])
