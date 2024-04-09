@@ -58,7 +58,7 @@ const SearchInHeader = (props) => {
     // }
     return <div className={'item'}>
         {
-            !session?<div onClick={() => {
+            !session?<div className={'text-2xl'} onClick={() => {
                 // dispatch(setSearchPanel(true))
                 // dispatch(resetSearch())
                 // setOptions([])
@@ -66,7 +66,7 @@ const SearchInHeader = (props) => {
             }}>
                 <IconFont type="icon-sousuo1" />
                 <span>搜索</span>
-            </div>:<IconFont type="icon-sousuo1" className={'flex items-center justify-center w-[24px] h-[24px]'} onClick={() => {
+            </div>:<IconFont type="icon-sousuo1" className={'flex items-center justify-center text-lg'} onClick={() => {
                 // dispatch(setSearchPanel(true))
                 // dispatch(resetSearch())
                 // setOptions([])
