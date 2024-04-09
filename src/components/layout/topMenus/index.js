@@ -12,6 +12,7 @@ import {usePathname} from 'next/navigation'
 
 import LogoInHeader from "@/components/layout/logoInHeader";
 import MenusInHeader from "@/components/layout/menusInHeader";
+import SearchInHeader from "@/components/layout/searchInHeader";
 export default function TopMenus() {
 
     const dispatch = useAppDispatch()
@@ -37,7 +38,15 @@ export default function TopMenus() {
                     </div>
                     <div>
                         {session ?
-                            <Button onClick={() => signOut()}>退出</Button> :
+                            <div className={'text-white gap-4 flex items-center'}>
+                                <SearchInHeader/>
+                                {/*<AddInHeader/>*/}
+                                {/*<QuickToolsInHeader/>*/}
+                                {/*/!*<SettingBgInHeader/>*!/*/}
+                                {/*<RemindInHeader/>*/}
+                                {/*<MessageInHeader/>*/}
+                                {/*<UserInHeader/>*/}
+                            </div> :
                             <Button onClick={() =>  goto('/login')}>登录</Button>}
 
                     </div>
