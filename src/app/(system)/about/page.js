@@ -6,7 +6,6 @@ import classNames from "classnames/bind";
 import {useSelector} from "react-redux";
 
 const {Title, Paragraph, Text, Link} = Typography;
-let cx = classNames.bind(styles);
 const About = () => {
   return <div>
     <div className={'relative'}>
