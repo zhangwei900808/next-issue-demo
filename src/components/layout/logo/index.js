@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from "react";
 import {useRouter, usePathname} from "next/navigation";
 import {useDispatch, useSelector} from "react-redux";
-
+import {Button} from 'antd'
 const Index = ({isLogin, clickLogo}) => {
   const pathname = usePathname()
   const router = useRouter()
@@ -83,7 +83,7 @@ const Index = ({isLogin, clickLogo}) => {
 
   return <div className={'flex gap-4 items-center'}>
     <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
-    {isLogin ? <span className={'text-white dark:bg-black dark:text-white'}>{where}</span> : null}
+    {isLogin ? <span className={'text-white dark:bg-black dark:text-white text-sm'}>{where}</span> : null}
   </div>
 };
 

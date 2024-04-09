@@ -47,7 +47,7 @@ export default function TopMenus() {
                                 {/*<MessageInHeader/>*/}
                                 {/*<UserInHeader/>*/}
                             </div> :
-                            <Button onClick={() =>  goto('/login')}>登录</Button>}
+                            <Button type={'primary'} onClick={() =>  goto('/login')}>登录</Button>}
 
                     </div>
                 </div>

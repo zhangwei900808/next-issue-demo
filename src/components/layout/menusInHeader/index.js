@@ -1,5 +1,6 @@
 'use client'
 import React, {useEffect, useState} from "react";
+import {Button} from 'antd'
 import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
 import {useSelector} from "react-redux";
@@ -15,7 +16,7 @@ const MenusInHeader = props => {
       if (item.key === '2') {
         return null
       } else {
-        return <div key={index} className={'cursor-pointer text-base'} onClick={() => {
+        return <div key={index} className={'cursor-pointer text-sm'} onClick={() => {
           props.onChoosed(item.url);
         }}>
           {item.label}

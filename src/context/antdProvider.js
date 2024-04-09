@@ -21,7 +21,11 @@ export default function AntdProvider({children}) {
     return <AntdRegistry>
         <ConfigProvider locale={zhCN} theme={{
             token: {
-                colorPrimary: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary
+                colorPrimary: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary,
+                defaultActiveColor: 'red',
+                defaultColor: 'red',
+                defaultGhostColor: 'red',
+                defaultHoverColor: 'red',
             },
             algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
         }}>
