@@ -11,7 +11,7 @@ import {useAppSelector} from "@/lib/hooks";
 import {usePathname} from 'next/navigation'
 
 import LogoInHeader from "@/components/layout/logoInHeader";
-
+import MenusInHeader from "@/components/layout/menusInHeader";
 export default function TopMenus() {
 
     const dispatch = useAppDispatch()
@@ -33,6 +33,7 @@ export default function TopMenus() {
                         {/*<Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>*/}
                         {/*<Button type={"default"} onClick={() => toggleTheme()}>切换主题</Button>*/}
                         <LogoInHeader />
+                        {!session ? <MenusInHeader onChoosed={goto}/>: null}
                     </div>
                     <div>
                         {session ?
