@@ -205,7 +205,7 @@ const LogoInHeader = (props) => {
     return <div className={'flex gap-4 items-center'}>
         {/*//只有登录和移动端才显示*/}
         {
-            session ? <div className={'flex text-white dark:bg-black dark:text-white cursor-pointer border border-solid border-white rounded w-[30px] h-[30px] items-center justify-center'} onClick={() => {
+            session ? <div className={'flex text-white dark:bg-[#1C2127] dark:text-white cursor-pointer border border-solid border-white rounded w-[30px] h-[30px] items-center justify-center'} onClick={() => {
                 showDrawer()
             }}><MenuOutlined /></div> : null
         }

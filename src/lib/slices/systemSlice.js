@@ -127,9 +127,9 @@ const initialState = {
         primary: '#54458a'
     },
     darkTheme: {
-        background: '#000',
+        background: '#22272E',
         color: '#fff',
-        primary: '#000'
+        primary: '#22272E'
     }
 };
 

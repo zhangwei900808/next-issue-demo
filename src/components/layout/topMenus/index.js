@@ -2,7 +2,7 @@
 import {useSession, signIn, signOut} from "next-auth/react"
 import {Button, theme} from 'antd'
 import {useRouter} from 'next/navigation'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const {useToken} = theme;
 import {setMyTheme} from '@/lib/slices/systemSlice'
@@ -26,9 +26,15 @@ export default function TopMenus() {
 
     console.log('token ===', token.colorPrimaryBg)
     const pathname = usePathname()
+
+    useEffect(() =>{
+        toggleTheme('default')
+    }, [])
+
+
     return <>
         {
-            pathname !== '/login' ? <div className={`dark:bg-black dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
+            pathname !== '/login' ? <div className={`dark:bg-[#1C2127] dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
                 <div className={'flex flex-row justify-between px-4 py-4'}>
                     <div className={'flex gap-4 '}>
                         {/*<Button onClick={() => goto('/news')}>跳转到news页面</Button>*/}

@@ -83,7 +83,7 @@ const Index = ({isLogin, clickLogo}) => {
 
   return <div className={'flex gap-2 items-center'}>
     <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
-    {isLogin ? <span className={'text-white dark:bg-black dark:text-white text-sm cursor-pointer hover:bg-[#8A7FAD] px-2 py-1.5 rounded-md box-border'}>{where}</span> : null}
+    {isLogin ? <span className={'text-white dark:bg-[#1C2127] dark:text-white text-sm cursor-pointer hover:bg-[#8A7FAD] dark:hover:bg-[#2A3037] px-2 py-1.5 rounded-md box-border'}>{where}</span> : null}
   </div>
 };
 

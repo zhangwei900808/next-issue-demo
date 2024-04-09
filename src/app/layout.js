@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <link href="https://cdn.awbeci.com/images/awbeci-new-logo/93577bcd7af2636a178d680f1128bace.png" rel="shortcut icon"/>
         <script type="text/javascript" src="https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js"/>
     </head>
-    <body className="bg-white dark:bg-black dark:text-white">
+    <body className="bg-white dark:bg-[#22272E] dark:text-white">
         <StoreProvider>
             <AuthProvider>
                 <AntdProvider>

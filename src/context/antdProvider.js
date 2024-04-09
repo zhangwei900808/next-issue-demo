@@ -20,14 +20,18 @@ export default function AntdProvider({children}) {
     }, [myTheme])
     return <AntdRegistry>
         <ConfigProvider locale={zhCN} theme={{
+
+            algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
             token: {
-                colorPrimary: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary,
-                defaultActiveColor: 'red',
-                defaultColor: 'red',
-                defaultGhostColor: 'red',
-                defaultHoverColor: 'red',
+                colorPrimary: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary
             },
-            algorithm: myTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+            components: {
+                Menu: {
+                    // 特殊情况特殊处理
+                    itemBg: myTheme === 'dark' ? '#1f1f1f' : '#fff',
+                    // darkItemColor: myTheme === 'dark' ? darkTheme.primary : defaultTheme.primary
+                }
+            }
         }}>
             <div>
                 {children}

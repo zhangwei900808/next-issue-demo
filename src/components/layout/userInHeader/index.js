@@ -136,28 +136,28 @@ const UserInHeader = () => {
             {renderHeaderAvatar()}
         </div>
         <Drawer title={<div className={'flex items-center justify-between'}>
-            <div className={'flex items-center gap-2 px-3 py-3'}>
-                <div>
-                    {renderDropdownAvatar()}
+                <div className={'flex items-center gap-2 px-3 py-3'}>
+                    <div>
+                        {renderDropdownAvatar()}
+                    </div>
+                    <div className={'flex items-center flex-col'}>
+                        <span className={'text-base'}>{session && session.user.name}</span>
+                        <span className={'text-sm font-normal'}>{session && session.user.nickName}</span>
+                    </div>
                 </div>
-                <div className={'flex items-center flex-col'}>
-                    <span className={'text-base'}>{session && session.user.name}</span>
-                    <span className={'text-sm font-normal'}>{session && session.user.nickName}</span>
-                </div>
-            </div>
-            <div className={'bg-[#eee] h-[28px] w-[28px] flex items-center justify-center rounded mr-2 cursor-pointer text-[#aaa]'} onClick={() => {
-                hideDrawer()
-            }}>
-                    <CloseOutlined className={'text-sm'}/>
-                </div>
-        </div>}
-                placement="right"
-                closable={false}
-                onClose={hideDrawer}
-                open={visible}
-                width={320}
-                headerStyle={{padding: "0"}}
-                bodyStyle={{padding: "0", zIndex: '10'}}>
+                <div className={'dark:bg-[#22272E] dark:text-white dark:hover:bg-[#2A3037] bg-[#eee] h-[28px] w-[28px] flex items-center justify-center rounded mr-2 cursor-pointer text-[#aaa]'} onClick={() => {
+                    hideDrawer()
+                }}>
+                        <CloseOutlined className={'text-sm '}/>
+                    </div>
+            </div>}
+            placement="right"
+            closable={false}
+            onClose={hideDrawer}
+            open={visible}
+            width={320}
+            headerStyle={{padding: "0"}}
+            bodyStyle={{padding: "0", zIndex: '10'}}>
             <Menu
                 onClick={onClickMenuItem}
                 selectable={false}
