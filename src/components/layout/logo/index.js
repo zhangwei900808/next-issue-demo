@@ -3,21 +3,21 @@
 import React, {useEffect, useState} from "react";
 import {useRouter, usePathname} from "next/navigation";
 import {useDispatch, useSelector} from "react-redux";
-import {useSession} from "next-auth/react";
 
-const Logo = props => {
+const Index = ({isLogin, clickLogo}) => {
   const pathname = usePathname()
   const router = useRouter()
   const {query} = router;
   const dispatch = useDispatch();
-  const {data: session} = useSession()
 
   const [where, setWhere] = useState('')
 
   useEffect(() => {
-    console.log('---------------------router', router)
-    console.log('---------------------query', query)
-    if (session) {
+    // console.log('---------------------router', router)
+    // console.log('---------------------query', query)
+    console.log('---------------------pathname', pathname)
+
+    if (isLogin) {
       if (pathname === '/') {
         setWhere('首页')
       }
@@ -79,22 +79,12 @@ const Logo = props => {
       //   setWhere(`服务条款`)
       // }
     }
-  }, [query])
+  }, [pathname, isLogin])
 
-  return (
-    <div>
-      <div>
-        <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={props.clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
-        {
-          session ? <span>
-                    <span>{where}</span>
-            {/*<SearchInHeader/>*/}
-                </span> : null
-        }
-
-      </div>
-    </div>
-  );
+  return <div className={'flex gap-4 items-center'}>
+    <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
+    {isLogin ? <span className={'text-white dark:bg-black dark:text-white'}>{where}</span> : null}
+  </div>
 };
 
-export default Logo;
+export default Index;

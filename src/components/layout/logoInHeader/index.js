@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation'
 
 import {Form, Select, InputNumber, Switch, Divider, Menu, Drawer, Typography} from 'antd'
-import Logo from './logo'
+import Logo from '../logo'
 import {useDispatch, useSelector, shallowEqual} from "react-redux";
 import {
     LikeOutlined,
@@ -34,7 +34,7 @@ const LogoInHeader = (props) => {
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch();
     const {data: session} = useSession()
-
+    console.log('---------------------session 444', session)
     const showDrawer = () => {
         setVisible(true);
     };
@@ -43,18 +43,17 @@ const LogoInHeader = (props) => {
     };
 
     async function goto() {
-        //todo:
-        // if (isLogin) {
-        //     await dispatch(clearLatestNews())
-        //     dispatch(getLatestNewsForUsers({
-        //         pageSize: pagination.pageSize,
-        //         pageNum: 1,
-        //         type: 1
-        //     }))
-        //     router.push('/', undefined, {shallow: true})
-        // } else {
-        //     window.location = '/'
-        // }
+        if (session) {
+            // await dispatch(clearLatestNews())
+            // dispatch(getLatestNewsForUsers({
+            //     pageSize: pagination.pageSize,
+            //     pageNum: 1,
+            //     type: 1
+            // }))
+            router.push('/', undefined, {shallow: true})
+        } else {
+            window.location = '/'
+        }
     }
 
      function onClickMenuItem({item, key, keyPath, domEvent}) {
@@ -203,14 +202,14 @@ const LogoInHeader = (props) => {
         })
     }
 
-    return <div>
+    return <div className={'flex gap-4 items-center'}>
         {/*//只有登录和移动端才显示*/}
         {
-            session ? <div onClick={() => {
+            session ? <div className={'flex text-white dark:bg-black dark:text-white cursor-pointer border border-solid border-white rounded w-[30px] h-[30px] items-center justify-center'} onClick={() => {
                 showDrawer()
-            }}><MenuOutlined/></div> : null
+            }}><MenuOutlined /></div> : null
         }
-        <Logo clickLogo={() => {
+        <Logo isLogin={!!session} clickLogo={() => {
             goto()
             hideDrawer()
         }}/>

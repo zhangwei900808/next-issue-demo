@@ -7,7 +7,7 @@ export const authOptions = {
     pages: {
         signIn: '/login',
         //参考：https://www.soinside.com/question/uhkkM6TGRbh3vjxt8YJ5QQ
-        // error: '/login'
+        error: '/login'
     },
     providers: [
         CredentialsProvider({
