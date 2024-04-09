@@ -47,7 +47,7 @@ const UserInHeader = () => {
     // 显示头部头像
     function renderHeaderAvatar() {
         if (session && session.user.image) {
-            return <img src={`${session.user.image}?x-oss-process=style/30X30`} className={'rounded-full cursor-pointer'} onClick={() => {
+            return <img src={`${session.user.image}?x-oss-process=style/30X30`} className={'rounded-full cursor-pointer w-[30px] h-[30px]'} onClick={() => {
                 showDrawer()
             }
             }/>
@@ -132,12 +132,12 @@ const UserInHeader = () => {
 
 
     return <div>
-        <div className={'border-white border-solid border-2 rounded-full'}>
+        <div className={'box-border'}>
             {renderHeaderAvatar()}
         </div>
         <Drawer title={<div className={'flex items-center justify-between'}>
             <div className={'flex items-center gap-2'}>
-                <div className={'p-2'}>
+                <div className={'px-3 py-4'}>
                     {renderDropdownAvatar()}
                 </div>
                 <div className={'flex items-center flex-col'}>

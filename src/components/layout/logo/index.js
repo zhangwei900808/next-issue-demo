@@ -81,9 +81,9 @@ const Index = ({isLogin, clickLogo}) => {
     }
   }, [pathname, isLogin])
 
-  return <div className={'flex gap-4 items-center'}>
+  return <div className={'flex gap-2 items-center'}>
     <img src="https://cdn.awbeci.com/seaurl/logo/seaurl_logo.png" alt="" onClick={clickLogo} className={'w-[32px] h-[32px] rounded-full cursor-pointer'}/>
-    {isLogin ? <span className={'text-white dark:bg-black dark:text-white text-sm cursor-pointer'}>{where}</span> : null}
+    {isLogin ? <span className={'text-white dark:bg-black dark:text-white text-sm cursor-pointer hover:bg-sky-700 px-2 py-1.5 rounded-md box-border'}>{where}</span> : null}
   </div>
 };
 
