@@ -28,14 +28,14 @@ export default function TopMenus() {
     const pathname = usePathname()
 
     useEffect(() =>{
-        // toggleTheme('default')
+        toggleTheme('default')
     }, [])
 
 
     return <>
         {
             pathname !== '/login' ? <div className={`dark:bg-[#1C2127] dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
-                <div className={'flex flex-row justify-between px-4 py-4'}>
+                <div className={'flex flex-row justify-between px-4 py-[12px]'}>
                     <div className={'flex gap-4 '}>
                         {/*<Button onClick={() => goto('/news')}>跳转到news页面</Button>*/}
                         {/*<Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>*/}
@@ -43,7 +43,7 @@ export default function TopMenus() {
                         <LogoInHeader />
                         {!session ? <MenusInHeader onChoosed={goto}/>: null}
                     </div>
-                    <div>
+                    <div className={'flex items-center justify-center'}>
                         {session ?
                             <div className={'text-white gap-4 flex items-center'}>
                                 <SearchInHeader/>
@@ -54,7 +54,7 @@ export default function TopMenus() {
                                 {/*<MessageInHeader/>*/}
                                 <UserInHeader/>
                             </div> :
-                            <Button type={'primary'} onClick={() =>  goto('/login')}>登录</Button>}
+                            <div className={'text-sm text-white cursor-pointer hover:text-[#eee] dark:hover:text-[#eee]'} onClick={() =>  goto('/login')}>登录</div>}
 
                     </div>
                 </div>

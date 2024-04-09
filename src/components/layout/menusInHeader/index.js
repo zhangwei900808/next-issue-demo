@@ -16,7 +16,7 @@ const MenusInHeader = props => {
       if (item.key === '2') {
         return null
       } else {
-        return <div key={index} className={'cursor-pointer text-sm'} onClick={() => {
+        return <div key={index} className={'cursor-pointer text-sm hover:text-[#eee] dark:hover:text-[#eee]'} onClick={() => {
           props.onChoosed(item.url);
         }}>
           {item.label}
