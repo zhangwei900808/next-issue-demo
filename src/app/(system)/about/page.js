@@ -1,5 +1,4 @@
 'use client'
-import styles from "./index.module.scss";
 import {memo} from "react";
 import {ClockCircleOutlined} from '@ant-design/icons';
 import {Timeline, Divider, Typography} from 'antd';
