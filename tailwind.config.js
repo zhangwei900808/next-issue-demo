@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'mobile': { 'raw': '(max-height: 800px)' },
+        // => @media (max-height: 800px) { ... }
+      },
       gridTemplateColumns: {
         'auto-250': 'repeat(auto-fill, minmax(250px, 1fr))',
       },

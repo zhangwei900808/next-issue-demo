@@ -6,7 +6,9 @@ import {
     DesktopOutlined, CarOutlined, CustomerServiceOutlined, CommentOutlined, VideoCameraOutlined,
     SolutionOutlined, HomeOutlined, SendOutlined, ManOutlined, TranslationOutlined, CloudServerOutlined
 } from '@ant-design/icons';
-
+import styles from './index.module.scss'
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
 const SubPage = ({urls}) => {
 
@@ -183,19 +185,20 @@ const SubPage = ({urls}) => {
         })
         return <Anchor
             offsetTop={60}
-            targetOffset={132}
+            targetOffset={122}
             direction="horizontal"
             // getCurrentAnchor={(activeLink)=>{
             //   return
             // }}
+            className={'w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1024px] 2xl:w-[1280px]'}
             items={anchorList}
         />
     }
 
     function renderUrls() {
         const result = urls.map((item, index) => {
-            return <div className='bg-white mb-[20px] rounded-xl'>
-                <div id={item.group} className={'px-6 py-4 border-solid border-[#ddd] border-b-[1px] font-medium'}>{item.groupName}</div>
+            return <div className='bg-white mb-[20px] rounded-xl' key={index}>
+                <div id={item.group} className={'px-6 py-3 border-solid border-[#ddd] border-b-[1px] font-medium'}>{item.groupName}</div>
                 <div className={'grid grid-cols-auto-250 auto-rows-max gap-y-[42px] gap-x-[24px] items-center p-6'}>
                     {
                         item.commonUrlsList.map(url => {
@@ -205,7 +208,7 @@ const SubPage = ({urls}) => {
                                 <div className={'cursor-pointer'}>
                                     <img src={url.icon} className={'w-[32px] h-[32px] rounded-md'}/>
                                 </div>
-                                <div className={'cursor-pointer'}>
+                                <div className={'cursor-pointer hover:underline'}>
                                     <span className={'font-medium'}>{url.name}</span>
                                     {/*<span className={styles.desc} title={url.description}>{url.description}</span>*/}
                                 </div>
@@ -216,18 +219,21 @@ const SubPage = ({urls}) => {
             </div>
         })
 
-        return <div className={'w-full sm:w-full md:w-[640px] lg:w-[768px] xl:w-[1024px] 2xl:w-[1280px]'}>
+        return <div className={'w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1024px] 2xl:w-[1280px]'}>
             {result}
         </div>
     }
 
-    return <div className={'bg-[#F4F5F6]'}>
-        <div className={'bg-white fixed top-[56px] left-0 right-0'}>
-            <div className={'flex items-center justify-center bg-white gap-2'}>
+    return <div className={cx({
+        'bg-[#F4F5F6]': true,
+        'myContainer': true
+    })}>
+        <div className={'bg-white fixed top-[56px] left-0 right-0 flex items-center justify-center mobile:invisible'}>
+            <div className={' flex items-center justify-center bg-white gap-2'}>
                 {renderTabs()}
             </div>
         </div>
-        <div className={'flex items-center justify-center pt-[86px]'}>
+        <div className={'flex items-center justify-center pt-[64px]'}>
             {renderUrls()}
         </div>
     </div>
