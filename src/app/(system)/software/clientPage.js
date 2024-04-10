@@ -1,3 +1,4 @@
+'use client'
 import {Tabs, Input, Row, Col, Menu, Typography, Divider, Drawer, Button, Modal, List} from 'antd';
 import {AppstoreOutlined, MailOutlined, MenuOutlined, SearchOutlined} from '@ant-design/icons';
 import styles from './index.module.scss'
@@ -6,24 +7,19 @@ import {useDispatch, useSelector} from "react-redux";
 import cns from "classnames/bind";
 import {useRouter} from "next/navigation";
 import _ from "lodash";
+import Empty from "@/components/empty";
 
 let cx = cns.bind(styles);
 
-const Software = () => {
+const Software = ({data}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [gid, setGid] = useState([])
 
 
-  // 查询软件和用户软件请求
-  async function queryApp(groupId, param) {
-    await dispatch(getSoftwareQueryBy({
-      groupId,
-      param
-    }))
-    // await dispatch(getUserSoftware())
+  if (!data.group || !data.list){//todo
+    return <Empty />
   }
-
   function goto(item, type) {
     console.log('item=', item)
     if (type === 'index'){
@@ -44,22 +40,26 @@ const Software = () => {
     }
     return result.map(item => {
       return <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={6} flex>
-        <div className={styles.box}>
-          <div className={styles.leftSpace}>
-            <div className={styles.imgWrapper} onClick={() => {
+        <div className={'flex items-center justify-between'}>
+          <div className={'flex items-center gap-4'}>
+            <div className={'w-[42px] h-[42px] shrink-0'} onClick={() => {
               goto(item, 'index')
             }}>
-              <img src={item.icon}/>
+              <img src={item.icon} className={'w-full h-full rounded-md'}/>
             </div>
-            <div className={styles.right}>
-              <div className={styles.name} onClick={() => {
+            <div>
+              <div className={'text-[18px] font-medium cursor-pointer hover:underline'} onClick={() => {
                 goto(item, 'index')
               }}>{item.name}</div>
-              <div className={styles.desc} title={item.desc}>{item.desc}</div>
+              <div className={cx({
+                'text-[gray]':true,
+                'truncate': true,
+                'desc': true
+              })} title={item.desc}>{item.desc}</div>
             </div>
           </div>
-          <div className={styles.rightSpace}>
-            <div className={styles.btnGet} onClick={() => {
+          <div>
+            <div className={'shrink-0 whitespace-nowrap bg-[#eee] px-4 py-1 rounded-2xl text-sm cursor-pointer text-[#54458a] hover:underline dark:bg-[#1c2127]'} onClick={() => {
               goto(item, 'download')
             }}>获取</div>
           </div>
@@ -68,30 +68,22 @@ const Software = () => {
     })
   }
 
-  // 点击搜索
-  async function changeInput(e) {
-    if (softwareGroupId) {
-      await queryApp(softwareGroupId, e.target.value)
-    }
-
-  }
 
   function renderGroupApp() {
-    const sglClone = _.cloneDeep(softwareGroupList)
+    const sglClone = _.cloneDeep(data.group)
     const fsg = sglClone.sort((a,b) => a.sort-b.sort)
 
-
     return fsg.map(group => {
-      const flist = softwareList.filter(item =>item.groupId === group.id)
+      const flist = data.list.filter(item =>item.groupId === group.id)
       // const showAllTip = gid.filter(f => f === group.id)
       // let showAll = false
       return <>
         <Row gutter={[32, 42]}>
           <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-            <div className={styles.upper}>
-              <span className={styles.ul}>{group.groupName}</span>
+            <div className={'flex items-center justify-between'}>
+              <span className={'text-xl font-medium'}>{group.groupName}</span>
               {
-                flist.length>12?<span className={styles.ur} onClick={()=>{
+                flist.length>12?<span className={'cursor-pointer text-[#54458a] hover:underline'} onClick={()=>{
                   // const list = softwareList.filter(item => item.groupId === group.id)
                   // setList(list)
                   // setOpen(true)
@@ -110,21 +102,10 @@ const Software = () => {
     })
   }
 
-  return <div className={styles.container}>
-    <div className={cx({
-      content: true,
-      isMobile
-    })}>
-      <div className={styles.rowBox}>
-        <div className={styles.rightBox}>
-          <div className={styles.appBox}>
-            {
-              renderGroupApp()
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+  return <div className={'px-[140px] py-[32px]'}>
+    {
+      renderGroupApp()
+    }
   </div>
 }
 export default Software;

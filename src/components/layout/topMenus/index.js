@@ -34,8 +34,8 @@ export default function TopMenus() {
 
     return <>
         {
-            pathname !== '/login' ? <div className={`dark:bg-[#1C2127] dark:text-white sticky top-0 bg-primary-purple w-dvw`}>
-                <div className={'flex flex-row justify-between px-4 py-[12px] z-[9999]'}>
+            pathname !== '/login' ? <div className={`dark:bg-[#1C2127] dark:text-white sticky top-0 bg-primary-purple w-dvw z-[9999]`}>
+                <div className={'flex flex-row justify-between px-4 py-[12px]'}>
                     <div className={'flex gap-4 '}>
                         {/*<Button onClick={() => goto('/news')}>跳转到news页面</Button>*/}
                         {/*<Button type={"primary"} onClick={() => goto('/')}>跳转到首页面</Button>*/}
