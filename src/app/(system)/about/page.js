@@ -8,12 +8,12 @@ import {useSelector} from "react-redux";
 const {Title, Paragraph, Text, Link} = Typography;
 const About = () => {
   return <div>
-    <div className={'relative'}>
+    <div className={'relative dark:bg-[#22272E] dark:text-white'}>
       <div className={'w-full h-[calc(100vh-56px)] bg-cover'}>
         <img className={'w-full h-full'} src={'https://cdn.seaurl.com/about/about13.jpg'}/>
       </div>
       <div className={'absolute top-0 left-0 right-0 h-[calc(100vh-56px)] flex items-center justify-center p-4 dark:bg-[#22272E] dark:text-white'}>
-        <div className={'bg-[hsla(0,0%,100%,.71)] dark:bg-[#22272E] dark:border-[#444C56] dark:border dark:border-solid  overflow-y-auto p-6 rounded-2xl flex flex-col 2xl:w-[960px] xl:w-[960px] lg:w-[960px] md:w-full sm:w-full w-full'}>
+        <div className={'bg-[hsla(0,0%,100%,.71)] dark:bg-[#1C2126] dark:border-[#444C56] dark:border dark:border-solid  overflow-y-auto p-6 rounded-2xl flex flex-col 2xl:w-[960px] xl:w-[960px] lg:w-[960px] md:w-full sm:w-full w-full'}>
           <Typography>
             <Title level={3}>关于Seaurl</Title>
             <Paragraph>
