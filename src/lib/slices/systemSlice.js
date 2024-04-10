@@ -1,4 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import axios from "@/lib/axios";
+export const getCommonUrls = createAsyncThunk('system/getCommonUrls', async (params, thunkAPI) => {
+    try {
+        const res = await axios.get(`/space/info/getCommonUrls`);
+        // console.log('getCommonUrls res => ', res)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue({errorMsg: error.message});
+    }
+});
+
+
 const initialState = {
     myTheme: 'default',
     loginMenus: [
