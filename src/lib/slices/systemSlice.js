@@ -141,7 +141,7 @@ const initialState = {
     darkTheme: {
         background: '#22272E',
         color: '#fff',
-        primary: '#22272E'
+        primary: '#54458a'
     }
 };
 

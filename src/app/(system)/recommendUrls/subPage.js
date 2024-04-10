@@ -25,7 +25,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <ShoppingCartOutlined className={'text-[18px]'}/>
                         <span>
                             {item.groupName}
@@ -37,7 +37,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <WeiboOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -47,7 +47,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <LineChartOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -57,7 +57,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <DesktopOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -67,7 +67,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <CarOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -77,7 +77,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <MailOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -87,7 +87,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <CustomerServiceOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -97,7 +97,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <CommentOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -107,7 +107,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <VideoCameraOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -117,7 +117,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <SolutionOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -127,7 +127,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <HomeOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -137,7 +137,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <SendOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -147,7 +147,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <ManOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -157,7 +157,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <TranslationOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -167,7 +167,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         <CloudServerOutlined className={'text-[18px]'}/>
                         {item.groupName}
                     </div>,
@@ -176,7 +176,7 @@ const SubPage = ({urls}) => {
                 return {
                     key: item.id,
                     href: `#${item.group}`,
-                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-1'}>
+                    title: <div className={'pt-[6px] pb-[12px] flex items-center justify-center gap-2'}>
                         {item.groupName}
                     </div>,
                 }
@@ -190,15 +190,15 @@ const SubPage = ({urls}) => {
             // getCurrentAnchor={(activeLink)=>{
             //   return
             // }}
-            className={'w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1024px] 2xl:w-[1280px]'}
+            className={'dark:bg-[#1C2127] dark:text-white w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1280px] 2xl:w-[1280px]'}
             items={anchorList}
         />
     }
 
     function renderUrls() {
         const result = urls.map((item, index) => {
-            return <div className='bg-white mb-[20px] rounded-xl' key={index}>
-                <div id={item.group} className={'px-6 py-3 border-solid border-[#ddd] border-b-[1px] font-medium'}>{item.groupName}</div>
+            return <div className='dark:bg-[#1C2127] dark:text-white bg-white mb-[20px] rounded-xl dark:border-[1px] dark:border-[#474747] dark:border-solid' key={index}>
+                <div id={item.group} className={'px-6 py-3 border-solid border-[#ddd] border-b-[1px] font-medium dark:border-[#474747]'}>{item.groupName}</div>
                 <div className={'grid grid-cols-auto-250 auto-rows-max gap-y-[42px] gap-x-[24px] items-center p-6'}>
                     {
                         item.commonUrlsList.map(url => {
@@ -219,21 +219,23 @@ const SubPage = ({urls}) => {
             </div>
         })
 
-        return <div className={'w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1024px] 2xl:w-[1280px]'}>
+        return <div className={'w-full px-[32px] sm:w-full md:w-full lg:w-full xl:w-[1280px] 2xl:w-[1280px]'}>
             {result}
         </div>
     }
 
     return <div className={cx({
         'bg-[#F4F5F6]': true,
-        'myContainer': true
+        'myContainer': true,
+        'dark:bg-[#22272E]': true,
+        'dark:text-white': true
     })}>
-        <div className={'bg-white fixed top-[56px] left-0 right-0 flex items-center justify-center mobile:invisible'}>
+        <div className={'dark:bg-[#1C2127] dark:text-white bg-white fixed top-[56px] left-0 right-0 flex items-center justify-center hideEle:invisible'}>
             <div className={' flex items-center justify-center bg-white gap-2'}>
                 {renderTabs()}
             </div>
         </div>
-        <div className={'flex items-center justify-center pt-[64px]'}>
+        <div className={'flex items-center justify-center pt-[64px] hideEle:pt-[32px]'}>
             {renderUrls()}
         </div>
     </div>
