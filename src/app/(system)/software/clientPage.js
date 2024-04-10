@@ -102,7 +102,7 @@ const Software = ({data}) => {
     })
   }
 
-  return <div className={'px-[140px] py-[32px]'}>
+  return <div className={'px-[140px] py-[32px] hideEle:px-[32px]'}>
     {
       renderGroupApp()
     }
