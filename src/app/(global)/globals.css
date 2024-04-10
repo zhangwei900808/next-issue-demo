@@ -17,3 +17,6 @@
 /*  }*/
 /*}*/
 
+body{
+    overscroll-behavior-y: none;
+}

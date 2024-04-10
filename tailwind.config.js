@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'auto-250': 'repeat(auto-fill, minmax(250px, 1fr))',
+      },
       colors: {
         'primary-purple': '#54458a'
       }
