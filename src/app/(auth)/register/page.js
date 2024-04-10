@@ -260,7 +260,7 @@ const Register = props => {
             ) : null}
 
             <div className={'flex justify-center items-center'}>
-                <div className={'2xl:w-[550px] xl:w-[550px] lg:w-[550px] md:w-[550px] sm:w-full w-full dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
+                <div className={'2xl:w-[550px] xl:w-[550px] lg:w-[550px] md:w-[550px] sm:w-full w-full dark:bg-transparent dark:border-black p-6 rounded-md bg-white dark:bg-black dark:text-white'}>
                     <div className={'flex flex-col justify-center items-center gap-8 py-6'}>
                         <span className={'text-xl'}>加入 Seaurl</span>
                         <span className={'text-5xl font-bold'}>创建你的账号</span>

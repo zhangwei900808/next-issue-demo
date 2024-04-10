@@ -2,4 +2,9 @@
   :global(.ant-anchor) {
     gap: 12px;
   }
+  :global(.ant-anchor-wrapper-horizontal){
+    &:before{
+      border: none;
+    }
+  }
 }
