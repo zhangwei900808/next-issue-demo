@@ -59,7 +59,7 @@ const LogoutPage = (props) => {
                     </Typography>
                 </div>
                 <div className={'w-1/2 relative best-w:w-full'}>
-                    <div className={'absolute right-[-50px] top-[-50px] w-[200px] h-[200px] bg-[#fcff00] rounded-full z-10'}></div>
+                    <div className={'absolute right-[-50px] best-w:right-0 top-[-50px] w-[200px] h-[200px] bg-[#fcff00] rounded-full z-10'}></div>
                     <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/home.png'}/>
                 </div>
             </section>
@@ -161,7 +161,7 @@ const LogoutPage = (props) => {
                         在Seaurl，我们高度重视每一位用户的参与和贡献。我们欢迎新用户的加入，你们的反馈和建议对我们的产品优化和服务提升起着至关重要的作用。我们致力于与用户共同推动Seaurl的持续完善和发展。
                     </p>
                     <div>
-                        <Row gutter={166}>
+                        <Row gutter={64}>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
                                 <Statistic title={'用户'} value={12121} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
@@ -179,7 +179,7 @@ const LogoutPage = (props) => {
                 </div>
             </section>
             <Divider/>
-            <section className={'w-full flex items-center justify-center py-[32px] pb-[100px]'}>
+            <section className={'w-full flex items-center justify-center py-[32px] pb-[100px] best-w:pb-[200px]'}>
                 <div className={'max-w-[900px] flex items-center justify-center flex-col gap-[32px]'}>
                     <Title>特别鸣谢</Title>
                     <p className={'text-xl text-[#333] dark:text-white'}>
@@ -235,7 +235,7 @@ const LogoutPage = (props) => {
             </section>
             {/*<Divider/>*/}
             <section className={'absolute left-0 right-0 bottom-0 flex items-center justify-center py-[32px] bg-black text-white px-[32px]'}>
-                <div className={'flex flex-row items-center justify-between max-w-[900px] w-full gap-[32px]'}>
+                <div className={'flex flex-row items-center justify-between max-w-[900px] w-full gap-[32px] best-w:flex-col'}>
                     <div>
                         <Space>
                             <span>©{year}</span>
