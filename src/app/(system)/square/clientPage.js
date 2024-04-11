@@ -1,10 +1,9 @@
 'use client'
 import React, {useEffect, useRef, useState} from "react";
 import UrlTags from "@/components/square/urlTags";
-import PageLayout from "@/components/layout/pageLayout";
 import {useDispatch, useSelector} from 'react-redux'
 
-import {getGithubData} from '@/store/slices/squareSlice';
+import {getGithubData} from '@/lib/slices/squareSlice';
 import {useRouter, useParams, useSearchParams} from "next/navigation";
 import {SearchOutlined, StarOutlined, PicRightOutlined, FireOutlined} from "@ant-design/icons";
 
@@ -20,7 +19,7 @@ const ClientPage = (props) => {
   const params = useParams()
   const searchParams = useSearchParams()
 
-  const {query} = router;
+  // const {query} = router;
   const [loading, setLoading] = useState(true);
   const langList = useRef([])
   const [isFinished, setIsFinished] = useState(false)
@@ -28,6 +27,7 @@ const ClientPage = (props) => {
 
   const [searchValue, setSearchValue] = useState('')
   const pageNum = useRef(1)
+  const {tagList} = useSelector(state => state.square)
 
 
   // useEffect(() => {
@@ -42,8 +42,8 @@ const ClientPage = (props) => {
       top: 0, // 指定垂直偏移量为0，即将滚动条置顶
       behavior: 'smooth' // 可选，表示平滑滚动动画效果，默认值为 'auto'
     });
-    setSearchValue(query.search || '')
-    if (query.category) {
+    setSearchValue(searchParams.get('search') || '')
+    if (searchParams.get('category')) {
       setLoading(true)
       langList.current = []
       pageNum.current = 1
@@ -55,16 +55,16 @@ const ClientPage = (props) => {
         router.push(`/square?category=${tagList[0].code}`, undefined, {shallow: true})
       }
     }
-  }, [query.category, query.search])
+  }, [searchParams])
 
   async function loadMoreData() {
     setLoading(true)
-    const fs = tagList.filter(f => f.name === query.category)
+    const fs = tagList.filter(f => f.name === searchParams.get('category'))
     if (fs.length > 0) {
       const result = await dispatch(getGithubData({
         lang: fs[0].code,
         pageNo: pageNum.current,
-        param: query.search || ''
+        param: searchParams.get('search') || ''
       }))
       setLoading(false)
       if (result.payload.data){
@@ -99,40 +99,39 @@ const ClientPage = (props) => {
     setOpen(false);
   };
 
-  return <PageLayout>
-    <div className={styles.container}>
-      <div className={styles.content}>
-        {
-          !isMobile ? <div className={styles.tags}>
-            <UrlTags showTitle={true}/>
-          </div> : null
-        }
+  return <div>
+    <div>
+      {/*{*/}
+      {/*  !isMobile ? <div className={styles.tags}>*/}
+      {/*    <UrlTags showTitle={true}/>*/}
+      {/*  </div> : null*/}
+      {/*}*/}
 
-        <div className={styles.techList}>
-          <div className={styles.header}>
-            <div className={styles.title}>
-              {
-                isMobile? <PicRightOutlined className={styles.icon} onClick={() => {
-                  setOpen(true)
-                }
-                }/>:null
-              }
-              <span>{query.category || ''}</span>
-            </div>
-            <div className={styles.searcher}>
-              <Input
-                defaultValue={query.search || ''}
+      <div>
+        <div>
+          <div>
+            {/*{*/}
+            {/*  isMobile? <PicRightOutlined className={styles.icon} onClick={() => {*/}
+            {/*    setOpen(true)*/}
+            {/*  }*/}
+            {/*  }/>:null*/}
+            {/*}*/}
+            <span>{searchParams.get('category') || ''}</span>
+          </div>
+          <div>
+            <Input
+                defaultValue={searchParams.get('search') || ''}
                 value={searchValue || ''}
-                className={styles.search}
+                className={''}
                 placeholder="请输入搜索内容"
                 onChange={(e) => {
                   setSearchValue(e.target.value)
                 }}
                 onPressEnter={(e) => {
-                  if (query.category && e.target.value) {
-                    router.push(`/square?category=${query.category}&search=${e.target.value}`, undefined, {shallow: true})
+                  if (searchParams.get('category') && e.target.value) {
+                    router.push(`/square?category=${searchParams.get('category')}&search=${e.target.value}`, undefined, {shallow: true})
                   } else {
-                    router.push(`/square?category=${query.category}`, undefined, {shallow: true})
+                    router.push(`/square?category=${searchParams.get('category')}`, undefined, {shallow: true})
                   }
                 }}
                 prefix={<SearchOutlined onClick={() => {
@@ -140,61 +139,61 @@ const ClientPage = (props) => {
                 }/>}
                 style={{borderRadius: 8, borderWidth: 2}}
                 allowClear
-              />
-            </div>
+            />
           </div>
+        </div>
 
-          <div id={styles.scrollableDiv2}>
-            {
-              loading && pageNum.current === 1 ?
-                <div className={styles.loadingEmpty}><Loading/></div> : langList.current.length > 0 ?
-                  <InfiniteScroll
-                    //注意：dataLength={remindList.length}要写remindList.length不能写成remindListTotal,切记！
-                    dataLength={langList.current.length}
-                    next={loadMoreData}
-                    hasMore={langList.current.length < 200 || !isFinished}
-                    loader={<div className={styles.loadingEmpty}>
-                      {loading ? <Loading/> : null}
-                    </div>}
-                    scrollableTarget="scrollableDiv2">
-                    <div className={styles.gridList}>
-                      {
-                        langList.current.map((item, index) => {
-                          return <div className={styles.item} key={`${item.node_id}-${index}`}>
+        <div id={'scrollableDiv2'}>
+          {
+            loading && pageNum.current === 1 ?
+                <div><Loading/></div> : langList.current.length > 0 ?
+                    <InfiniteScroll
+                        //注意：dataLength={remindList.length}要写remindList.length不能写成remindListTotal,切记！
+                        dataLength={langList.current.length}
+                        next={loadMoreData}
+                        hasMore={langList.current.length < 200 || !isFinished}
+                        loader={<div>
+                          {loading ? <Loading/> : null}
+                        </div>}
+                        scrollableTarget="scrollableDiv2">
+                      <div>
+                        {
+                          langList.current.map((item, index) => {
+                            return <div key={`${item.node_id}-${index}`}>
 
-                            <div className={styles.l} onClick={() => goto(item.html_url)}>
-                              {
-                                item && item.owner && item.owner.avatar?<img src={item.owner.avatar}/>:
-                                    item.owner.avatar_url?<img src={item.owner.avatar_url}/>:<FireOutlined style={{fontSize: '20px'}}/>
-                              }
-                            </div>
-                            <div className={styles.r}>
-                              <div className={styles.name} onClick={() => goto(item.html_url)}>{item.name || '-'}</div>
-                              {item.homepage ? <a className={styles.homepage} href={item.homepage}
-                                                  target={'_blank'}>{item.homepage}</a> : null}
-                              <div className={styles.info} title={item.description}>{item.description}</div>
-                              <div>
-                                <Button type="default" size={'small'} icon={<StarOutlined/>} onClick={() => {
-                                  goto(item.html_url + '/stargazers')
+                              <div onClick={() => goto(item.html_url)}>
+                                {
+                                  item && item.owner && item.owner.avatar ? <img src={item.owner.avatar}/> :
+                                      item.owner.avatar_url ? <img src={item.owner.avatar_url}/> :
+                                          <FireOutlined style={{fontSize: '20px'}}/>
                                 }
-                                }>{formatNumber(item.stargazers_count)}</Button>
+                              </div>
+                              <div>
+                                <div onClick={() => goto(item.html_url)}>{item.name || '-'}</div>
+                                {item.homepage ? <a href={item.homepage}
+                                                    target={'_blank'}>{item.homepage}</a> : null}
+                                <div title={item.description}>{item.description}</div>
+                                <div>
+                                  <Button type="default" size={'small'} icon={<StarOutlined/>} onClick={() => {
+                                    goto(item.html_url + '/stargazers')
+                                  }
+                                  }>{formatNumber(item.stargazers_count)}</Button>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        })
-                      }
-                    </div>
-                  </InfiniteScroll> : <div className={styles.loadingEmpty}><Empty/></div>
-            }
-          </div>
+                          })
+                        }
+                      </div>
+                    </InfiniteScroll> : <div><Empty/></div>
+          }
         </div>
       </div>
-      <Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>
-        <div className={styles.tags}>
-          <UrlTags showTitle={false} choose={onClose}/>
-        </div>
-      </Drawer>
     </div>
-  </PageLayout>
+    {/*<Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>*/}
+    {/*  <div className={styles.tags}>*/}
+    {/*    <UrlTags showTitle={false} choose={onClose}/>*/}
+    {/*  </div>*/}
+    {/*</Drawer>*/}
+  </div>
 }
 export default ClientPage

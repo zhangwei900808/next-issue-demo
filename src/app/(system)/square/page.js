@@ -22,7 +22,7 @@ const Square = async () => {
     //     </div>
     // }
     return <div>
-        <clientPage urls={data.data}/>
+        <clientPage />
     </div>
 
 }

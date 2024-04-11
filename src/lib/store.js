@@ -5,11 +5,13 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import {homeSlice} from "@/lib/slices/homeSlice";
 import {systemSlice} from "@/lib/slices/systemSlice";
 import {authSlice} from "@/lib/slices/authSlice";
+import {squareSlice} from "@/lib/slices/squareSlice";
 
 const rootReducer = combineReducers({
     [homeSlice.name]: homeSlice.reducer,
     [systemSlice.name]: systemSlice.reducer,
-    [authSlice.name]: authSlice.reducer
+    [authSlice.name]: authSlice.reducer,
+    [squareSlice.name]: squareSlice.reducer
 })
 
 export const makeStore = () => {

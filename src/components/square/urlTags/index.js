@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/navigation";
 import cns from "classnames/bind";
-import {setChooseTag} from '@/store/slices/squareSlice'
+import {setChooseTag} from '@/lib/slices/squareSlice'
 
 let cx = cns.bind(styles);
 
