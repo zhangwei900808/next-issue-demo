@@ -1,4 +1,5 @@
 import LogoutPage from "@/app/(home)/logoutPage";
+import {auth} from "@/lib/auth";
 async function getData() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getCommonUrls`)
     // The return value is *not* serialized
@@ -13,6 +14,7 @@ async function getData() {
 }
 
 const RecommendUrls = async () => {
+    const session = await auth()
 
     // const data = await getData()
     // if (data.status === 0) {
@@ -22,7 +24,7 @@ const RecommendUrls = async () => {
     //     </div>
     // }
     return <div>
-        <LogoutPage />
+        {!session?<LogoutPage />:<div>you had login!</div>}
     </div>
 
 }
