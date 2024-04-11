@@ -248,7 +248,7 @@ const LogoInHeader = (props) => {
                 items={getMenuList()}
             />
             {/*<Divider/>*/}
-            <div><Title level={5}>常用网址</Title></div>
+            <div className={'px-3'}><Title level={5}>常用网址</Title></div>
             {/*<div>*/}
             {/*    {*/}
             {/*        loading?<Loading/> : userClickUrls.length>0?<Menu*/}
