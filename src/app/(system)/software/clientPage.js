@@ -11,7 +11,7 @@ import Empty from "@/components/empty";
 
 let cx = cns.bind(styles);
 
-const Software = ({data}) => {
+const ClientPage = ({data}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [gid, setGid] = useState([])
@@ -108,4 +108,4 @@ const Software = ({data}) => {
     }
   </div>
 }
-export default Software;
+export default ClientPage;

@@ -1,6 +1,4 @@
 import SubPage from "@/app/(system)/recommendUrls/subPage";
-import {getCommonUrls} from "@/lib/slices/systemSlice";
-import {useDispatch} from "react-redux";
 
 async function getData() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getCommonUrls`)
