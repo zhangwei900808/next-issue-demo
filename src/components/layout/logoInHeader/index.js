@@ -34,6 +34,10 @@ const LogoInHeader = (props) => {
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch();
     const {data: session} = useSession()
+
+    const {loginMenus, logoutMenus} = useSelector(state => state.system)
+
+
     console.log('---------------------session 444', session)
     const showDrawer = () => {
         setVisible(true);
@@ -57,29 +61,29 @@ const LogoInHeader = (props) => {
     }
 
      function onClickMenuItem({item, key, keyPath, domEvent}) {
-        // if (isLogin) {
-        //     loginMenus.forEach(async d => {
-        //         if (d.key === key) {
-        //             if (key === '0'){
-        //                 await dispatch(clearLatestNews())
-        //                 dispatch(getLatestNewsForUsers({
-        //                     pageSize: pagination.pageSize,
-        //                     pageNum: 1,
-        //                     type: 1
-        //                 }))
-        //                 router.push('/', undefined, {shallow: true})
-        //             }else{
-        //                 router.push(d.url);
-        //             }
-        //         }
-        //     })
-        // } else {
-        //     logoutMenus.forEach(d => {
-        //         if (d.key === key) {
-        //             window.location = d.url
-        //         }
-        //     })
-        // }
+        if (session) {
+            loginMenus.forEach(async d => {
+                if (d.key === key) {
+                    if (key === '0'){
+                        // await dispatch(clearLatestNews())
+                        // dispatch(getLatestNewsForUsers({
+                        //     pageSize: pagination.pageSize,
+                        //     pageNum: 1,
+                        //     type: 1
+                        // }))
+                        router.push('/', undefined, {shallow: true})
+                    }else{
+                        router.push(d.url);
+                    }
+                }
+            })
+        } else {
+            logoutMenus.forEach(d => {
+                if (d.key === key) {
+                    window.location = d.url
+                }
+            })
+        }
         hideDrawer()
     }
 
@@ -213,56 +217,56 @@ const LogoInHeader = (props) => {
             goto()
             hideDrawer()
         }}/>
-        {/*<Drawer*/}
-        {/*    title={*/}
-        {/*        <div>*/}
-        {/*            <Logo clickLogo={() => {*/}
-        {/*                // goto()*/}
-        {/*                // hideDrawer()*/}
-        {/*            }}/>*/}
-        {/*            <span onClick={() => {*/}
-        {/*                hideDrawer()*/}
-        {/*            }}>*/}
-        {/*                <CloseOutlined/>*/}
-        {/*            </span>*/}
-        {/*        </div>*/}
-        {/*    }*/}
-        {/*    placement="left"*/}
-        {/*    closable={false}*/}
-        {/*    onClose={hideDrawer}*/}
-        {/*    open={visible}*/}
-        {/*    width={320}*/}
-        {/*    headerStyle={{padding: "0"}}*/}
-        {/*    bodyStyle={{padding: "0", zIndex: '10'}}>*/}
-        {/*    <Menu*/}
-        {/*        onClick={onClickMenuItem}*/}
-        {/*        selectable={false}*/}
-        {/*        style={{*/}
-        {/*            width: '100%',*/}
-        {/*        }}*/}
-        {/*        mode="inline"*/}
-        {/*        items={getMenuList()}*/}
-        {/*    />*/}
-        {/*    /!*<Divider/>*!/*/}
-        {/*    <div><Title level={5}>常用网址</Title></div>*/}
-        {/*    <div>*/}
-        {/*        {*/}
-        {/*            loading?<Loading/> : userClickUrls.length>0?<Menu*/}
-        {/*                onClick={onClickUrlItem}*/}
-        {/*                selectable={false}*/}
-        {/*                style={{*/}
-        {/*                    width: '100%',*/}
-        {/*                }}*/}
-        {/*                mode="inline"*/}
-        {/*                items={getUserClickUrlMenus()}*/}
-        {/*            />:<div>*/}
-        {/*                <Empty title='暂无数据'/>*/}
-        {/*            </div>*/}
-        {/*        }*/}
+        <Drawer
+            title={
+                <div className={'flex items-center justify-between px-3 py-3'}>
+                    <Logo clickLogo={() => {
+                        // goto()
+                        // hideDrawer()
+                    }}/>
+                    <div className={'dark:bg-[#22272E] dark:text-white dark:hover:bg-[#2A3037] bg-[#eee] h-[28px] w-[28px] flex items-center justify-center rounded mr-2 cursor-pointer text-[#aaa]'} onClick={() => {
+                        hideDrawer()
+                    }}>
+                        <CloseOutlined/>
+                    </div>
+                </div>
+            }
+            placement="left"
+            closable={false}
+            onClose={hideDrawer}
+            open={visible}
+            width={320}
+            headerStyle={{padding: "0"}}
+            bodyStyle={{padding: "0", zIndex: '10'}}>
+            <Menu
+                onClick={onClickMenuItem}
+                selectable={false}
+                style={{
+                    width: '100%',
+                }}
+                mode="inline"
+                items={getMenuList()}
+            />
+            {/*<Divider/>*/}
+            <div><Title level={5}>常用网址</Title></div>
+            {/*<div>*/}
+            {/*    {*/}
+            {/*        loading?<Loading/> : userClickUrls.length>0?<Menu*/}
+            {/*            onClick={onClickUrlItem}*/}
+            {/*            selectable={false}*/}
+            {/*            style={{*/}
+            {/*                width: '100%',*/}
+            {/*            }}*/}
+            {/*            mode="inline"*/}
+            {/*            items={getUserClickUrlMenus()}*/}
+            {/*        />:<div>*/}
+            {/*            <Empty title='暂无数据'/>*/}
+            {/*        </div>*/}
+            {/*    }*/}
 
-        {/*    </div>*/}
-        {/*    /!*<div className={styles.record}><Record/></div>*!/*/}
-        {/*</Drawer>*/}
+            {/*</div>*/}
+            {/*<div className={styles.record}><Record/></div>*/}
+        </Drawer>
     </div>
 }
 
