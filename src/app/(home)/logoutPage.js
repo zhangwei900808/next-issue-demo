@@ -50,7 +50,7 @@ const LogoutPage = (props) => {
                         }}
                         items={
                             [{
-                                label: <Title level={3} style={{color: spaceIndex===0?'#54458a':''}}>我的主页</Title>,
+                                label: <Title level={3} style={{color: spaceIndex===7?'#54458a':''}}>我的主页</Title>,
                                 key: 7,
                             },
                                 {
@@ -65,7 +65,7 @@ const LogoutPage = (props) => {
                                     label: <Title level={3} style={{color: spaceIndex===3?'#54458a':''}}>文件空间</Title>,
                                     key: 3,
                                 }, {
-                                label: <Title level={3} style={{color: spaceIndex===7?'#54458a':''}}>AIGC空间</Title>,
+                                label: <Title level={3} style={{color: spaceIndex===6?'#54458a':''}}>AIGC空间</Title>,
                                 key: 6,
                             }]
                         }
