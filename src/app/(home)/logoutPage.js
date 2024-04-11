@@ -7,8 +7,36 @@ import classNames from "classnames/bind";
 const {Title, Paragraph, Text, Link} = Typography;
 
 const LogoutPage = (props) => {
-    const [spaceIndex, setSpaceIndex] = useState(7)
+    const [spaceIndex, setSpaceIndex] = useState('7')
     const [year, setYear] = useState(new Date().getFullYear());
+
+    function getModuleList() {
+        return [{
+            label: <Title level={3}
+                          style={{color: spaceIndex === '7' ? '#54458a' : ''}}>我的主页</Title>,
+            key: '7',
+        },
+            {
+                label: <Title level={3}
+                              style={{color: spaceIndex === '1' ? '#54458a' : ''}}>网址空间</Title>,
+                key: '1',
+            },
+            {
+                label: <Title level={3}
+                              style={{color: spaceIndex === '2' ? '#54458a' : ''}}>笔记空间</Title>,
+                key: '2',
+            },
+            {
+                label: <Title level={3}
+                              style={{color: spaceIndex === '3' ? '#54458a' : ''}}>文件空间</Title>,
+                key: '3',
+            }, {
+                label: <Title level={3}
+                              style={{color: spaceIndex === '6' ? '#54458a' : ''}}>AIGC空间</Title>,
+                key: '6',
+            }]
+    }
+
     return <div className={'relative'}>
         <div className={'px-[100px] py-[100px] best-w:px-[32px] best-w:py-[32px]'}>
             <section className='flex items-start justify-between gap-[64px] best-w:flex-col pb-[32px]'>
@@ -37,99 +65,93 @@ const LogoutPage = (props) => {
             </section>
             <Divider/>
             <section className={'py-[32px] w-full flex items-center justify-center'}>
-                <div className={'max-w-[1200px] w-full flex items-center justify-center flex-col'}>
-                <div className={''}>
-                    <Tabs
-                        defaultActiveKey={spaceIndex}
-                        size={'large'}
-                        centered={true}
-                        tabBarGutter={120}
-                        onTabClick={(e) => {
-                            console.log('eeee=', e)
-                            setSpaceIndex(e)
-                        }}
-                        items={
-                            [{
-                                label: <Title level={3} style={{color: spaceIndex===7?'#54458a':''}}>我的主页</Title>,
-                                key: 7,
-                            },
-                                {
-                                    label: <Title level={3} style={{color: spaceIndex===1?'#54458a':''}}>网址空间</Title>,
-                                    key: 1,
-                                },
-                                {
-                                    label: <Title level={3} style={{color: spaceIndex===2?'#54458a':''}}>笔记空间</Title>,
-                                    key: 2,
-                                },
-                                {
-                                    label: <Title level={3} style={{color: spaceIndex===3?'#54458a':''}}>文件空间</Title>,
-                                    key: 3,
-                                }, {
-                                label: <Title level={3} style={{color: spaceIndex===6?'#54458a':''}}>AIGC空间</Title>,
-                                key: 6,
-                            }]
-                        }
-                    />
-                    {/*<Segmented options={[{label: <Title level={3} style={{color: spaceIndex===0?'#54458a':''}}>我的主页</Title>, value: '7'},*/}
-                    {/*    {label: <Title level={3} style={{color: spaceIndex===1?'#54458a':''}}>网址空间</Title>, value: '1'},*/}
-                    {/*    {label: <Title level={3} style={{color: spaceIndex===2?'#54458a':''}}>笔记空间</Title>, value: '2'},*/}
-                    {/*    {label: <Title level={3} style={{color: spaceIndex===3?'#54458a':''}}>文件空间</Title>, value: '3'},*/}
-                    {/*    {label: <Title level={3} style={{color: spaceIndex===3?'#54458a':''}}>AIGC空间</Title>, value: '6'}*/}
-                    {/*]} block />*/}
-                </div>
-                {
-                    spaceIndex === 7 ? <div>
-                        <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
-                            "我的主页"是全方位了解用户的数字足迹的窗口。在这里，您可以清晰地看到自己积累的积分展示我的活跃度与贡献度；以及所拥有的网址数，呈现了我的网络资源收藏与分享的数量；粉丝数则直观反映了我和广大用户的互动与影响力。
-                        </p>
-                        <div>
-                            {/*<div className={styles.circleBf2}></div>*/}
-                            <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/user_master.png'}/>
+                <div className={'max-w-[1200px] w-full flex items-center justify-center flex-col best-w:flex-row'}>
+                        <div className={'best-w:invisible best-w:w-0 best-w:gap-[32px]'}>
+                            <Tabs
+                                activeKey={spaceIndex}
+                                size={'large'}
+                                centered={false}
+                                tabPosition={'top'}
+                                tabBarGutter={120}
+                                onTabClick={(e) => {
+                                    setSpaceIndex(e)
+                                }}
+                                items={getModuleList()}
+                            />
                         </div>
-                    </div>:null
-                }
-                {
-                    spaceIndex === 1 ? <div>
-                        <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
-                            "网址空间"是一个专业的在线平台，它允许用户分享他们在日常生活和工作中频繁访问的网站链接。此外，该平台还提供了社交功能，使用户能够查看并探索他们的朋友们所添加的网站链接，从而增强信息共享和网络资源的发现。
-                        </p>
-                        <div>
-                        {/*<div className={styles.circleBf2}></div>*/}
-                            <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/url_space.png'}/>
+                        <div className={'xl:invisible xl:h-0'}>
+                            <Tabs
+                                activeKey={spaceIndex}
+                                size={'large'}
+                                centered={false}
+                                tabPosition={'left'}
+                                tabBarGutter={60}
+                                onTabClick={(e) => {
+                                    setSpaceIndex(e)
+                                }}
+                                items={getModuleList()}
+                            />
                         </div>
-                    </div>:null
-                }
-                {
-                    spaceIndex === 2?<div>
-                        <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
-                            "笔记"是一个专属的私有空间，仅对已注册用户开放。它提供了一个安全的环境，让用户能够记录和管理他们的生活和工作信息。这个功能强调了隐私保护和信息安全，确保用户的个人笔记只能由他们自己访问和查看。
-                        </p>
-                        <div>
-                        {/*<div className={styles.circleBf2}></div>*/}
-                            <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/note_space.png'}/>
-                        </div>
-                    </div>:null
-                }
+                        <div className={'w-full'}>
+                            {
+                                spaceIndex === '7' ? <div>
+                                    <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
+                                        "我的主页"是全方位了解用户的数字足迹的窗口。在这里，您可以清晰地看到自己积累的积分展示我的活跃度与贡献度；以及所拥有的网址数，呈现了我的网络资源收藏与分享的数量；粉丝数则直观反映了我和广大用户的互动与影响力。
+                                    </p>
+                                    <div>
+                                        {/*<div className={styles.circleBf2}></div>*/}
+                                        <img className={'rounded-xl relative z-20 shadow-xl'}
+                                             src={'https://cdn.seaurl.com/home/bg/user_master.png'}/>
+                                    </div>
+                                </div> : null
+                            }
+                            {
+                                spaceIndex === '1' ? <div>
+                                    <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
+                                        "网址空间"是一个专业的在线平台，它允许用户分享他们在日常生活和工作中频繁访问的网站链接。此外，该平台还提供了社交功能，使用户能够查看并探索他们的朋友们所添加的网站链接，从而增强信息共享和网络资源的发现。
+                                    </p>
+                                    <div>
+                                        {/*<div className={styles.circleBf2}></div>*/}
+                                        <img className={'rounded-xl relative z-20 shadow-xl'}
+                                             src={'https://cdn.seaurl.com/home/bg/url_space.png'}/>
+                                    </div>
+                                </div> : null
+                            }
+                            {
+                                spaceIndex === '2' ? <div>
+                                    <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
+                                        "笔记"是一个专属的私有空间，仅对已注册用户开放。它提供了一个安全的环境，让用户能够记录和管理他们的生活和工作信息。这个功能强调了隐私保护和信息安全，确保用户的个人笔记只能由他们自己访问和查看。
+                                    </p>
+                                    <div>
+                                        {/*<div className={styles.circleBf2}></div>*/}
+                                        <img className={'rounded-xl relative z-20 shadow-xl'}
+                                             src={'https://cdn.seaurl.com/home/bg/note_space.png'}/>
+                                    </div>
+                                </div> : null
+                            }
 
-                {spaceIndex === 3?<div>
-                    <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
-                        "文件管理"同样是一个专属的私有空间，仅对已注册用户开放。这个特性提供了一个安全的环境，让用户能够存储和管理他们的个人文件。为了满足用户的存储需求，我们预设了5GB的大容量存储空间。这个功能强调了隐私保护和数据安全，确保用户的个人文件只能由他们自己访问和查看。
-                    </p>
-                    <div>
-                    {/*<div className={styles.circleBf2}></div>*/}
-                        <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/file_space.png'}/>
+                            {spaceIndex === '3' ? <div>
+                                <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
+                                    "文件管理"同样是一个专属的私有空间，仅对已注册用户开放。这个特性提供了一个安全的环境，让用户能够存储和管理他们的个人文件。为了满足用户的存储需求，我们预设了5GB的大容量存储空间。这个功能强调了隐私保护和数据安全，确保用户的个人文件只能由他们自己访问和查看。
+                                </p>
+                                <div>
+                                    {/*<div className={styles.circleBf2}></div>*/}
+                                    <img className={'rounded-xl relative z-20 shadow-xl'}
+                                         src={'https://cdn.seaurl.com/home/bg/file_space.png'}/>
+                                </div>
+                            </div> : null}
+                            {spaceIndex === '6' ? <div>
+                                <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
+                                    Seaurl为您提供了强大的AI问答助手，无论是关于学习、工作、生活还是娱乐，只需输入关键词，AI助手就能以人类语言的方式理解您的意图，并提供精准的回答。
+                                </p>
+                                <div>
+                                    {/*<div className={styles.circleBf2}></div>*/}
+                                    <img className={'rounded-xl relative z-20 shadow-xl'}
+                                         src={'https://cdn.seaurl.com/home/bg/ai_bg.png'}/>
+                                </div>
+                            </div> : null}
+                        </div>
                     </div>
-                </div>:null}
-                {spaceIndex === 6?<div>
-                    <p className={'text-xl text-[#333] py-[32px] dark:text-white'}>
-                        Seaurl为您提供了强大的AI问答助手，无论是关于学习、工作、生活还是娱乐，只需输入关键词，AI助手就能以人类语言的方式理解您的意图，并提供精准的回答。
-                    </p>
-                    <div>
-                    {/*<div className={styles.circleBf2}></div>*/}
-                        <img className={'rounded-xl relative z-20 shadow-xl'} src={'https://cdn.seaurl.com/home/bg/ai_bg.png'}/>
-                    </div>
-                </div>:null}
-                </div>
             </section>
             <Divider/>
             <section className={'w-full flex items-center justify-center py-[32px]'}>
@@ -139,7 +161,7 @@ const LogoutPage = (props) => {
                         在Seaurl，我们高度重视每一位用户的参与和贡献。我们欢迎新用户的加入，你们的反馈和建议对我们的产品优化和服务提升起着至关重要的作用。我们致力于与用户共同推动Seaurl的持续完善和发展。
                     </p>
                     <div>
-                        <Row gutter={122}>
+                        <Row gutter={166}>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
                                 <Statistic title={'用户'} value={12121} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
