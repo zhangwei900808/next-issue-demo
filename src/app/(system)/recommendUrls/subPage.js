@@ -230,12 +230,12 @@ const SubPage = ({urls}) => {
         'dark:bg-[#22272E]': true,
         'dark:text-white': true
     })}>
-        <div className={'dark:bg-[#1C2127] dark:text-white bg-white fixed top-[56px] left-0 right-0 flex items-center justify-center hideEle:invisible shadow'}>
+        <div className={'dark:bg-[#1C2127] dark:text-white bg-white fixed top-[56px] left-0 right-0 flex items-center justify-center best-w:invisible shadow'}>
             <div className={' flex items-center justify-center bg-white gap-2'}>
                 {renderTabs()}
             </div>
         </div>
-        <div className={'flex items-center justify-center pt-[64px] hideEle:pt-[32px]'}>
+        <div className={'flex items-center justify-center pt-[64px] best-w:pt-[32px]'}>
             {renderUrls()}
         </div>
     </div>

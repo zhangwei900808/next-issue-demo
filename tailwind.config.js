@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'hideEle': { 'raw': '(max-width: 1280px)' },
+        'best-w': { 'raw': '(max-width: 1280px)' },
         // => @media (max-height: 800px) { ... }
       },
       gridTemplateColumns: {

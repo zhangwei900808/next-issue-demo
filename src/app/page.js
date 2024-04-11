@@ -1,16 +1,29 @@
-import Image from "next/image";
-import { useSession, signIn, signOut } from "next-auth/react"
-import {auth} from "@/lib/auth";
-import {Button} from 'antd'
+import LogoutPage from "@/app/(home)/logoutPage";
+async function getData() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getCommonUrls`)
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
 
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data')
+    }
 
-export default async function Home() {
-    const session = await auth()
-
-    return (
-        <main className="p-12">
-            <div>Access Token: {JSON.stringify(session)}</div>
-
-        </main>
-    );
+    return res.json()
 }
+
+const RecommendUrls = async () => {
+
+    // const data = await getData()
+    // if (data.status === 0) {
+    //     console.log('ddd=', data)
+    //     return <div>
+    //         <LogoutPage />
+    //     </div>
+    // }
+    return <div>
+        <LogoutPage />
+    </div>
+
+}
+export default RecommendUrls;
