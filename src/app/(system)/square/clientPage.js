@@ -101,11 +101,11 @@ const ClientPage = (props) => {
   };
 
   return <div className={'flex items-center justify-center h-full'}>
-    <div className={'flex items-start max-w-[1280px] gap-[32px] h-full'}>
+    <div className={'flex items-start max-w-[1280px] gap-[32px] w-full h-full px-[32px]'}>
       <UrlTags showTitle={true}/>
 
       <div className={'h-full w-full'}>
-        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white z-20'}>
+        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white z-20 '}>
           <div>
             {/*{*/}
             {/*  isMobile? <PicRightOutlined className={styles.icon} onClick={() => {*/}
@@ -140,10 +140,12 @@ const ClientPage = (props) => {
           </div>
         </div>
 
-        <div id={'scrollableDiv2'} className={'pt-[12px]'}>
+        <div id={'scrollableDiv2'} className={'py-[12px]'}>
           {
             loading && pageNum.current === 1 ?
-                <div><Loading/></div> : langList.current.length > 0 ?
+                <div className={'flex items-center justify-center w-full'}>
+                  <Loading/>
+                </div> : langList.current.length > 0 ?
                     <InfiniteScroll
                         //注意：dataLength={remindList.length}要写remindList.length不能写成remindListTotal,切记！
                         dataLength={langList.current.length}
@@ -157,19 +159,18 @@ const ClientPage = (props) => {
                         {
                           langList.current.map((item, index) => {
                             return <div key={`${item.node_id}-${index}`} className={'flex flex-start self-stretch flex-row gap-2'}>
-
-                              <div onClick={() => goto(item.html_url)} className={'w-[42px] h-[42px] flex-shrink-0'}>
+                              <div onClick={() => goto(item.html_url)} className={'w-[56px] h-[56px] flex-shrink-0 rounded-full shadow flex items-center justify-center'}>
                                 {
-                                  item && item.owner && item.owner.avatar ? <img src={item.owner.avatar} className={'w-full h-full'}/> :
-                                      item.owner.avatar_url ? <img src={item.owner.avatar_url} className={'w-[42px] h-[42px] flex-shrink-0'}/> :
+                                  item && item.owner && item.owner.avatar ? <img src={item.owner.avatar} className={'w-[36px] h-[36px]'}/> :
+                                      item.owner.avatar_url ? <img src={item.owner.avatar_url} className={'w-[36px] h-[36px] flex-shrink-0'}/> :
                                           <FireOutlined style={{fontSize: '20px'}}/>
                                 }
                               </div>
-                              <div className={'flex items-start flex-col gap-2'}>
-                                <div onClick={() => goto(item.html_url)} className={'font-medium text-xl'}>{item.name || '-'}</div>
+                              <div className={'flex items-start flex-col'}>
+                                <div onClick={() => goto(item.html_url)} className={'font-medium text-xl cursor-pointer'}>{item.name || '-'}</div>
                                 {/*{item.homepage ? <a href={item.homepage} target={'_blank'}>{item.homepage}</a> : null}*/}
                                 <div title={item.description} className={styles.desc}>{item.description}</div>
-                                <div>
+                                <div className={'pt-2'}>
                                   <Button type="default" size={'small'} icon={<StarOutlined/>} onClick={() => {
                                     goto(item.html_url + '/stargazers')
                                   }
