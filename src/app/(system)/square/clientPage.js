@@ -25,12 +25,13 @@ const ClientPage = (props) => {
   // const {query} = router;
   const [loading, setLoading] = useState(true);
   const langList = useRef([])
-  const [isFinished, setIsFinished] = useState(false)
   const [open, setOpen] = useState(false);
 
   const [searchValue, setSearchValue] = useState('')
   const pageNum = useRef(1)
+  const finished = useRef(false)
   const {tagList} = useSelector(state => state.square)
+  const [total, setTotal] = useState(0)
 
 
   // useEffect(() => {
@@ -74,8 +75,9 @@ const ClientPage = (props) => {
         console.log('langList =', langList.current)
         const list = result.payload.data.rows
         const total = result.payload.data.total
+        setTotal(total)
         if ((pageNum.current > 1 && list.length === 0) || langList.current.length >= total) {
-          setIsFinished(true)
+          finished.current = true
         }
         langList.current = langList.current.concat(list)
         pageNum.current += 1
@@ -145,7 +147,7 @@ const ClientPage = (props) => {
           </div>
         </div>
 
-        <div id={'scrollableDiv2'} className={'py-[12px]'}>
+        <div id={styles.scrollableDiv2} className={'py-[12px]'}>
           {
             loading && pageNum.current === 1 ?
                 <div className={'flex items-center justify-center w-full'}>
@@ -155,8 +157,8 @@ const ClientPage = (props) => {
                         //注意：dataLength={remindList.length}要写remindList.length不能写成remindListTotal,切记！
                         dataLength={langList.current.length}
                         next={loadMoreData}
-                        hasMore={langList.current.length < 200 || !isFinished}
-                        loader={<div>
+                        hasMore={langList.current.length < total}
+                        loader={<div className={'w-full flex justify-center items-center'}>
                           {loading ? <Loading/> : null}
                         </div>}
                         scrollableTarget="scrollableDiv2">
