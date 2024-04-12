@@ -14,7 +14,6 @@ async function getData() {
 }
 
 const Square = async () => {
-
     // const data = await getData()
     // if (data.status === 0) {
     //     console.log('ddd=', data)
