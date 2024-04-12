@@ -11,6 +11,7 @@ import {Button, Drawer, Input, Typography} from "antd";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Empty from "@/components/empty";
 import Loading from "@/components/loading";
+import styles from './index.module.scss'
 
 
 const ClientPage = (props) => {
@@ -99,16 +100,12 @@ const ClientPage = (props) => {
     setOpen(false);
   };
 
-  return <div>
-    <div>
-      {/*{*/}
-      {/*  !isMobile ? <div className={styles.tags}>*/}
-      {/*    <UrlTags showTitle={true}/>*/}
-      {/*  </div> : null*/}
-      {/*}*/}
+  return <div className={'flex items-center justify-center h-full'}>
+    <div className={'flex items-start max-w-[1280px] gap-[32px] h-full'}>
+      <UrlTags showTitle={true}/>
 
-      <div>
-        <div>
+      <div className={'h-full w-full'}>
+        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white z-20'}>
           <div>
             {/*{*/}
             {/*  isMobile? <PicRightOutlined className={styles.icon} onClick={() => {*/}
@@ -143,7 +140,7 @@ const ClientPage = (props) => {
           </div>
         </div>
 
-        <div id={'scrollableDiv2'}>
+        <div id={'scrollableDiv2'} className={'pt-[12px]'}>
           {
             loading && pageNum.current === 1 ?
                 <div><Loading/></div> : langList.current.length > 0 ?
@@ -156,23 +153,22 @@ const ClientPage = (props) => {
                           {loading ? <Loading/> : null}
                         </div>}
                         scrollableTarget="scrollableDiv2">
-                      <div>
+                      <div className={'grid grid-cols-auto-250 auto-rows-max gap-y-[42px] gap-x-[24px] items-center'}>
                         {
                           langList.current.map((item, index) => {
-                            return <div key={`${item.node_id}-${index}`}>
+                            return <div key={`${item.node_id}-${index}`} className={'flex flex-start self-stretch flex-row gap-2'}>
 
-                              <div onClick={() => goto(item.html_url)}>
+                              <div onClick={() => goto(item.html_url)} className={'w-[42px] h-[42px] flex-shrink-0'}>
                                 {
-                                  item && item.owner && item.owner.avatar ? <img src={item.owner.avatar}/> :
-                                      item.owner.avatar_url ? <img src={item.owner.avatar_url}/> :
+                                  item && item.owner && item.owner.avatar ? <img src={item.owner.avatar} className={'w-full h-full'}/> :
+                                      item.owner.avatar_url ? <img src={item.owner.avatar_url} className={'w-[42px] h-[42px] flex-shrink-0'}/> :
                                           <FireOutlined style={{fontSize: '20px'}}/>
                                 }
                               </div>
-                              <div>
-                                <div onClick={() => goto(item.html_url)}>{item.name || '-'}</div>
-                                {item.homepage ? <a href={item.homepage}
-                                                    target={'_blank'}>{item.homepage}</a> : null}
-                                <div title={item.description}>{item.description}</div>
+                              <div className={'flex items-start flex-col gap-2'}>
+                                <div onClick={() => goto(item.html_url)} className={'font-medium text-xl'}>{item.name || '-'}</div>
+                                {/*{item.homepage ? <a href={item.homepage} target={'_blank'}>{item.homepage}</a> : null}*/}
+                                <div title={item.description} className={styles.desc}>{item.description}</div>
                                 <div>
                                   <Button type="default" size={'small'} icon={<StarOutlined/>} onClick={() => {
                                     goto(item.html_url + '/stargazers')

@@ -1,4 +1,4 @@
-import clientPage from "@/app/(system)/square/clientPage";
+import ClientPage from "@/app/(system)/square/clientPage";
 async function getData() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getCommonUrls`)
     // The return value is *not* serialized
@@ -8,6 +8,7 @@ async function getData() {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
+
 
     return res.json()
 }
@@ -22,7 +23,7 @@ const Square = async () => {
     //     </div>
     // }
     return <div>
-        <clientPage />
+        <ClientPage />
     </div>
 
 }

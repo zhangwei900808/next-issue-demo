@@ -1,132 +1,141 @@
-.container{
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  .content{
-    padding: 0 32px;
-    height: 100%;
-    width:100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-start;
-    flex-flow: row;
-    column-gap: 20px;
-    .tags{
-      width: 160px;
-      height: 100%;
-      //position: sticky;
-      //top: 56px;
-      padding-top: 2px;
-      //height: calc(100vh - 60px);
-      //overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .techList{
-      //flex-shrink: 0;
-      padding: 0 0 20px;
-      height: 100%;
-      width: 100%;
-      //max-width: 1120px;
-      .header{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: sticky;
-        top: 56px;
-        background: #fff;
-        z-index: 2;
-        padding: 6px 0;
-        .title{
-          font-size: 18px;
-          font-weight: 500;
-          display: flex;
-          align-items: center;
-          column-gap: 6px;
-          .icon{
-            font-size: 15px;
-            color: #333;
-          }
-        }
-        .searcher{
-          max-width: 300px;
-        }
-      }
-      .gridList{
-        display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(330px,1fr)); /* 创建两列，每列占可用空间的比例 */
-        grid-auto-rows: max-content;
-        gap: 20px 20px; /* 设置列之间的间隔 */
-        width: 100%;
-        .item{
-          width: 100%;
-          align-self: stretch;
-          display: flex;
-          align-items: flex-start;
-          flex-flow: row;
-          column-gap: 12px;
-          .l{
-            flex-shrink: 0;
-            border-radius: 100%;
-            width: 56px;
-            height: 56px;
-            border-radius: 100%;
-            box-shadow: rgba(140, 149, 159, 0.15) 0px 3px 6px 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img{
-              width: 36px;
-              height: 36px;
-            }
-          }
-          .r{
-            display: flex;
-            flex-flow: column;
-            row-gap: 4px;
-            .name{
-              font-size: 20px;
-              font-weight: 500;
-              cursor: pointer;
-              &:hover{
-                color: #54458A;
-              }
-            }
-            .homepage{
-              font-size: 14px;
-              display: -webkit-box;//谷歌
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 1;//显示几行
-              overflow: hidden;
-              cursor: pointer;
-              font-weight: 500;
-              word-wrap:break-word;
-              word-break:break-all;
-            }
-            .info{
-              font-size: 14px;
-              display: -webkit-box;//谷歌
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;//显示几行
-              overflow: hidden;
-              word-wrap:break-word;
-              word-break:break-all;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-.loadingEmpty{
-  padding: 50px 0 0;
-}
-#scrollableDiv2{
-  position: relative;
-  overflow-y: auto;
-  flex: 1 1 100%;
-  z-index: 1;
-  //height: calc(100vh - 100px);
-  //height: 700px;
+//.container{
+//  width: 100%;
+//  max-width: 1300px;
+//  margin: 0 auto;
+//  .content{
+//    padding: 0 32px;
+//    height: 100%;
+//    width:100%;
+//    max-width: 1300px;
+//    margin: 0 auto;
+//    display: flex;
+//    align-items: flex-start;
+//    flex-flow: row;
+//    column-gap: 20px;
+//    .tags{
+//      width: 160px;
+//      height: 100%;
+//      //position: sticky;
+//      //top: 56px;
+//      padding-top: 2px;
+//      //height: calc(100vh - 60px);
+//      //overflow-y: auto;
+//      flex-shrink: 0;
+//    }
+//    .techList{
+//      //flex-shrink: 0;
+//      padding: 0 0 20px;
+//      height: 100%;
+//      width: 100%;
+//      //max-width: 1120px;
+//      .header{
+//        width: 100%;
+//        display: flex;
+//        align-items: center;
+//        justify-content: space-between;
+//        position: sticky;
+//        top: 56px;
+//        background: #fff;
+//        z-index: 2;
+//        padding: 6px 0;
+//        .title{
+//          font-size: 18px;
+//          font-weight: 500;
+//          display: flex;
+//          align-items: center;
+//          column-gap: 6px;
+//          .icon{
+//            font-size: 15px;
+//            color: #333;
+//          }
+//        }
+//        .searcher{
+//          max-width: 300px;
+//        }
+//      }
+//      .gridList{
+//        display: grid;
+//        grid-template-columns: repeat(auto-fill,minmax(330px,1fr)); /* 创建两列，每列占可用空间的比例 */
+//        grid-auto-rows: max-content;
+//        gap: 20px 20px; /* 设置列之间的间隔 */
+//        width: 100%;
+//        .item{
+//          width: 100%;
+//          align-self: stretch;
+//          display: flex;
+//          align-items: flex-start;
+//          flex-flow: row;
+//          column-gap: 12px;
+//          .l{
+//            flex-shrink: 0;
+//            border-radius: 100%;
+//            width: 56px;
+//            height: 56px;
+//            border-radius: 100%;
+//            box-shadow: rgba(140, 149, 159, 0.15) 0px 3px 6px 0px;
+//            display: flex;
+//            align-items: center;
+//            justify-content: center;
+//            img{
+//              width: 36px;
+//              height: 36px;
+//            }
+//          }
+//          .r{
+//            display: flex;
+//            flex-flow: column;
+//            row-gap: 4px;
+//            .name{
+//              font-size: 20px;
+//              font-weight: 500;
+//              cursor: pointer;
+//              &:hover{
+//                color: #54458A;
+//              }
+//            }
+//            .homepage{
+//              font-size: 14px;
+//              display: -webkit-box;//谷歌
+//              -webkit-box-orient: vertical;
+//              -webkit-line-clamp: 1;//显示几行
+//              overflow: hidden;
+//              cursor: pointer;
+//              font-weight: 500;
+//              word-wrap:break-word;
+//              word-break:break-all;
+//            }
+//            .info{
+//              font-size: 14px;
+//              display: -webkit-box;//谷歌
+//              -webkit-box-orient: vertical;
+//              -webkit-line-clamp: 2;//显示几行
+//              overflow: hidden;
+//              word-wrap:break-word;
+//              word-break:break-all;
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+//.loadingEmpty{
+//  padding: 50px 0 0;
+//}
+//#scrollableDiv2{
+//  position: relative;
+//  overflow-y: auto;
+//  flex: 1 1 100%;
+//  z-index: 1;
+//  //height: calc(100vh - 100px);
+//  //height: 700px;
+//}
+.desc{
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
 }

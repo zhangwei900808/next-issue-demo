@@ -127,41 +127,41 @@ const initialState = {
       name: 'Rust',
       code: 'Rust'
     },
-    {
-      key: '23',
-      name: 'SAS',
-      code: 'SAS'
-    },
-    {
-      key: '24',
-      name: 'Fortran',
-      code: 'Fortran'
-    },
-    {
-      key: '25',
-      name: 'COBOL',
-      code: 'COBOL'
-    },
-    {
-      key: '26',
-      name: 'Ada',
-      code: 'Ada'
-    },
-    {
-      key: '27',
-      name: 'Prolog',
-      code: 'Prolog'
-    },
+    // {
+    //   key: '23',
+    //   name: 'SAS',
+    //   code: 'SAS'
+    // },
+    // {
+    //   key: '24',
+    //   name: 'Fortran',
+    //   code: 'Fortran'
+    // },
+    // {
+    //   key: '25',
+    //   name: 'COBOL',
+    //   code: 'COBOL'
+    // },
+    // {
+    //   key: '26',
+    //   name: 'Ada',
+    //   code: 'Ada'
+    // },
+    // {
+    //   key: '27',
+    //   name: 'Prolog',
+    //   code: 'Prolog'
+    // },
     {
       key: '28',
       name: 'PowerShell',
       code: 'PowerShell'
     },
-    {
-      key: '29',
-      name: 'Julia',
-      code: 'Julia'
-    },
+    // {
+    //   key: '29',
+    //   name: 'Julia',
+    //   code: 'Julia'
+    // },
     {
       key: '30',
       name: 'Dart',

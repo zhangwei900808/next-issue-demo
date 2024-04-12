@@ -1,7 +1,7 @@
 'use client'
 import styles from './index.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import cns from "classnames/bind";
 import {setChooseTag} from '@/lib/slices/squareSlice'
 
@@ -10,7 +10,8 @@ let cx = cns.bind(styles);
 const UrlTags = (props) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const {query} = router;
+    // const {query} = router;
+    const searchParams = useSearchParams()
 
     const {tagList, chooseTag} = useSelector(state => state.square)
 
@@ -19,23 +20,20 @@ const UrlTags = (props) => {
         router.push(`/square?category=${item.code}`, undefined, {shallow: true})
     }
 
-    return <div className={styles.container}>
-        <div className={styles.content}>
+    return <div className={'flex  sticky top-[56px]'}>
+        <div className={'w-[200px]'}>
             {
-                props.showTitle?<div className={styles.preview}>
+                props.showTitle?<div className={'text-xl font-medium py-2'}>
                     开发语言：
                 </div>:null
             }
 
-            <div className={cx({
-                  list: true
-              }
-            )} style={{paddingTop: props.showTitle?'50px':''}}>
+            <div className='list'>
                 {
                     tagList.map(item => {
                         return <div key={item.key} className={cx({
                             tag: true,
-                            chooseTag: query.category === item.name
+                            chooseTag: searchParams.get('category') === item.name
                         })} onClick={() => {
                             onChooseTag(item)
                             if (props.choose){
@@ -43,8 +41,8 @@ const UrlTags = (props) => {
                             }
                         }
                         }>
-                            <span className={styles.prefix} />
-                            <span className={styles.name}>{item.name}</span>
+                            <span className={''} />
+                            <span className={'pb-2 inline-flex cursor-pointer'}>{item.name}</span>
                         </div>
                     })
                 }
