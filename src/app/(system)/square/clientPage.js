@@ -76,9 +76,9 @@ const ClientPage = (props) => {
         const list = result.payload.data.rows
         const total = result.payload.data.total
         setTotal(total)
-        if ((pageNum.current > 1 && list.length === 0) || langList.current.length >= total) {
-          finished.current = true
-        }
+        // if ((pageNum.current > 1 && list.length === 0) || langList.current.length >= total) {
+        //   finished.current = true
+        // }
         langList.current = langList.current.concat(list)
         pageNum.current += 1
       }
