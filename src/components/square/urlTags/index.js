@@ -20,31 +20,29 @@ const UrlTags = (props) => {
         router.push(`/square?category=${item.code}`, undefined, {shallow: true})
     }
 
-    return <div className={'flex  sticky top-[56px]'}>
-        <div className={'w-[160px]'}>
-            {
-                props.showTitle?<div className={'text-xl font-medium py-3'}>
-                    开发语言：
-                </div>:null
-            }
+    return <div className={'w-full'}>
+        {
+            props.showTitle ? <div className={'text-xl font-medium py-3'}>
+                开发语言：
+            </div> : null
+        }
 
-            <div className={'pt-[12px]'}>
-                {
-                    tagList.map(item => {
-                        return <div key={item.key}
-                                    className={searchParams.get('category') === item.name?'bg-[#eee] p-1 px-2 rounded-md cursor-pointer':'bg-transparent p-1 px-2 cursor-pointer'}
-                                    onClick={() => {
-                            onChooseTag(item)
-                            if (props.choose){
-                                props.choose()
-                            }
-                        }
-                        }>
-                            <span className={'inline-flex cursor-pointer'}>{item.name}</span>
-                        </div>
-                    })
-                }
-            </div>
+        <div className={'pt-[12px]'}>
+            {
+                tagList.map(item => {
+                    return <div key={item.key}
+                                className={searchParams.get('category') === item.name ? 'bg-[#eee] hover:bg-[#eee] p-1 px-2 rounded-md cursor-pointer' : 'bg-transparent hover:bg-[#eee] p-1 px-2 rounded-md cursor-pointer'}
+                                onClick={() => {
+                                    onChooseTag(item)
+                                    if (props.choose) {
+                                        props.choose()
+                                    }
+                                }
+                                }>
+                        <span className={'inline-flex cursor-pointer'}>{item.name}</span>
+                    </div>
+                })
+            }
         </div>
     </div>
 }

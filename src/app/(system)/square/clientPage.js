@@ -12,6 +12,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Empty from "@/components/empty";
 import Loading from "@/components/loading";
 import styles from './index.module.scss'
+import cns from "classnames/bind";
+let cx = cns.bind(styles);
 
 
 const ClientPage = (props) => {
@@ -69,6 +71,7 @@ const ClientPage = (props) => {
       }))
       setLoading(false)
       if (result.payload.data){
+        console.log('langList =', langList.current)
         const list = result.payload.data.rows
         const total = result.payload.data.total
         if ((pageNum.current > 1 && list.length === 0) || langList.current.length >= total) {
@@ -101,18 +104,20 @@ const ClientPage = (props) => {
   };
 
   return <div className={'flex items-center justify-center h-full'}>
-    <div className={'flex items-start max-w-[1280px] gap-[32px] w-full h-full px-[32px]'}>
-      <UrlTags showTitle={true}/>
+    <div className={'flex items-start max-w-[1280px] gap-[32px] best-w:gap-0 w-full h-full px-[32px]'}>
+      <div className={'best-w:invisible best-w:w-0 h-full flex  sticky top-[56px] '}>
+        <div className={'w-[160px]'}>
+          <UrlTags showTitle={true}/>
+        </div>
+      </div>
 
       <div className={'h-full w-full'}>
         <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white z-20 '}>
-          <div>
-            {/*{*/}
-            {/*  isMobile? <PicRightOutlined className={styles.icon} onClick={() => {*/}
-            {/*    setOpen(true)*/}
-            {/*  }*/}
-            {/*  }/>:null*/}
-            {/*}*/}
+          <div className={'best-w:gap-[12px] flex items-center'}>
+            <PicRightOutlined className={'best-w:visible best-w:w-full w-0 invisible'} onClick={() => {
+              setOpen(true)
+            }
+            }/>
             <span>{searchParams.get('category') || ''}</span>
           </div>
           <div>
@@ -167,7 +172,12 @@ const ClientPage = (props) => {
                                 }
                               </div>
                               <div className={'flex items-start flex-col'}>
-                                <div onClick={() => goto(item.html_url)} className={'font-medium text-xl cursor-pointer'}>{item.name || '-'}</div>
+                                <div onClick={() => goto(item.html_url)} className={cx({
+                                  'font-medium':true,
+                                  'text-xl': true,
+                                  'cursor-pointer': true,
+                                  'name': true
+                                })}>{item.name || '-'}</div>
                                 {/*{item.homepage ? <a href={item.homepage} target={'_blank'}>{item.homepage}</a> : null}*/}
                                 <div title={item.description} className={styles.desc}>{item.description}</div>
                                 <div className={'pt-2'}>
@@ -181,16 +191,16 @@ const ClientPage = (props) => {
                           })
                         }
                       </div>
-                    </InfiniteScroll> : <div><Empty/></div>
+                    </InfiniteScroll> : <div className={'flex items-center justify-center w-full'}><Empty/></div>
           }
         </div>
       </div>
     </div>
-    {/*<Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>*/}
-    {/*  <div className={styles.tags}>*/}
-    {/*    <UrlTags showTitle={false} choose={onClose}/>*/}
-    {/*  </div>*/}
-    {/*</Drawer>*/}
+    <Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>
+      <div className={'w-full px-2'}>
+        <UrlTags showTitle={false} choose={onClose}/>
+      </div>
+    </Drawer>
   </div>
 }
 export default ClientPage

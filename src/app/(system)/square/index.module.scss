@@ -139,3 +139,12 @@
   word-wrap: break-word;
   word-break: break-all;
 }
+
+.name{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+}
