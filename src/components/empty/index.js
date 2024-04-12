@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import EmptyImg from './empty'
 const Empty = (props) => {
   const [title, setTitle] = useState(props.title || '暂无数据')
-  return <div className={'flex items-center justify-between w-full'}>
+  return <div className={'flex items-center justify-between w-full p-6'}>
     {/*<EmptyData description={title}/>*/}
     <div className={'w-[300px] h-[100px] flex flex-col items-center justify-center  mx-auto'}>
       <EmptyImg/>

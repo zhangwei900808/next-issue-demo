@@ -1,38 +1,10 @@
 'use client'
 import {
-  Spin,
-  Row,
-  Col,
-  Space,
-  Popconfirm,
-  Modal,
-  Drawer,
-  Select,
-  message,
-  Typography,
-  Empty,
-  Menu,
-  Dropdown,
-  Button,
-  Popover,
-  List, Divider
-} from "antd";
-import {
-  LoadingOutlined,
-  CaretDownOutlined,
-  CloseCircleOutlined,
-  AlertOutlined,
-  EditOutlined,
-  CloseOutlined,
-  HomeOutlined,
-  ThunderboltOutlined,
-  ExclamationCircleOutlined,
-  CopyOutlined,
-  AimOutlined
+  LoadingOutlined
 } from "@ant-design/icons";
 
 const Loading = (props) => {
-  return <div>
+  return <div className={'p-6'}>
     <LoadingOutlined style={{fontSize: 36}} spin/>
   </div>
 }

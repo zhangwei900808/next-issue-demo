@@ -28,7 +28,7 @@ export default function TopMenus() {
     const pathname = usePathname()
 
     useEffect(() =>{
-        // toggleTheme('default')
+        toggleTheme('default')
     }, [])
 
 

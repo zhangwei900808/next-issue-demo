@@ -31,7 +31,7 @@ const UrlTags = (props) => {
             {
                 tagList.map(item => {
                     return <div key={item.key}
-                                className={searchParams.get('category') === item.name ? 'bg-[#eee] hover:bg-[#eee] p-1 px-2 rounded-md cursor-pointer' : 'bg-transparent hover:bg-[#eee] p-1 px-2 rounded-md cursor-pointer'}
+                                className={searchParams.get('category') === item.name ? 'bg-[#eee] dark:bg-[#2D333B] hover:bg-[#eee] dark:hover:bg-[#2D333B] p-1 px-2 rounded-md cursor-pointer' : 'bg-transparent hover:bg-[#eee] dark:hover:bg-[#2D333B] p-1 px-2 rounded-md cursor-pointer'}
                                 onClick={() => {
                                     onChooseTag(item)
                                     if (props.choose) {

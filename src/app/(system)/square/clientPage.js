@@ -105,14 +105,14 @@ const ClientPage = (props) => {
 
   return <div className={'flex items-center justify-center h-full'}>
     <div className={'flex items-start max-w-[1280px] best-w:gap-0 w-full h-full px-[32px]'}>
-      <div className={'best-w:invisible best-w:w-0 h-[calc(100vh-56px)] flex  sticky top-[56px] border-solid border-[#ddd] border-r-[1px] pr-[12px] overflow-y-auto flex-shrink-0'}>
+      <div className={'best-w:invisible best-w:w-0 h-[calc(100vh-56px)] flex  sticky top-[56px] border-solid border-[#ddd] dark:border-[#474747] border-r-[1px] pr-[12px] overflow-y-auto flex-shrink-0'}>
         <div className={'w-[160px]'}>
           <UrlTags showTitle={true}/>
         </div>
       </div>
 
       <div className={'h-full w-full'}>
-        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white z-20 border-solid border-[#ddd] border-b-[1px]'}>
+        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white dark:bg-[#22272E] dark:text-white z-20 border-solid border-[#ddd] dark:border-[#474747] border-b-[1px]'}>
           <div className={'best-w:gap-[12px] flex items-center'}>
             <PicRightOutlined className={'best-w:visible best-w:w-full w-0 invisible'} onClick={() => {
               setOpen(true)
