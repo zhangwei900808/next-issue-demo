@@ -16,7 +16,7 @@ import cns from "classnames/bind";
 let cx = cns.bind(styles);
 
 
-const ClientPage = (props) => {
+const ClientPage = ({data}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const params = useParams()
@@ -30,8 +30,9 @@ const ClientPage = (props) => {
   const [searchValue, setSearchValue] = useState('')
   const pageNum = useRef(1)
   const finished = useRef(false)
-  const {tagList} = useSelector(state => state.square)
+  const {tagList, chooseTag} = useSelector(state => state.square)
   const [total, setTotal] = useState(0)
+  const [isServe, setIsServe] = useState(true)
 
 
   // useEffect(() => {
@@ -42,21 +43,39 @@ const ClientPage = (props) => {
 
   useEffect(() => {
     // 使用 window.scrollTo() 方法将滚动条置顶
-    window.scrollTo({
-      top: 0, // 指定垂直偏移量为0，即将滚动条置顶
-      behavior: 'smooth' // 可选，表示平滑滚动动画效果，默认值为 'auto'
-    });
+    // window.scrollTo({
+    //   top: 0, // 指定垂直偏移量为0，即将滚动条置顶
+    //   behavior: 'smooth' // 可选，表示平滑滚动动画效果，默认值为 'auto'
+    // });
+    // setSearchValue(searchParams.get('search') || '')
+    // if (data){
+    //   langList.current = data.rows
+    //   setTotal(data.total)
+    //   pageNum.current += 1
+    // }
+    // setLoading(false)
+  }, [])
+
+  useEffect(() => {
     setSearchValue(searchParams.get('search') || '')
-    if (searchParams.get('category')) {
-      setLoading(true)
-      langList.current = []
-      pageNum.current = 1
-      setTimeout(() => {
+    if (isServe){
+      if (data){
+        langList.current = data.rows
+        setTotal(data.total)
+        pageNum.current += 1
+      }
+      setLoading(false)
+      setIsServe(false)
+    }else{
+      if (searchParams.get('category')) {
+        setLoading(true)
+        langList.current = []
+        pageNum.current = 1
         loadMoreData()
-      }, 100)
-    } else {
-      if (tagList.length > 0) {
-        router.push(`/square?category=${tagList[0].code}`, undefined, {shallow: true})
+      } else {
+        if (tagList.length > 0) {
+          router.push(`/square?category=${tagList[0].code}`, {scroll: true})
+        }
       }
     }
   }, [searchParams])
@@ -133,9 +152,9 @@ const ClientPage = (props) => {
                 }}
                 onPressEnter={(e) => {
                   if (searchParams.get('category') && e.target.value) {
-                    router.push(`/square?category=${searchParams.get('category')}&search=${e.target.value}`, undefined, {shallow: true})
+                    router.push(`/square?category=${searchParams.get('category')}&search=${e.target.value}`, {scroll: true})
                   } else {
-                    router.push(`/square?category=${searchParams.get('category')}`, undefined, {shallow: true})
+                    router.push(`/square?category=${searchParams.get('category')}`, {scroll: true})
                   }
                 }}
                 prefix={<SearchOutlined onClick={() => {

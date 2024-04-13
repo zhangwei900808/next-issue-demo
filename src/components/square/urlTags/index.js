@@ -16,8 +16,8 @@ const UrlTags = (props) => {
     const {tagList, chooseTag} = useSelector(state => state.square)
 
     function onChooseTag(item) {
-        dispatch(setChooseTag(item))
-        router.push(`/square?category=${item.code}`, undefined, {shallow: true})
+        // dispatch(setChooseTag(item))
+        router.push(`/square?category=${item.code}`, {scroll: true})
     }
 
     return <div className={'w-full'}>
@@ -39,7 +39,7 @@ const UrlTags = (props) => {
                                     }
                                 }
                                 }>
-                        <span className={'inline-flex cursor-pointer'}>{item.name}</span>
+                        <span className={'inline-flex cursor-pointer whitespace-nowrap'}>{item.name}</span>
                     </div>
                 })
             }

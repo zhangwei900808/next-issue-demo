@@ -1,26 +1,39 @@
 import ClientPage from "@/app/(system)/square/clientPage";
-async function getData() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getCommonUrls`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+async function getGithubData(params) {
+    let lang = ''
+    let search = ''
+    if (params.category){
+        lang = params.category
+    }
+    if (params.search){
+        search = params.search
+    }
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getGithubData`, {
+        method: 'POST',
+        body: JSON.stringify({
+            lang: lang,
+            pageNo: 1,
+            param: search
+        }),
+        headers: { "Content-Type": "application/json" }
+    })
 
     if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
-
 
     return res.json()
 }
 
-const Square = async () => {
-    // const data = await getData()
-    // if (data.status === 0) {
-    //     console.log('ddd=', data)
-    //     return <div>
-    //         <SubPage urls={data.data}/>
-    //     </div>
-    // }
+const Square = async (props) => {
+    console.log('ssquare=', JSON.stringify(props.searchParams))
+    const res = await getGithubData(props.searchParams)
+    if (res.status === 0) {
+        console.log('ddd=', res)
+        return <div>
+            <ClientPage data={res.data}/>
+        </div>
+    }
     return <div>
         <ClientPage />
     </div>
