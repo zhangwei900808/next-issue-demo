@@ -1,12 +1,13 @@
 import { Inter } from "next/font/google";
 import "./(global)/globals.css";
-import Link from 'next/link'
 import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
-const inter = Inter({ subsets: ["latin"] });
 import ChildrenLayout from "@/components/layout/childrenLayout";
 import TopMenus from "@/components/layout/topMenus";
+
+const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
   title: "Seaurl-AI管家",
@@ -14,6 +15,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+
 
     // function IP() {
     //     const FALLBACK_IP_ADDRESS = '0.0.0.0'

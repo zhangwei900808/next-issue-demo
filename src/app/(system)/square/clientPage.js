@@ -59,13 +59,20 @@ const ClientPage = ({data}) => {
   useEffect(() => {
     setSearchValue(searchParams.get('search') || '')
     if (isServe){
-      if (data){
-        langList.current = data.rows
-        setTotal(data.total)
-        pageNum.current += 1
+      if (searchParams.get('category')){
+        if (data){
+          langList.current = data.rows
+          setTotal(data.total)
+          pageNum.current += 1
+        }
+        setLoading(false)
+        setIsServe(false)
+      }else{
+        if (tagList.length > 0) {
+          router.push(`/square?category=${tagList[0].code}`, {scroll: true})
+        }
       }
-      setLoading(false)
-      setIsServe(false)
+
     }else{
       if (searchParams.get('category')) {
         setLoading(true)
@@ -165,7 +172,7 @@ const ClientPage = ({data}) => {
             />
           </div>
         </div>
-
+        {/*注意：这里不能写成id='scrollableDiv2'，我也不知道为什么*/}
         <div id={styles.scrollableDiv2} className={'py-[12px]'}>
           {
             loading && pageNum.current === 1 ?

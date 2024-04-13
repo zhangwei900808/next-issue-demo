@@ -1,0 +1,130 @@
+//.container{
+//  width: 100%;
+//  height: 100%;
+//  .tabs{
+//    position: sticky;
+//    top: 56px;
+//    background: #fff;
+//    padding: 0;
+//    width: 100%;
+//    z-index: 2;
+//    :global(.ant-tabs-nav){
+//      margin: 0;
+//    }
+//    :global(.ant-tabs-tab-active){
+//      font-weight: 500 !important;
+//    }
+//  }
+//  .content{
+//    //max-width: calc(100% - 10vw);
+//    margin: 0 auto;
+//    padding: 0 0 100px;
+//    height: 100%;
+//
+//    .gridItem{
+//      max-width: calc(100vw - 10vw);
+//      margin: 0 auto;
+//      padding: 32px 0;
+//      display: grid;
+//      grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); /* 创建两列，每列占可用空间的比例 */
+//      grid-auto-rows: max-content;
+//      gap: 20px 20px; /* 设置列之间的间隔 */
+//      width: 100%;
+//      .item{
+//        width: 100%;
+//        align-self: stretch;
+//        display: flex;
+//        align-items: flex-start;
+//        flex-flow: column;
+//        column-gap: 12px;
+//        box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 2px, rgba(0, 0, 0, 0.12) 0px 0px 2px;
+//        border-radius: 12px;
+//        .body{
+//          display: flex;
+//          align-self: stretch;
+//          flex-flow: column;
+//          padding: 0 16px 16px;
+//          border-radius: 0 0 12px 12px;
+//          .info{
+//            display: flex;
+//            align-items: center;
+//            cursor: pointer;
+//            //padding: 0 12px;
+//
+//            font-size: 18px;
+//            font-weight: 500;
+//            display: -webkit-box;//谷歌
+//            -webkit-box-orient: vertical;
+//            -webkit-line-clamp: 2;//显示几行
+//            overflow: hidden;
+//            line-height: 24px;
+//          }
+//          .middle{
+//            display: flex;
+//            align-items: center;
+//            padding: 12px 0 6px;
+//            column-gap: 6px;
+//            .title{
+//              font-size: 12px;
+//            }
+//            .time{
+//              font-size: 12px;
+//            }
+//            .icon{
+//              width: 16px;
+//              height: 16px;
+//              display: flex;
+//              align-items: center;
+//              img{
+//                width: 100%;
+//                height: 100%;
+//              }
+//            }
+//          }
+//        }
+//
+//        .cover{
+//          width: 100%;
+//          height: 157px;
+//          img{
+//            border-radius: 12px 12px 0 0;
+//            width: 100%;
+//            height: 100%;
+//            object-fit: cover;
+//          }
+//        }
+//      }
+//    }
+//
+//  }
+//}
+//.loadingEmpty{
+//  padding: 50px 0 0;
+//}
+//#scrollableDiv2{
+//  position: relative;
+//  overflow-y: auto;
+//  flex: 1 1 100%;
+//  z-index: 1;
+//  //height: calc(100vh - 100px);
+//  //height: 700px;
+//}
+.container{
+  .info{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    //padding: 0 12px;
+
+    font-size: 18px;
+    font-weight: 500;
+    display: -webkit-box;//谷歌
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;//显示几行
+    overflow: hidden;
+    line-height: 24px;
+  }
+  :global(.ant-tabs-nav){
+    margin: 0 !important;
+  }
+}

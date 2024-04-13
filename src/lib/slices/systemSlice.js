@@ -47,7 +47,7 @@ const initialState = {
             label: '新闻广场',
             code: '',
             icon: '',
-            url: '/techNews',
+            url: '/news',
             sort: 1,
             type: 'drawer-menus'
         },

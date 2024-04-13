@@ -1,7 +1,17 @@
 'use client'
 import {useEffect, useState} from "react";
 import {ExclamationCircleFilled,LoginOutlined,LoadingOutlined} from "@ant-design/icons";
+import dayjs from "dayjs";
+const relativeTime = require('dayjs/plugin/relativeTime')
+const customParseFormat = require('dayjs/plugin/customParseFormat')
 
+const utc = require('dayjs/plugin/utc')
+require('dayjs/locale/zh-cn')
+
+dayjs.extend(relativeTime)
+dayjs.extend(utc)
+dayjs.extend(customParseFormat)
+dayjs.locale('zh-cn') // 全局使用
 export default function ChildrenLayout({children}) {
     const [isOnline, setOnline] = useState(true)
     const [error, setError] = useState({

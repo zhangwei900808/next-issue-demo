@@ -14,6 +14,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'auto-250': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'auto-300': 'repeat(auto-fill, minmax(300px, 1fr))',
       },
       colors: {
         'primary-purple': '#54458a'
