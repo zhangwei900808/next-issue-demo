@@ -1,11 +1,7 @@
 'use client'
-import styles from './index.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter, useSearchParams} from "next/navigation";
-import cns from "classnames/bind";
-import {setChooseTag} from '@/lib/slices/squareSlice'
 
-let cx = cns.bind(styles);
 
 const UrlTags = (props) => {
     const router = useRouter();

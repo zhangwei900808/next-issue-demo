@@ -133,7 +133,7 @@ const ClientPage = ({data}) => {
       </div>
 
       <div className={'h-full w-full'}>
-        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 bg-white dark:bg-[#22272E] dark:text-white z-20 border-solid border-[#ddd] dark:border-[#474747] border-b-[1px]'}>
+        <div className={'flex items-center justify-between sticky top-[56px] text-xl font-medium p-2 pr-0 bg-white dark:bg-[#22272E] dark:text-white z-20 border-solid border-[#ddd] dark:border-[#474747] border-b-[1px]'}>
           <div className={'best-w:gap-[12px] flex items-center'}>
             <PicRightOutlined className={'best-w:visible best-w:w-full w-0 invisible'} onClick={() => {
               setOpen(true)
@@ -197,7 +197,8 @@ const ClientPage = ({data}) => {
                                   'font-medium':true,
                                   'text-xl': true,
                                   'cursor-pointer': true,
-                                  'name': true
+                                  'name': true,
+                                  'hover:underline': true
                                 })}>{item.name || '-'}</div>
                                 {/*{item.homepage ? <a href={item.homepage} target={'_blank'}>{item.homepage}</a> : null}*/}
                                 <div title={item.description} className={styles.desc}>{item.description}</div>
