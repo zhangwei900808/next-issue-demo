@@ -13,16 +13,16 @@ async function getData() {
     return res.json()
 }
 
-const RecommendUrls = async () => {
+const Hotline = async () => {
 
-    const data = await getData()
-    if (data.status === 0) {
-        console.log('ddd=', data)
-        return <div>
-            <ClientPage urls={data.data}/>
-        </div>
-    }
+    // const data = await getData()
+    // if (data.status === 0) {
+    //     console.log('ddd=', data)
+    //     return <div>
+    //         <ClientPage urls={data.data}/>
+    //     </div>
+    // }
     return <ClientPage/>
 
 }
-export default RecommendUrls;
+export default Hotline;
