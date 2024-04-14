@@ -25,6 +25,7 @@ const ClientPage = (props) => {
     total: 0
   })
   const {myTheme, defaultTheme, darkTheme} = useAppSelector(state => state.system)
+  const [isServe, setIsServe] = useState(true)
 
 
   const tabList = [
@@ -64,8 +65,31 @@ const ClientPage = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadMoreData()
-  }, [searchParams.get('tab')])
+    if (isServe){
+      // console.log('props ===',props)
+      let sections = props.data
+      if (sections && sections[0].subSections.length > 0) {
+        setResToList(sections)
+      }
+      setIsServe(false)
+    }else{
+      loadMoreData()
+    }
+  }, [searchParams])
+
+
+  function setResToList(sections){
+    let list = []
+    sections[0].subSections.forEach(item => {
+      list = list.concat(item.cards)
+    })
+    const flist = list.filter(f => f.id)
+    const newList = msnDataList.concat(flist)
+    setMsnDataList(newList)
+    setPage({
+      pageNum: page.pageNum + 1
+    })
+  }
 
   async function loadMoreData() {
     setLoading(true)
@@ -79,18 +103,7 @@ const ClientPage = (props) => {
     // console.log('initData result.data=', result.data)
     const sections = result.payload.sections
     if (sections && sections.length > 0) {
-      if (sections[0].subSections.length > 0) {
-        let list = []
-        sections[0].subSections.forEach(item => {
-          list = list.concat(item.cards)
-        })
-        const flist = list.filter(f => f.id)
-        const newList = msnDataList.concat(flist)
-        setMsnDataList(newList)
-        setPage({
-          pageNum: page.pageNum + 1
-        })
-      }
+      setResToList(sections)
     }
   }
 

@@ -1,22 +1,8 @@
 import ClientPage from "@/app/(system)/news/clientPage";
-async function getGithubData(params) {
-    let lang = ''
-    let search = ''
-    if (params.category){
-        lang = params.category
-    }
-    if (params.search){
-        search = params.search
-    }
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/space/info/getGithubData`, {
-        method: 'POST',
-        body: JSON.stringify({
-            lang: lang,
-            pageNo: 1,
-            param: search
-        }),
-        headers: { "Content-Type": "application/json" }
-    })
+async function getMsnData(params) {
+    let tab = params.tab || 'Y_77f04c37-b63e-46b4-a990-e926f7d129ff'
+    let url = `${process.env.NEXT_PUBLIC_API_HOST}/space/info/getMsnData/${tab}/0`
+    const res = await fetch(url)
 
     if (!res.ok) {
         throw new Error('Failed to fetch data')
@@ -26,13 +12,12 @@ async function getGithubData(params) {
 }
 
 const News = async (props) => {
-    // const res = await getGithubData(props.searchParams)
-    // if (res.status === 0) {
-    //     console.log('ddd=', res)
-    //     return <div>
-    //         <ClientPage data={res.data}/>
-    //     </div>
-    // }
+    const res = await getMsnData(props.searchParams)
+    if (res.sections) {
+        return <div>
+            <ClientPage data={res.sections}/>
+        </div>
+    }
     return <div>
         <ClientPage />
     </div>

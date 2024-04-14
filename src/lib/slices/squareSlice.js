@@ -22,7 +22,9 @@ export const getGithubData = createAsyncThunk('square/getListByLang', async (par
 
 export const getMsnData = createAsyncThunk('square/getMsnData', async (params, thunkAPI) => {
   try {
-    const res = await axios.get(`/space/info/getMsnData/${params.tabId}/${params.pageNo}`);
+    let url = `/space/info/getMsnData/${params.tabId}/${params.pageNo}`
+    console.log('getMsnData url=', url)
+    const res = await axios.get(url);
     console.log('getMsnData res=', res)
     return res.data
   } catch (error) {
