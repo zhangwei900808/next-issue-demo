@@ -15,7 +15,7 @@ async function getData() {
 
 const RecommendUrls = async () => {
     const session = await auth()
-
+    console.log('main paage session =', session)
     // const data = await getData()
     // if (data.status === 0) {
     //     console.log('ddd=', data)

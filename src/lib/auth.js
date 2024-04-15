@@ -3,6 +3,7 @@ import NextAuth from "next-auth"
 
 
 export const authOptions = {
+    session: { strategy: "jwt" },
     // Configure one or more authentication providers
     pages: {
         signIn: '/login',
@@ -48,7 +49,7 @@ export const authOptions = {
                 // 注意：这里我们在login页面已经做好了登录验证工作，然后通过singin传递到这个页面把用户信息放入到session中，
                 // 目的：为了解决return null时，login页面难以捕获错误信息，这种方法最简单
                 // 参考：https://www.soinside.com/question/uhkkM6TGRbh3vjxt8YJ5QQ
-                if (credentials.session){
+                if (credentials.session) {
                     return JSON.parse(credentials.session)
                 }
                 return null
@@ -57,24 +58,36 @@ export const authOptions = {
     ],
     callbacks: {
         // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
-        // async jwt({token, user}) {
-        //     console.log('jwt user=', user)
-        //     // if (user) token.role = user.role
-        //     return token
-        // },
+        async jwt({token, user, account}) {
+            console.log('jwt user=', user)
+            console.log('jwt token=', token)
+            console.log('jwt account=', account)
+            // if (user) token.role = user.role
+            // token.avatar = user.avatar
+            // token.avatar = user.avatar
+            // if (user){
+            //     token.avatar = user.avatar
+            //     token.uid = user.uid
+            // }
+            return token
+        },
         // If you want to use the role in client components
-        async session({session,user, token}) {
+        async session({session, user, token}) {
             //todo:如何把userId传递到session中，因为后续接口需要
-            console.log('session=', session)
-            console.log('user=', user)
-            console.log('token=', token)
+            console.log('session session=', session)
+            console.log('session user=', user)
+            console.log('session token=', token)
             session.accessToken = token
+            // if (session.user){
+            //     session.user.avatar = session.token.avatar
+            //     session.user.uid = session.token.uid
+            // }
             return session
         },
     }
 }
 
 export const {
-    handlers: { GET, POST },
+    handlers: {GET, POST},
     auth,
 } = NextAuth(authOptions)
