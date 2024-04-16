@@ -145,4 +145,14 @@ export const systemSlice = createSlice({
     },
 })
 
+export const getUserMostClickUrlList = createAsyncThunk('system/getUserMostClickUrlList', async (params, thunkAPI) => {
+    try {
+        const res = await axios.get(`/space/crud/url/getUserMostClickUrlList`);
+        // console.log('getUrlsByFlag res => ', res)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue({errorMsg: error.message});
+    }
+});
+
 export const { setMyTheme } = systemSlice.actions;

@@ -9,7 +9,7 @@
 3、next-auth中将用户信息和accessToken加入到session中
 4、next.js服务端和客户端就可以使用了，只需要在请求头中添加这个accessToken
 5、next-auth的session数据和后台的accessToken数据都需要在过期之前更新，这个需要注意一下，
-6、next-auth更新session如下所示：
+6、next-auth可以设置成自动化更新session，如下所示：
 ```js
 <SessionProvider // Re-fetch session every 5 minutes
 //https://next-auth.js.org/getting-started/client#options

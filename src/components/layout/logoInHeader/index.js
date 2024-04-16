@@ -23,7 +23,7 @@ import {
 import Loading from "@/components/loading";
 import Empty from "@/components/empty";
 
-// import {getUserMostClickUrlList} from "@/store/slices/systemSlice";
+import {getUserMostClickUrlList} from "@/lib/slices/systemSlice";
 import {useSession} from "next-auth/react";
 const {Title, Paragraph, Text, Link} = Typography;
 
@@ -170,8 +170,7 @@ const LogoInHeader = (props) => {
 
     useEffect(() => {
         if (visible) {
-            // todo:
-            // getUserClickUrls()
+            getUserClickUrls()
         }
     }, [visible])
 
@@ -198,9 +197,9 @@ const LogoInHeader = (props) => {
     function getUserClickUrlMenus() {
         return userClickUrls.map(item => {
             return {
-                icon: <span>
-                    <img src={item.favicon}/>
-                </span>,
+                icon: <div>
+                    <img src={item.favicon} className={'w-[16px] h-[16px]'}/>
+                </div>,
                 ...item
             }
         })
@@ -219,7 +218,7 @@ const LogoInHeader = (props) => {
         }}/>
         <Drawer
             title={
-                <div className={'flex items-center justify-between px-3 py-3'}>
+                <div className={'flex items-center justify-between px-3 py-3 pl-4'}>
                     <Logo clickLogo={() => {
                         // goto()
                         // hideDrawer()
@@ -249,22 +248,22 @@ const LogoInHeader = (props) => {
             />
             {/*<Divider/>*/}
             <div className={'px-3'}><Title level={5}>常用网址</Title></div>
-            {/*<div>*/}
-            {/*    {*/}
-            {/*        loading?<Loading/> : userClickUrls.length>0?<Menu*/}
-            {/*            onClick={onClickUrlItem}*/}
-            {/*            selectable={false}*/}
-            {/*            style={{*/}
-            {/*                width: '100%',*/}
-            {/*            }}*/}
-            {/*            mode="inline"*/}
-            {/*            items={getUserClickUrlMenus()}*/}
-            {/*        />:<div>*/}
-            {/*            <Empty title='暂无数据'/>*/}
-            {/*        </div>*/}
-            {/*    }*/}
+            <div>
+                {
+                    loading?<div className={'flex items-center justify-center w-full p-2'}><Loading/></div> : userClickUrls.length>0?<Menu
+                        onClick={onClickUrlItem}
+                        selectable={false}
+                        style={{
+                            width: '100%',
+                        }}
+                        mode="inline"
+                        items={getUserClickUrlMenus()}
+                    />:<div>
+                        <Empty title='暂无数据'/>
+                    </div>
+                }
 
-            {/*</div>*/}
+            </div>
             {/*<div className={styles.record}><Record/></div>*/}
         </Drawer>
     </div>
