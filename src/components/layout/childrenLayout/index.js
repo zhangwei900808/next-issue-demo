@@ -5,6 +5,8 @@ import dayjs from "dayjs";
 import { useSession } from "next-auth/react"
 import Loading from "@/components/loading";
 import TopMenus from "@/components/layout/topMenus";
+import {refreshToken} from '@/lib/slices/authSlice'
+import {useDispatch} from "react-redux";
 
 const relativeTime = require('dayjs/plugin/relativeTime')
 const customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -18,6 +20,7 @@ dayjs.extend(customParseFormat)
 dayjs.locale('zh-cn') // 全局使用
 export default function ChildrenLayout({children}) {
     const { data: session, status } = useSession()
+    const dispatch = useDispatch()
 
     const [isOnline, setOnline] = useState(true)
     const [error, setError] = useState({
@@ -30,7 +33,9 @@ export default function ChildrenLayout({children}) {
     useEffect(() => {
         console.log('session status=', status)
         console.log('children session =', session)
-
+        if (session){
+            tokenHandler()
+        }
     }, [session])
 
     useEffect(() => {
@@ -43,13 +48,25 @@ export default function ChildrenLayout({children}) {
         };
     }, []);
 
-    function handlerVisibility() {
-        // alert(2)
-        console.log('handlerVisibility 1111')
-    }
-
-    function handleFocus() {
-        alert(1)
+    async function tokenHandler() {
+        const res = await dispatch(refreshToken())
+        if (res.payload.status === 40001) {
+            confirm({
+                title: '登录已过期',
+                icon: <ExclamationCircleFilled/>,
+                content: '您的登录已过期，请重新登录！',
+                okText: '确定',
+                cancelText: '取消',
+                onOk() {
+                    location.href = '/login'
+                },
+                onCancel() {
+                    //弹出确认框，让用户自行跳转登录
+                    // 重新登录
+                    location.reload()
+                },
+            });
+        }
     }
 
     function changeOffline() {

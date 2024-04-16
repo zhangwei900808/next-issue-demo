@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axiosInstance from "@/lib/axios";
+import axios from "@/lib/axios";
 
 // export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 //     try {
@@ -22,6 +22,16 @@ import axiosInstance from "@/lib/axios";
 //         return thunkAPI.rejectWithValue({errorMsg: error.message});
 //     }
 // });
+
+export const refreshToken = createAsyncThunk('account/refreshToken', async (params, thunkAPI) => {
+    try {
+        const res = await axios.get('/users/crud/refreshToken');
+        // console.log('refreshCookie = ',res)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue({errorMsg: error.message});
+    }
+});
 
 const initialState = {
     value: 0,
