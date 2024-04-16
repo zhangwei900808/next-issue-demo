@@ -25,9 +25,12 @@ export default function ChildrenLayout({children}) {
         content: ""
     });
 
+    // 注意：因为我们使用了refetchOnWindowFocus={true}，所以当页面显示的时候就会重新调用session，因此，这里就会被调用，
+    // 也就是说相当于添加了document.addEventListener('visibilitychange'事件，利用这点来添加自定义逻辑
     useEffect(() => {
         console.log('session status=', status)
         console.log('children session =', session)
+
     }, [session])
 
     useEffect(() => {
@@ -35,10 +38,19 @@ export default function ChildrenLayout({children}) {
         window.addEventListener('online', changeOnline);
 
         return () => {
-            window.addEventListener("offline", () => {});
-            window.addEventListener('online', () => {});
+            window.addEventListener("offline", changeOffline);
+            window.addEventListener('online', changeOnline);
         };
     }, []);
+
+    function handlerVisibility() {
+        // alert(2)
+        console.log('handlerVisibility 1111')
+    }
+
+    function handleFocus() {
+        alert(1)
+    }
 
     function changeOffline() {
         setOnline(false)
