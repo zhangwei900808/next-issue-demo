@@ -38,7 +38,6 @@ const LogoInHeader = (props) => {
     const {loginMenus, logoutMenus} = useSelector(state => state.system)
 
 
-    console.log('---------------------session 444', session)
     const showDrawer = () => {
         setVisible(true);
     };

@@ -4,7 +4,6 @@ import AntdProvider from "@/context/antdProvider";
 import AuthProvider from "@/context/authProvider";
 import StoreProvider from "@/context/storeProvider";
 import ChildrenLayout from "@/components/layout/childrenLayout";
-import TopMenus from "@/components/layout/topMenus";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +39,6 @@ export default function RootLayout({ children }) {
         <StoreProvider>
             <AuthProvider>
                 <AntdProvider>
-                    <TopMenus/>
                     <ChildrenLayout>
                         {children}
                     </ChildrenLayout>
