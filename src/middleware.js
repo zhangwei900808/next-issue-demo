@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server'
 import {auth} from "@/lib/auth";
+import { getToken } from "next-auth/jwt"
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request) {
     // 获取session
     const session = await auth()
+    // const token = await getToken({ req: request, secret: '123456' })
+    // console.log("JSON Web Token", token)
     // 1、如果登录了就不能跳转到登录页面，
     // 2、我的笔记、文件、chatAI、imageAi页面没有登录就必须跳转到登录页面
     // console.log('哈哈就是我=', session)
@@ -19,5 +22,5 @@ export async function middleware(request) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: ['/news', '/login', '/register'],
+    matcher: ['/','/news', '/login', '/register'],
 }
