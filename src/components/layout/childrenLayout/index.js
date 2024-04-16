@@ -50,6 +50,7 @@ export default function ChildrenLayout({children}) {
 
     async function tokenHandler() {
         const res = await dispatch(refreshToken())
+        console.log('tokenHandler refreshToken res=', res)
         if (res.payload.status === 40001) {
             confirm({
                 title: '登录已过期',
