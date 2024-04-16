@@ -6,7 +6,7 @@ const LoginPage = () => {
     const { data: session, status, update } = useSession()
 
     return <div>
-        this is client page <Button onClick={() => update({name: '1212121'})}>更新session</Button>
+        session:{JSON.stringify(session.accessToken)} <Button onClick={() => update({name: '1212121'})}>更新session</Button>
 
     </div>
 }

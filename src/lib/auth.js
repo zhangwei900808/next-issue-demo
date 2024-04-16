@@ -66,9 +66,9 @@ export const authOptions = {
         async jwt({token, user, account, trigger, session}) {
             console.log('jwt user=', user)
             console.log('jwt token=', token)
-            console.log('jwt account=', account)
-            console.log('jwt trigger=', trigger)
-            console.log('jwt session=', session)
+            // console.log('jwt account=', account)
+            // console.log('jwt trigger=', trigger)
+            // console.log('jwt session=', session)
             // if (user) token.role = user.role
             // token.avatar = user.avatar
             // token.avatar = user.avatar
@@ -76,6 +76,10 @@ export const authOptions = {
             //     token.avatar = user.avatar
             //     token.uid = user.uid
             // }
+            if (user) {
+                token.uid = user.uid
+                token.accessToken = user.token
+            }
             return token
         },
         // If you want to use the role in client components
@@ -85,11 +89,10 @@ export const authOptions = {
             console.log('session session=', session)
             console.log('session user=', user)
             console.log('session token=', token)
-            session.accessToken = token
-            // if (session.user){
-            //     session.user.avatar = session.token.avatar
-            //     session.user.uid = session.token.uid
-            // }
+            if (token){
+                session.accessToken = token.accessToken
+                session.user.uid = token.uid
+            }
             return session
         },
     }
