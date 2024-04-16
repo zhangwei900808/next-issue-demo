@@ -163,16 +163,16 @@ const LogoutPage = (props) => {
                     <div>
                         <Row gutter={64}>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
-                                <Statistic title={'用户'} value={12121} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
+                                <Statistic title={'用户'} value={12121} valueStyle={{fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
-                                <Statistic title={'网址'} value={11293} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
+                                <Statistic title={'网址'} value={11293} valueStyle={{fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
-                                <Statistic title={'笔记'} value={828} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
+                                <Statistic title={'笔记'} value={828} valueStyle={{fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
                             <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6} className={'text-center'}>
-                                <Statistic title={'文件'} value={993} valueStyle={{color: '#54458a',fontWeight:'bold',fontSize: '32px'}}/>
+                                <Statistic title={'文件'} value={993} valueStyle={{fontWeight:'bold',fontSize: '32px'}}/>
                             </Col>
                         </Row>
                     </div>

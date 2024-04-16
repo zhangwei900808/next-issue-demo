@@ -34,7 +34,7 @@ export default function ChildrenLayout({children}) {
         console.log('session status=', status)
         console.log('children session =', session)
         if (session){
-            tokenHandler()
+            // tokenHandler()
         }
     }, [session])
 

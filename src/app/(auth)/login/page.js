@@ -105,7 +105,7 @@ const Login = props => {
                 .then(res => {
                 console.log('rreess =', res)
                 if (res.ok && !res.error && res.status === 200){
-                    router.push('/')
+                    location.href = '/'
                 }
             })
         } else {
