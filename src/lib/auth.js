@@ -70,6 +70,7 @@ export const authOptions = {
             console.log('jwt trigger=', trigger)
             console.log('jwt session=', session)
 
+            // token id过期，更新new token id
             if (trigger === 'update' && session?.newTokenId){
                 token.accessToken = session.newTokenId
             }

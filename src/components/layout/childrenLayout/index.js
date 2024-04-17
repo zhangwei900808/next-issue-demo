@@ -59,8 +59,10 @@ export default function ChildrenLayout({children}) {
 
         window.addEventListener("offline", changeOffline);
         window.addEventListener('online', changeOnline);
+
+        //return 中的清理函数在组件卸载或 update 变量变化时执行
         return () => {
-            // 销毁的时候是removeEventListener否则会造成dead cycle
+            // 销毁的时候是removeEventListener，而不是addEventListener，否则会造成dead cycle
             document.removeEventListener('visibilitychange', tokenHandler, false);
 
             window.removeEventListener("offline", changeOffline);
@@ -70,7 +72,6 @@ export default function ChildrenLayout({children}) {
 
     const tokenHandler = useCallback(async () => {
         if (document.visibilityState === 'visible') {
-            // alert('我更新了哦')
             const res = await dispatch(refreshToken())
             console.log('tokenHandler refreshToken res=', res)
             if (res.payload.status === 40001) {
@@ -101,7 +102,6 @@ export default function ChildrenLayout({children}) {
                         newTokenId: res.payload.data
                     })
                 }
-
             }
         }
     }, [update])
