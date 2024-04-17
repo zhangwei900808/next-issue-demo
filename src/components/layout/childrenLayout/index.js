@@ -35,28 +35,29 @@ export default function ChildrenLayout({children}) {
     const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(() => {
-        window.addEventListener('visibilitychange', tokenHandler, false);
-
+        // window.addEventListener('visibilitychange', tokenHandler, false);
+        // 每小时执行一下监听token是否过期
+        const interval = setInterval(() => tokenHandler(), 1000 * 60 * 60)
         window.addEventListener("offline", changeOffline);
         window.addEventListener('online', changeOnline);
 
         //return 中的清理函数在组件卸载或 update 变量变化时执行
         return () => {
             // 销毁的时候是removeEventListener，而不是addEventListener，否则会造成dead cycle
-            window.removeEventListener('visibilitychange', tokenHandler, false);
-
+            // window.removeEventListener('visibilitychange', tokenHandler, false);
+            clearInterval(interval)
             window.removeEventListener("offline", changeOffline);
             window.removeEventListener('online', changeOnline);
         };
     }, [update]);
 
     // 显示页面时需要验证token是否过期，
-    const tokenHandler = _.debounce(async () => {
+    const tokenHandler = async () => {
         if (document.visibilityState === 'visible') {
             // 获取session数据
             const session = await getSession()
             console.log('session ---', session)
-            if (session?.accessToken){
+            if (session?.accessToken) {
                 await dispatch(isReadNotify());
             }
             const res = await dispatch(refreshToken())
@@ -88,7 +89,7 @@ export default function ChildrenLayout({children}) {
                 }
             }
         }
-    }, 20000)
+    }
 
     function changeOffline() {
         setOnline(false)
