@@ -35,6 +35,7 @@ export default function ChildrenLayout({children}) {
     const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(() => {
+        console.log('我被 调用 了几次？')
         document.addEventListener('visibilitychange', tokenHandler);
         // 每小时执行一下监听token是否过期
         // const interval = setInterval(() => tokenHandler(), 1000 * 60 * 60)
@@ -43,6 +44,7 @@ export default function ChildrenLayout({children}) {
 
         //return 中的清理函数在组件卸载或 update 变量变化时执行
         return () => {
+            console.log('我被 销毁 了几次？')
             // 销毁的时候是removeEventListener，而不是addEventListener，否则会造成dead cycle
             document.removeEventListener('visibilitychange', tokenHandler);
             // clearInterval(interval)
@@ -51,46 +53,53 @@ export default function ChildrenLayout({children}) {
         };
     }, [update]);
 
+    const debouncedOnVisible = _.debounce(onVisible, 10000);
+
     // 显示页面时需要验证token是否过期，
-    const tokenHandler = _.debounce(async () => {
+    const tokenHandler = function () {
         console.log('visibilityState', document.visibilityState)
-        if (document.visibilityState === 'visible') {
-            // 获取session数据
-            const session = await getSession()
-            console.log('session ---', session)
-            if (session?.accessToken) {
-                await dispatch(isReadNotify());
-            }
-            const res = await dispatch(refreshToken())
-            console.log('tokenHandler refreshToken res=', res)
-            if (res?.payload?.status === 40001) {
-                confirm({
-                    title: '登录已过期',
-                    icon: <ExclamationCircleFilled/>,
-                    content: '您的登录已过期，请重新登录！',
-                    okText: '确定',
-                    cancelText: '取消',
-                    onOk() {
-                        location.href = '/login'
-                    },
-                    onCancel() {
-                        // 弹出确认框，让用户自行跳转登录
-                        // 重新登录
-                        location.reload()
-                    }
-                });
-            } else if (res?.payload?.status !== -1) {
-                messageApi.info('未知异常!');
-            } else if (res?.payload?.data) {
-                if (session?.accessToken !== res?.payload?.data) {
-                    // 更新session中的token-id
-                    update({
-                        newTokenId: res.payload.data
-                    })
+        console.log('document.hidden', document.hidden)
+        if (!document.hidden) {
+            debouncedOnVisible()
+        }
+    }
+
+   async function onVisible() {
+        // 获取session数据
+        const session = await getSession()
+        console.log('session ---', session)
+        if (session?.accessToken) {
+            await dispatch(isReadNotify());
+        }
+        const res = await dispatch(refreshToken())
+        console.log('tokenHandler refreshToken res=', res)
+        if (res?.payload?.status === 40001) {
+            confirm({
+                title: '登录已过期',
+                icon: <ExclamationCircleFilled/>,
+                content: '您的登录已过期，请重新登录！',
+                okText: '确定',
+                cancelText: '取消',
+                onOk() {
+                    location.href = '/login'
+                },
+                onCancel() {
+                    // 弹出确认框，让用户自行跳转登录
+                    // 重新登录
+                    location.reload()
                 }
+            });
+        } else if (res?.payload?.status !== -1) {
+            messageApi.info('未知异常!');
+        } else if (res?.payload?.data) {
+            if (session?.accessToken !== res?.payload?.data) {
+                // 更新session中的token-id
+                update({
+                    newTokenId: res.payload.data
+                })
             }
         }
-    }, 10000)
+    }
 
     function changeOffline() {
         setOnline(false)
