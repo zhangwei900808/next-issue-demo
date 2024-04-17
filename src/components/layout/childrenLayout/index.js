@@ -33,27 +33,6 @@ export default function ChildrenLayout({children}) {
     });
     const [messageApi, contextHolder] = message.useMessage();
 
-    // 注意：因为我们使用了refetchOnWindowFocus={true}，所以当页面显示的时候就会重新调用session，因此，这里就会被调用，
-    // 也就是说相当于添加了document.addEventListener('visibilitychange'事件，利用这点来添加自定义逻辑
-    // useEffect(() => {
-    //     console.log('session status=', status)
-    //     console.log('children session =', session)
-    //     const tokenHandlerWrapper = async () => {
-    //         if (session) {
-    //             await tokenHandler();
-    //         }
-    //     };
-    //
-    //     tokenHandlerWrapper();
-    //
-    //     // if (session){
-    //     //     tokenHandler()
-    //     // }
-    //     return () => {
-    //         tokenHandler()
-    //     }
-    // }, [session])
-
     useEffect(() => {
         document.addEventListener('visibilitychange', tokenHandler, false);
 
