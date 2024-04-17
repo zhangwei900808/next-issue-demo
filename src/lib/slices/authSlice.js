@@ -1,29 +1,17 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "@/lib/axios";
 
-// export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
-//     try {
-//         const response = await axiosInstance.post('/users/web/login', {
-//             userName: credentials.username,
-//             password: credentials.password
-//         });
-//         console.log('login response =', response)
-//         const resdata = response.data;
-//         if (resdata.status === 0) {
-//             return {
-//                 isLogin: true,
-//                 me: resdata.data
-//             };
-//         } else {
-//             return response.data || response.message
-//         }
-//
-//     } catch (error) {
-//         return thunkAPI.rejectWithValue({errorMsg: error.message});
-//     }
-// });
+export const isReadNotify = createAsyncThunk('auth/isReadNotify', async (params, thunkAPI) => {
+    try {
+        const res = await axios.get(`/notify/crud/messages/isRead`);
+        console.log('------------ isReadNotify res=>', res)
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue({errorMsg: error.message});
+    }
+});
 
-export const refreshToken = createAsyncThunk('account/refreshToken', async (params, thunkAPI) => {
+export const refreshToken = createAsyncThunk('auth/refreshToken', async (params, thunkAPI) => {
     try {
         const res = await axios.get('/users/crud/refreshToken');
         // console.log('refreshCookie = ',res)
@@ -35,6 +23,8 @@ export const refreshToken = createAsyncThunk('account/refreshToken', async (para
 
 const initialState = {
     value: 0,
+    isReadMessage: true,
+    isReadRemind: true
 };
 
 export const authSlice = createSlice({
@@ -53,6 +43,18 @@ export const authSlice = createSlice({
             state.value += action.payload;
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(isReadNotify.fulfilled, (state, action) => {
+            console.log('isReadNotify.fulfilled=>', action)
+            if (action.payload && action.payload.data) {
+                state.isReadMessage = action.payload.data.readMessage;
+                state.isReadRemind = action.payload.data.readRemind;
+            }
+        })
+        .addCase(isReadNotify.rejected, (state, action) => {
+            console.log('isReadNotify rejected=>', state)
+        })
+    }
 })
 
 export const { increment, decrement, incrementByAmount } = authSlice.actions;

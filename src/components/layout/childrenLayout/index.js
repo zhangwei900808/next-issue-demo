@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import {useSession, getSession} from "next-auth/react"
 import Loading from "@/components/loading";
 import TopMenus from "@/components/layout/topMenus";
-import {refreshToken} from '@/lib/slices/authSlice'
+import {refreshToken, isReadNotify} from '@/lib/slices/authSlice'
 import {useDispatch} from "react-redux";
 
 const relativeTime = require('dayjs/plugin/relativeTime')
@@ -49,11 +49,18 @@ export default function ChildrenLayout({children}) {
         };
     }, [update]);
 
+    //
     const tokenHandler = useCallback(async () => {
         if (document.visibilityState === 'visible') {
+            // 获取session数据
+            const session = await getSession()
+            console.log('session ---', session)
+            if (session?.accessToken){
+                await dispatch(isReadNotify());
+            }
             const res = await dispatch(refreshToken())
             console.log('tokenHandler refreshToken res=', res)
-            if (res.payload.status === 40001) {
+            if (res?.payload?.status === 40001) {
                 confirm({
                     title: '登录已过期',
                     icon: <ExclamationCircleFilled/>,
@@ -64,19 +71,16 @@ export default function ChildrenLayout({children}) {
                         location.href = '/login'
                     },
                     onCancel() {
-                        //弹出确认框，让用户自行跳转登录
+                        // 弹出确认框，让用户自行跳转登录
                         // 重新登录
                         location.reload()
-                    },
+                    }
                 });
-            } else if (res.payload.status !== -1) {
+            } else if (res?.payload?.status !== -1) {
                 messageApi.info('未知异常!');
-
-            } else if (res.payload.data) {
-                // 获取session数据
-                // const session = await getSession()
-                console.log('session ---', session)
-                if (session.accessToken !== res.payload.data) {
+            } else if (res?.payload?.data) {
+                if (session?.accessToken !== res?.payload?.data) {
+                    // 更新session中的token-id
                     update({
                         newTokenId: res.payload.data
                     })
