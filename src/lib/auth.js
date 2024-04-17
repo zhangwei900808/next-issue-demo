@@ -78,7 +78,7 @@ export const authOptions = {
             // }
             if (user) {
                 token.uid = user.uid
-                token.accessToken = user.token
+                token.accessToken = user.tokenId
             }
             return token
         },

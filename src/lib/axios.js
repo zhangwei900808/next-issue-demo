@@ -19,7 +19,7 @@ axiosInstance.interceptors.request.use(
         // const token = localStorage.getItem('token');
         if (session && session.accessToken) {
             // 让每个请求都带上自定义的 token 请根据实际情况自行修改
-            config.headers.Authorization = session.accessToken;
+            config.headers['token-id'] = session.accessToken;
         }
         return config;
     },
