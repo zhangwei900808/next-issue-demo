@@ -8,6 +8,7 @@ import Loading from "@/components/loading";
 import TopMenus from "@/components/layout/topMenus";
 import {refreshToken, isReadNotify} from '@/lib/slices/authSlice'
 import {useDispatch} from "react-redux";
+import _ from "lodash";
 
 const relativeTime = require('dayjs/plugin/relativeTime')
 const customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -34,7 +35,7 @@ export default function ChildrenLayout({children}) {
     const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(() => {
-        document.addEventListener('visibilitychange', tokenHandler, false);
+        window.addEventListener('visibilitychange', tokenHandler, false);
 
         window.addEventListener("offline", changeOffline);
         window.addEventListener('online', changeOnline);
@@ -42,15 +43,15 @@ export default function ChildrenLayout({children}) {
         //return 中的清理函数在组件卸载或 update 变量变化时执行
         return () => {
             // 销毁的时候是removeEventListener，而不是addEventListener，否则会造成dead cycle
-            document.removeEventListener('visibilitychange', tokenHandler, false);
+            window.removeEventListener('visibilitychange', tokenHandler, false);
 
             window.removeEventListener("offline", changeOffline);
             window.removeEventListener('online', changeOnline);
         };
     }, [update]);
 
-    //
-    const tokenHandler = useCallback(async () => {
+    // 显示页面时需要验证token是否过期，
+    const tokenHandler = _.debounce(async () => {
         if (document.visibilityState === 'visible') {
             // 获取session数据
             const session = await getSession()
@@ -87,7 +88,7 @@ export default function ChildrenLayout({children}) {
                 }
             }
         }
-    }, [update])
+    }, 20000)
 
     function changeOffline() {
         setOnline(false)
