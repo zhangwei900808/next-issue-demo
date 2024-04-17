@@ -24,7 +24,7 @@ export default function TopMenus() {
     const [theme, setTheme] = useState()
     const {token} = useToken();
 
-    console.log('token ===', token.colorPrimaryBg)
+    // console.log('token ===', token.colorPrimaryBg)
     const pathname = usePathname()
 
     useEffect(() =>{

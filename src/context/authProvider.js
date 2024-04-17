@@ -7,10 +7,11 @@ export default function AuthProvider({ children }) {
         <SessionProvider // Re-fetch session every 5 minutes
             //https://next-auth.js.org/getting-started/client#options
             //https://next-auth.js.org/getting-started/client#refetching-the-session
-            refetchInterval={5 * 60}
-            refetchWhenOffline={false}
+            // refetchInterval={5 * 60}
+            // refetchWhenOffline={false}
             // Re-fetches session when window is focused
-            refetchOnWindowFocus={true}>
+            // refetchOnWindowFocus={false}
+        >
             {children}
         </SessionProvider>
     )

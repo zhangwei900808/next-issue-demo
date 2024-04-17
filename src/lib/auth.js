@@ -67,15 +67,12 @@ export const authOptions = {
             console.log('jwt user=', user)
             console.log('jwt token=', token)
             // console.log('jwt account=', account)
-            // console.log('jwt trigger=', trigger)
-            // console.log('jwt session=', session)
-            // if (user) token.role = user.role
-            // token.avatar = user.avatar
-            // token.avatar = user.avatar
-            // if (user){
-            //     token.avatar = user.avatar
-            //     token.uid = user.uid
-            // }
+            console.log('jwt trigger=', trigger)
+            console.log('jwt session=', session)
+
+            if (trigger === 'update' && session?.newTokenId){
+                token.accessToken = session.newTokenId
+            }
             if (user) {
                 token.uid = user.uid
                 token.accessToken = user.tokenId
@@ -83,12 +80,15 @@ export const authOptions = {
             return token
         },
         // If you want to use the role in client components
-        async session({session, user, token}) {
+        async session({session, user, token, trigger, newSession}) {
             // 问题:如何把userId传递到session中，因为后续接口需要
             // 解决：需要从java后台返回access_token放到session中，然后请求java接口的时候axios带上这个token即可
             console.log('session session=', session)
             console.log('session user=', user)
             console.log('session token=', token)
+
+            console.log('session trigger=', trigger)
+            console.log('session newSession=', newSession)
             if (token){
                 session.accessToken = token.accessToken
                 session.user.uid = token.uid

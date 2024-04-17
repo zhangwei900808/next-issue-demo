@@ -3,7 +3,7 @@ import {useCallback, useEffect, useState} from "react";
 import {message, Modal} from 'antd'
 import {ExclamationCircleFilled, LoginOutlined, LoadingOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
-import {useSession} from "next-auth/react"
+import {useSession, getSession} from "next-auth/react"
 import Loading from "@/components/loading";
 import TopMenus from "@/components/layout/topMenus";
 import {refreshToken} from '@/lib/slices/authSlice'
@@ -22,6 +22,7 @@ dayjs.locale('zh-cn') // 全局使用
 export default function ChildrenLayout({children}) {
     const {confirm} = Modal;
 
+    // useSession中的session需要useEffect监听变化才能拿到最新的，而getSession获取的永远是最新的
     const {data: session, status, update} = useSession()
     const dispatch = useDispatch()
 
@@ -54,22 +55,22 @@ export default function ChildrenLayout({children}) {
     // }, [session])
 
     useEffect(() => {
-        document.addEventListener('visibilitychange', tokenHandler);
+        document.addEventListener('visibilitychange', tokenHandler, false);
 
         window.addEventListener("offline", changeOffline);
         window.addEventListener('online', changeOnline);
         return () => {
-            document.addEventListener('visibilitychange', tokenHandler);
+            // 销毁的时候是removeEventListener否则会造成dead cycle
+            document.removeEventListener('visibilitychange', tokenHandler, false);
 
-            window.addEventListener("offline", changeOffline);
-            window.addEventListener('online', changeOnline);
+            window.removeEventListener("offline", changeOffline);
+            window.removeEventListener('online', changeOnline);
         };
-    }, []);
+    }, [update]);
 
-    async function tokenHandler () {
+    const tokenHandler = useCallback(async () => {
         if (document.visibilityState === 'visible') {
-            console.log('session ---', session)
-            //todo:死循环了
+            // alert('我更新了哦')
             const res = await dispatch(refreshToken())
             console.log('tokenHandler refreshToken res=', res)
             if (res.payload.status === 40001) {
@@ -92,12 +93,18 @@ export default function ChildrenLayout({children}) {
                 messageApi.info('未知异常!');
 
             } else if (res.payload.data) {
-                update({
-                    newTokenId: res.payload.data
-                })
+                // 获取session数据
+                // const session = await getSession()
+                console.log('session ---', session)
+                if (session.accessToken !== res.payload.data) {
+                    update({
+                        newTokenId: res.payload.data
+                    })
+                }
+
             }
         }
-    }
+    }, [update])
 
     function changeOffline() {
         setOnline(false)
