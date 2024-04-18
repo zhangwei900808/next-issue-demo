@@ -3,7 +3,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import {message, Modal} from 'antd'
 import {ExclamationCircleFilled, LoginOutlined, LoadingOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
-import {useSession, getSession} from "next-auth/react"
+import {useSession, getSession, signOut} from "next-auth/react"
 import Loading from "@/components/loading";
 import TopMenus from "@/components/layout/topMenus";
 import {refreshToken, isReadNotify} from '@/lib/slices/authSlice'
@@ -81,6 +81,7 @@ export default function ChildrenLayout({children}) {
                     okText: '确定',
                     cancelText: '取消',
                     onOk() {
+                        signOut()
                         location.href = '/login'
                     },
                     onCancel() {
