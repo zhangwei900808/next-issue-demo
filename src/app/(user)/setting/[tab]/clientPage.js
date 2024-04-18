@@ -27,7 +27,7 @@ import AccountSecurity from "@/components/setting/accountSecurity";
 import AccountEmail from "@/components/setting/accountEmail";
 import AccountNotice from "@/components/setting/accountNotice";
 import {useSelector, useDispatch} from 'react-redux'
-import {setTabs, getAccountBaseInfo} from '@/lib/slices/settingSlice'
+import {setTabs, setAccountUserInfo} from '@/lib/slices/settingSlice'
 
 import _ from "lodash";
 import classNames from "classnames/bind";
@@ -38,8 +38,13 @@ const {SubMenu} = Menu;
 const {TabPane} = Tabs;
 
 const ClientPage = ({tab, userInfo}) => {
+
+
   const router = useRouter()
   const dispatch = useDispatch();
+  if (userInfo){
+    dispatch(setAccountUserInfo(userInfo))
+  }
   const [open, setOpen] = useState(false);
   const {tabs} = useSelector(state => state.setting)
   const showDrawer = () => {

@@ -204,6 +204,9 @@ export const settingSlice = createSlice({
     name: 'setting',
     initialState,
     reducers: {
+        setAccountUserInfo(state, action){
+            state.accountUserInfo = action.payload
+        },
         setTabs: (state, action) => {
             console.log('state=>sdfsfdsdf', current(state))
             state.tabs = state.tabs.map(item => {
@@ -256,4 +259,4 @@ export const settingSlice = createSlice({
     }
 })
 
-export const {setTabs} = settingSlice.actions;
+export const {setTabs, setAccountUserInfo} = settingSlice.actions;
