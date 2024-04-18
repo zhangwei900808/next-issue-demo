@@ -85,6 +85,7 @@ export default function ChildrenLayout({children}) {
                         // location.href = '/login'
                     },
                     onCancel() {
+                        signOut()
                         // 弹出确认框，让用户自行跳转登录
                         // 重新登录
                         location.reload()
