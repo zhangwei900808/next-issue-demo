@@ -82,7 +82,7 @@ export default function ChildrenLayout({children}) {
                     cancelText: '取消',
                     onOk() {
                         signOut()
-                        location.href = '/login'
+                        // location.href = '/login'
                     },
                     onCancel() {
                         // 弹出确认框，让用户自行跳转登录
