@@ -1,5 +1,5 @@
 'use client'
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {message, Modal} from 'antd'
 import {ExclamationCircleFilled, LoginOutlined, LoadingOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
@@ -34,11 +34,16 @@ export default function ChildrenLayout({children}) {
     });
     const [messageApi, contextHolder] = message.useMessage();
 
+    const latestUpdate = useRef()
+
     useEffect(() => {
-        console.log('我被 调用 了几次？')
+        // 必须：更新update，否则在tokenHandler方法中拿不到最新的update方法
+        latestUpdate.current = update
+    }, [update]);
+
+    useEffect(() => {
         document.addEventListener('visibilitychange', tokenHandler);
-        // 每小时执行一下监听token是否过期
-        // const interval = setInterval(() => tokenHandler(), 1000 * 60 * 60)
+
         window.addEventListener("offline", changeOffline);
         window.addEventListener('online', changeOnline);
 
@@ -51,55 +56,52 @@ export default function ChildrenLayout({children}) {
             window.removeEventListener("offline", changeOffline);
             window.removeEventListener('online', changeOnline);
         };
-    }, [update]);
+    }, []);
 
-    const debouncedOnVisible = _.debounce(onVisible, 10000);
 
+    // 防抖：10秒内如果触发多次，只有最后一次会被执行，不过注意，我们没有直播使用update方法，因为拿到的不是最新的，我们只能定义一个新变量latestUpdate来捕捉update的变化，然后才能使用
     // 显示页面时需要验证token是否过期，
-    const tokenHandler = function () {
+    const tokenHandler = _.debounce(async () => {
         console.log('visibilityState', document.visibilityState)
-        console.log('document.hidden', document.hidden)
+        // console.log('document.hidden', document.hidden)
         if (!document.hidden) {
-            debouncedOnVisible()
-        }
-    }
-
-   async function onVisible() {
-        // 获取session数据
-        const session = await getSession()
-        console.log('session ---', session)
-        if (session?.accessToken) {
-            await dispatch(isReadNotify());
-        }
-        const res = await dispatch(refreshToken())
-        console.log('tokenHandler refreshToken res=', res)
-        if (res?.payload?.status === 40001) {
-            confirm({
-                title: '登录已过期',
-                icon: <ExclamationCircleFilled/>,
-                content: '您的登录已过期，请重新登录！',
-                okText: '确定',
-                cancelText: '取消',
-                onOk() {
-                    location.href = '/login'
-                },
-                onCancel() {
-                    // 弹出确认框，让用户自行跳转登录
-                    // 重新登录
-                    location.reload()
+            // 获取session数据
+            const session = await getSession()
+            console.log('session ---', session)
+            if (session?.accessToken) {
+                await dispatch(isReadNotify());
+            }
+            const res = await dispatch(refreshToken())
+            console.log('tokenHandler refreshToken res=', res)
+            if (res?.payload?.status === 40001) {
+                confirm({
+                    title: '登录已过期',
+                    icon: <ExclamationCircleFilled/>,
+                    content: '您的登录已过期，请重新登录！',
+                    okText: '确定',
+                    cancelText: '取消',
+                    onOk() {
+                        location.href = '/login'
+                    },
+                    onCancel() {
+                        // 弹出确认框，让用户自行跳转登录
+                        // 重新登录
+                        location.reload()
+                    }
+                });
+            } else if (res?.payload?.status !== -1) {
+                messageApi.info('未知异常!');
+            } else if (res?.payload?.data) {
+                if (session?.accessToken !== res?.payload?.data) {
+                    // 更新session中的token-id
+                    latestUpdate.current({
+                        newTokenId: res.payload.data
+                    })
                 }
-            });
-        } else if (res?.payload?.status !== -1) {
-            messageApi.info('未知异常!');
-        } else if (res?.payload?.data) {
-            if (session?.accessToken !== res?.payload?.data) {
-                // 更新session中的token-id
-                update({
-                    newTokenId: res.payload.data
-                })
             }
         }
-    }
+    }, 10000)
+
 
     function changeOffline() {
         setOnline(false)

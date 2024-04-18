@@ -64,11 +64,11 @@ export const authOptions = {
         // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         // 当使用update()方法更新时，trigger=update session={你定义的值}，其它时候默认都是undefined
         async jwt({token, user, account, trigger, session}) {
-            // console.log('jwt user=', user)
-            // console.log('jwt token=', token)
-            // // console.log('jwt account=', account)
-            // console.log('jwt trigger=', trigger)
-            // console.log('jwt session=', session)
+            console.log('jwt user=', user)
+            console.log('jwt token=', token)
+            // console.log('jwt account=', account)
+            console.log('jwt trigger=', trigger)
+            console.log('jwt session=', session)
 
             // token id过期，更新new token id
             if (trigger === 'update' && session?.newTokenId){
