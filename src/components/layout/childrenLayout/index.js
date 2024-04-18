@@ -49,7 +49,6 @@ export default function ChildrenLayout({children}) {
 
         //return 中的清理函数在组件卸载或 update 变量变化时执行
         return () => {
-            console.log('我被 销毁 了几次？')
             // 销毁的时候是removeEventListener，而不是addEventListener，否则会造成dead cycle
             document.removeEventListener('visibilitychange', tokenHandler);
             // clearInterval(interval)
@@ -68,37 +67,38 @@ export default function ChildrenLayout({children}) {
             // 获取session数据
             const session = await getSession()
             console.log('session ---', session)
+            // 只有登录的才会请求接口
             if (session?.accessToken) {
                 await dispatch(isReadNotify());
-            }
-            const res = await dispatch(refreshToken())
-            console.log('tokenHandler refreshToken res=', res)
-            if (res?.payload?.status === 40001) {
-                confirm({
-                    title: '登录已过期',
-                    icon: <ExclamationCircleFilled/>,
-                    content: '您的登录已过期，请重新登录！',
-                    okText: '确定',
-                    cancelText: '取消',
-                    onOk() {
-                        signOut()
-                        // location.href = '/login'
-                    },
-                    onCancel() {
-                        signOut()
-                        // 弹出确认框，让用户自行跳转登录
-                        // 重新登录
-                        location.reload()
+                const res = await dispatch(refreshToken())
+                console.log('tokenHandler refreshToken res=', res)
+                if (res?.payload?.status === 40001) {
+                    confirm({
+                        title: '登录已过期',
+                        icon: <ExclamationCircleFilled/>,
+                        content: '您的登录已过期，请重新登录！',
+                        okText: '确定',
+                        cancelText: '取消',
+                        onOk() {
+                            signOut()
+                            // location.href = '/login'
+                        },
+                        onCancel() {
+                            signOut()
+                            // 弹出确认框，让用户自行跳转登录
+                            // 重新登录
+                            location.reload()
+                        }
+                    });
+                } else if (res?.payload?.status !== -1) {
+                    messageApi.info('未知异常!');
+                } else if (res?.payload?.data) {
+                    if (session?.accessToken !== res?.payload?.data) {
+                        // 更新session中的token-id
+                        latestUpdate.current({
+                            newTokenId: res.payload.data
+                        })
                     }
-                });
-            } else if (res?.payload?.status !== -1) {
-                messageApi.info('未知异常!');
-            } else if (res?.payload?.data) {
-                if (session?.accessToken !== res?.payload?.data) {
-                    // 更新session中的token-id
-                    latestUpdate.current({
-                        newTokenId: res.payload.data
-                    })
                 }
             }
         }
