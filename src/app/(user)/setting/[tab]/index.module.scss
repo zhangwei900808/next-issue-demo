@@ -1,0 +1,56 @@
+//.container{
+//    width: 100%;
+//    height: calc(100% - 0px);
+//    overflow-y: auto;
+//    .content{
+//        .leftBar{
+//            //height: calc(100vh - 0);
+//            padding: 12px 0;
+//            position: sticky;
+//            top: 0
+//        }
+//        .body{
+//            border-left: 1px solid #eee;
+//            padding: 20px 20px 0 20px;
+//            height:100%;
+//            min-height: calc(100vh - 56px);
+//            .titleLine{
+//                border-bottom: 1px solid #e1e4e8;
+//                padding-bottom: 8px;
+//            }
+//
+//            .tips{
+//                margin: 8px 0;
+//                .content{
+//                    padding-left: 8px;
+//                }
+//            }
+//            .warn{
+//                margin: 8px 0;
+//            }
+//        }
+//    }
+//}
+//
+//.error404{
+//    margin-top: -56px;
+//    // & >>>{
+//    //     height: calc(100% - 56px)
+//    // }
+//}
+//
+//.myrow{
+//    flex-flow: column-reverse;
+//}
+//.menu{
+//    width: 36px;
+//    height: 26px;
+//    display: inline-flex;
+//    align-items: center;
+//    justify-content: center;
+//    margin-right: 12px;
+//    margin-left: 15px;
+//    margin-top: 12px;
+//    background-color: #eee;
+//    border-radius: 8px;
+//}
