@@ -1,6 +1,6 @@
 'use client'
 import {useState, useContext, useEffect} from "react";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 
 import {
   Result,
@@ -113,7 +113,7 @@ const AccountName = (props) => {
     {/* <div className={styles.tips}>
         <Help tip="您确定要修改用户名？修改用户名会导致之前的链接失效，请知晓！" />
       </div> */}
-    <div className={styles.warn}>
+    <div>
       {/*<Stitle.Title title="请知悉：修改用户名将造成下列影响"/>*/}
       <div>请知悉：修改用户名将造成下列影响</div>
       <Paragraph>
