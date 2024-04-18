@@ -1,6 +1,17 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "@/lib/axios";
 
+export const verifyCode = createAsyncThunk('auth/verifyCode', async (params, thunkAPI) => {
+    try {
+        const res = await axios.post(`/users/info/verify/code`, {
+            captchaVerifyParam: params.captchaVerifyParam
+        });
+        return res.data
+    } catch (error) {
+        return thunkAPI.rejectWithValue({errorMsg: error.message});
+    }
+});
+
 export const isReadNotify = createAsyncThunk('auth/isReadNotify', async (params, thunkAPI) => {
     try {
         const res = await axios.get(`/notify/crud/messages/isRead`);

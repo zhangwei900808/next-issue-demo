@@ -1,3 +1,4 @@
+'use client'
 import {useRouter} from 'next/navigation'
 
 import {
@@ -20,17 +21,13 @@ import {AppstoreOutlined, MailOutlined, MenuOutlined, SearchOutlined} from '@ant
 import NavMenus from "@/components/navMenus";
 import styles from "./index.module.scss";
 import {useState, useContext, useEffect, memo} from "react";
-import Help from '../../components/help'
 import AccountInfo from "@/components/setting/accountInfo";
 import AccountName from "@/components/setting/accountName";
 import AccountSecurity from "@/components/setting/accountSecurity";
 import AccountEmail from "@/components/setting/accountEmail";
 import AccountNotice from "@/components/setting/accountNotice";
 import {useSelector, useDispatch} from 'react-redux'
-import {setTabs, getAccountBaseInfo} from '@/store/slices/settingSlice'
-import {setHeader} from '@/store/slices/layoutSlice';
-import {getSessionUser, getUserInfo} from '@/store/slices/authSlice'
-import {setCurrentHydrate} from '@/store/slices/systemSlice'
+import {setTabs, getAccountBaseInfo} from '@/lib/slices/settingSlice'
 
 import _ from "lodash";
 import classNames from "classnames/bind";
@@ -40,10 +37,11 @@ const {Title, Paragraph, Text, Link} = Typography;
 const {SubMenu} = Menu;
 const {TabPane} = Tabs;
 
-const Setting = (props) => {
+const ClientPage = ({tab, userInfo}) => {
   const router = useRouter()
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const {tabs} = useSelector(state => state.setting)
   const showDrawer = () => {
     setOpen(true);
   };
@@ -51,22 +49,7 @@ const Setting = (props) => {
     setOpen(false);
   };
 
-  const {
-    tabs,
-    isLogin,
-    isMobile
-  } = useSelector((state) => {
-    const {me, isLogin, userInfo} = state.auth
-    const {isMobile} = state.layout
-    return {
-      isLogin,
-      isMobile,
-      ...state.setting,
-      hydrate: state.system.currentHydrate
-    }
-  }, (_old, _new) => _old.hydrate !== _new.hydrate);
-
-  const {tab} = router.query;
+  // const {tab} = router.query;
   console.log(tab);
   // const { resize, setResize } = useContext(LayoutContext);
 
@@ -177,26 +160,13 @@ const Setting = (props) => {
     console.log('tab=', tab);
     renderTabContent();
   }, [])
+
   useEffect(() => {
     renderTabContent()
     return () => {
       return false;
     }
   }, [tab]);
-  useEffect(() => {
-    if (!isLogin) {
-      router.push('/')
-      // Modal.error({
-      //   title: '提示',
-      //   content: '您的登录已过期！请重新登录',
-      //   okText: '确定',
-      //   onOk: function (close) {
-      //     router.push('/login')
-      //     close();
-      //   }
-      // });
-    }
-  }, [isLogin])
 
   function choosedTab(tab) {
     setOpen(false)
@@ -213,7 +183,7 @@ const Setting = (props) => {
           {/* gutter={{ xs: 16, sm: 16, md: 16, lg: 24, xl: 24, xxl: 24 }} */}
           <Row>
             {
-              !isMobile?<Col xs={9} sm={9} md={9} lg={6} xl={5} xxl={4}>
+              true?<Col xs={9} sm={9} md={9} lg={6} xl={5} xxl={4}>
                 {/*<div style={{ height: `${resize.height - 56}px`, borderRight: '1px solid #eee', padding: '12px 0' }}>*/}
                 <div className={styles.leftBar}>
                   <NavMenus menus={tabs} onChoosed={choosedTab}/>
@@ -248,4 +218,4 @@ const Setting = (props) => {
   return renderDom()
 };
 
-export default memo(Setting);
+export default ClientPage;
