@@ -212,7 +212,7 @@ const ClientPage = ({tab, userInfo}) => {
       />
     return <>
       {dom}
-      <Drawer title="" width={320} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>
+      <Drawer title="" width={320} placement="left" onClose={onClose} open={open}>
         <div className={styles.leftBar}>
           <NavMenus menus={tabs} onChoosed={choosedTab}/>
         </div>

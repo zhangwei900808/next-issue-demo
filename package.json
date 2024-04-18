@@ -19,7 +19,7 @@
     "dayjs": "^1.11.10",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
-    "next": "14.2.1",
+    "next": "14.2.2",
     "next-auth": "5.0.0-beta.16",
     "react": "^18",
     "react-cropper": "^2.3.3",

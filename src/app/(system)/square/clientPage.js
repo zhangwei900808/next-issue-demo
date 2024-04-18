@@ -225,7 +225,7 @@ const ClientPage = ({data}) => {
         </div>
       </div>
     </div>
-    <Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open} bodyStyle={{padding: '0'}}>
+    <Drawer title="开发语言" width={280} placement="left" onClose={onClose} open={open}>
       <div className={'w-full px-2'}>
         <UrlTags showTitle={false} choose={onClose}/>
       </div>

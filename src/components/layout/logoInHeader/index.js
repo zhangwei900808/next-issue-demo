@@ -233,9 +233,7 @@ const LogoInHeader = (props) => {
             closable={false}
             onClose={hideDrawer}
             open={visible}
-            width={320}
-            headerStyle={{padding: "0"}}
-            bodyStyle={{padding: "0", zIndex: '10'}}>
+            width={320}>
             <Menu
                 onClick={onClickMenuItem}
                 selectable={false}
