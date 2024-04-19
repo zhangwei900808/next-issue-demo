@@ -14,7 +14,7 @@ async function getData() {
     return res.json()
 }
 
-const RecommendUrls = async () => {
+const Main = async () => {
     const session = await auth()
     console.log('main paage session =', session)
     // const data = await getData()
@@ -29,4 +29,4 @@ const RecommendUrls = async () => {
     </div>
 
 }
-export default RecommendUrls;
+export default Main;
